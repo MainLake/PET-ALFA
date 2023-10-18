@@ -37,8 +37,8 @@ const Navbar = () => {
             </li>
           </ul>
           <div className="d-flex">
-            <a href="/Login" class="btn btn-secondary me-2">Inicia Sesión</a>
-            <a href="/Signup" class="btn btn-secondary">Regístrate</a>
+            <a href="/Login" className="btn btn-secondary me-2">Inicia Sesión</a>
+            <a href="/Signup" className="btn btn-secondary">Regístrate</a>
           </div>
         </div>
       </div>
