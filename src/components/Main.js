@@ -11,7 +11,7 @@ const Main = () => {
     <main>
       <div className="position-relative overflow-hidden p-3 p-md-2 m-md-6 text-center bg-body-tertiary">
         <div className="col-md-12 p-lg-5 mx-auto my-1 fondo-con-imagen">
-          <h1 class="display-1 fw-bold lh-1 text-white">
+          <h1 className="display-1 fw-bold lh-1 text-white">
             Perdidos en Tapachula
           </h1>
           <div className="d-flex gap-3 justify-content-center lead fw-normal"></div>
