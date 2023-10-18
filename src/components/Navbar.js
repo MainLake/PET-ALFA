@@ -32,9 +32,6 @@ const Navbar = () => {
             <li className="nav-item">
               <Link to="/Como-Reporto" className="nav-link">¿Cómo Reporto?</Link>
             </li>
-            <li className="nav-item">
-              <Link to="/Asociaciones" className="nav-link">Asociaciones y Rescatistas</Link>
-            </li>
           </ul>
           <div className="d-flex">
             <a href="/Login" className="btn btn-secondary me-2">Inicia Sesión</a>
