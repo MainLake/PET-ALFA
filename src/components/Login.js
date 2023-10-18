@@ -49,12 +49,12 @@ const Login = () => {
         <div className="col-md-6 d-flex justify-content-center align-items-center cream-bg">
           <div className="bg-white p-5 rounded-5 text-secondary">
             <div className="d-flex justify-content-center">
-              <img src={Person} className="Person" alt="Icon-person"></img>
+              <img src={Person} className="Person"></img>
             </div>
             <div className="text-center fs-1 fw-bold">Iniciar Sesión</div>
             <div className="input-group mt-5">
               <div className="input-group-text bg-brown">
-                <img src={Envelope} className="Envelope" alt="Icon-Envelope"></img>
+                <img src={Envelope} className="Envelope"></img>
               </div>
               <input
                 type="email"
@@ -69,7 +69,7 @@ const Login = () => {
             </div>
             <div className="input-group mt-5">
               <div className="input-group-text bg-brown">
-                <img src={Lock} className="Lock" alt="Icon-Lock"></img>
+                <img src={Lock} className="Lock"></img>
               </div>
               <input
                 type="password"
