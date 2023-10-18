@@ -3,31 +3,26 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../css/signup.css";
 import SignupImg from "../imagenes/Registroimg.png";
 import Person from "../icons/person-fill.svg";
+import axios from "axios";
 
 const Registro = () => {
   const [name, setName] = useState("");
+  const [lastname, setlastname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [dataError, setdataError] = useState (false);
 
   const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    if (name === "name") {
-      setName(value);
-    } else if (name === "email") {
-      setEmail(value);
-    } else if (name === "password") {
-      setPassword(value);
-    } else if (name === "phoneNumber") {
-      setPhoneNumber(value);
-    }
+   /* const { name, value } = event.target;
+    this.setState({ [name]: value });*/
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault();
-    //Validaciones Robercito
-    console.log("Datos de registro:", { name, email, password, phoneNumber });
+   //event.proventDefault();
+   //console.log('Subiendo datos');
+   //axios.post('https://api-v1-rest-pets-lost-1517776b3a69.herokuapp.com/',{name:name,})
   };
 
   return (
@@ -37,7 +32,7 @@ const Registro = () => {
           <div className="image-container">
             <img
               src={SignupImg}
-              alt="Descripción de la imagen"
+              alt="Imagen de nuevo usuario"
               style={{
                 maxHeight: "650px",
                 maxWidth: "100%",
@@ -66,6 +61,21 @@ const Registro = () => {
                   placeholder="Introduce tu nombre"
                   required
                   value={name}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div>
+                <label htmlFor="lastname" className="form-label">
+                  Apellido:
+                </label>
+                <input
+                  type="text"
+                  id="lastname"
+                  name="lastname"
+                  className="form-control"
+                  placeholder="Introduce tus apellidos"
+                  required
+                  value={lastname}
                   onChange={handleInputChange}
                 />
               </div>
@@ -118,7 +128,6 @@ const Registro = () => {
                 Registrarse
               </button>
             </form>
-            {/* Mensaje de error */}
             {errorMessage && (
               <div className="text-danger mt-3">{errorMessage}</div>
             )}

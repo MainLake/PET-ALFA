@@ -47,11 +47,6 @@ const Navbar = () => {
                 ¿Cómo Reporto?
               </Link>
             </li>
-            <li className="nav-item">
-              <Link to="/Asociaciones" className="nav-link">
-                Asociaciones y Rescatistas
-              </Link>
-            </li>
           </ul>
           {user ? (
             <div className="d-flex">
@@ -67,6 +62,7 @@ const Navbar = () => {
               </a>
             </div>
           )}
+          </ul>
         </div>
       </div>
     </nav>

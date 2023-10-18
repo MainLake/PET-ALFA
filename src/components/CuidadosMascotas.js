@@ -40,7 +40,7 @@ const CuidadosMascotas = () => {
       <div className="container px-4 py-2" id="icon-grid">
         <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
           <div className="col d-flex align-items-start">
-            <img src={ShieldDog} className="Person"></img>
+            <img src={ShieldDog} className="Person" alt="Icon-ShieldDog"></img>
             <div className="custom-content">
               <h3 className="fw-bold mb-0 fs-4 text-body-emphasis align-items-center">
                 Collar con Placa
@@ -54,7 +54,7 @@ const CuidadosMascotas = () => {
             </div>
           </div>
           <div className="col d-flex align-items-start">
-            <img src={ShieldDog} className="Person"></img>
+            <img src={ShieldDog} className="Person" alt="Icon-shieldDog"></img>
             <div className="custom-content">
               <h3 className="fw-bold mb-0 fs-4 text-body-emphasis">
                 Supervisión Constante
@@ -67,7 +67,7 @@ const CuidadosMascotas = () => {
             </div>
           </div>
           <div className="col d-flex align-items-start">
-            <img src={ShieldDog} className="Person"></img>
+            <img src={ShieldDog} className="Person" alt="Icon-shieldDog"></img>
             <div className="custom-content">
               <h3 className="fw-bold mb-0 fs-4 text-body-emphasis">
                 Respuesta a su Nombre
@@ -80,7 +80,7 @@ const CuidadosMascotas = () => {
             </div>
           </div>
           <div className="col d-flex align-items-start">
-            <img src={ShieldDog} className="Person"></img>
+            <img src={ShieldDog} className="Person" alt="Shield-dog"></img>
             <div className="custom-content">
               <h3 className="fw-bold mb-0 fs-4 text-body-emphasis">
                 Paseos con Correa
@@ -94,7 +94,7 @@ const CuidadosMascotas = () => {
             </div>
           </div>
           <div className="col d-flex align-items-start">
-            <img src={ShieldDog} className="Person"></img>
+            <img src={ShieldDog} className="Person" alt="Icon-Shiel-dog"></img>
             <div className="custom-content">
               <h3 className="fw-bold mb-0 fs-4 text-body-emphasis">
                 Fotos Actuales
@@ -107,7 +107,7 @@ const CuidadosMascotas = () => {
             </div>
           </div>
           <div className="col d-flex align-items-start">
-            <img src={ShieldDog} className="Person"></img>
+            <img src={ShieldDog} className="Person" alt="Icon-shieldDog"></img>
             <div className="custom-content">
               <h3 className="fw-bold mb-0 fs-4 text-body-emphasis">
                 Entrenamiento de Regreso
@@ -119,7 +119,7 @@ const CuidadosMascotas = () => {
             </div>
           </div>
           <div className="col d-flex align-items-start">
-            <img src={ShieldDog} className="Person"></img>
+            <img src={ShieldDog} className="Person" alt="Icon-shieldDog"></img>
             <div className="custom-content">
               <h3 className="fw-bold mb-0 fs-4 text-body-emphasis">
                 Protección Segura
@@ -133,7 +133,7 @@ const CuidadosMascotas = () => {
             </div>
           </div>
           <div className="col d-flex align-items-start">
-            <img src={ShieldDog} className="Person"></img>
+            <img src={ShieldDog} className="Person" alt="Icon-shieldDog"></img>
             <div className="custom-content">
               <h3 className="fw-bold mb-0 fs-4 text-body-emphasis">
                 Educación sobre Mascotas
