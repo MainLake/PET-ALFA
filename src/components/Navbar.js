@@ -9,9 +9,9 @@ const Navbar = () => {
   const [user, setUser] = useUserContext();
 
   const logout = () => {
-    window.localStorage.removeItem('userPET');
+    window.localStorage.removeItem("userPET");
     setUser(null);
-  }
+  };
 
   return (
     <nav className="navbar navbar-expand-lg crema-bg">
@@ -50,7 +50,9 @@ const Navbar = () => {
           </ul>
           {user ? (
             <div className="d-flex">
-              <a onClick={logout} className="btn btn-danger">Salir</a>
+              <a onClick={logout} className="btn btn-danger">
+                Salir
+              </a>
             </div>
           ) : (
             <div className="d-flex">
@@ -62,7 +64,6 @@ const Navbar = () => {
               </a>
             </div>
           )}
-          </ul>
         </div>
       </div>
     </nav>
