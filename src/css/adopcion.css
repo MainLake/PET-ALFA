@@ -1,0 +1,42 @@
+.adopcion{
+    background-image: url('../imagenes/adopcion.png');
+    background-color: #1c5058;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    color: white;
+    height: 410px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    padding-top: 10vw; 
+    padding-bottom: 10vw; 
+}
+
+.adopcion h1 {
+    font-size: 6vw;
+    font-weight: bold;
+    margin-top: -3vw; 
+  }
+  
+  @media (max-width: 767px) {
+    .adopcion h1 {
+      font-size: 10vw; 
+      margin-top: -3vw;
+    }
+  }
+
+  .pet-adopcion{
+    background-color: #817566;
+  }
+
+.feature-card {
+  border-radius: 10px; 
+  padding: 20px;
+}
+
+
+.feature-card h3 {
+  margin-bottom: 10px;
+}

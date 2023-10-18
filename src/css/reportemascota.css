@@ -1,0 +1,9 @@
+
+.data-section {
+    padding: 20px; 
+    background-color: bisque; 
+}
+
+.data-section + .data-section {
+    background-color: bisque;
+}

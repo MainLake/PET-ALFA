@@ -1,0 +1,39 @@
+.ImgUserPass {
+  height: 1rem; 
+}
+
+.div {
+  width: 25rem; 
+}
+
+.login-bg {
+  background-color: beige;
+}
+
+.login-img {
+  height: 200px;
+  width: auto;
+}
+
+.image-container {
+  text-align: center; 
+}
+
+.Login-img {
+  max-height: 300px; 
+  max-width: 100%;
+  width: auto;
+  height: auto;
+}
+
+.black-bg {
+  background-color: black; 
+}
+
+.cream-bg {
+  background-color: bisque; 
+}
+
+.Person{
+  height: 40px;
+}

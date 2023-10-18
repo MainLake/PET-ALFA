@@ -1,0 +1,18 @@
+.crema-bg {
+    background-color: #715523;
+  }
+  
+  /* Cambiar el color de fuente de los elementos de navegación */
+  .navbar-nav .nav-link {
+    color: whitesmoke; /* Cambiar el color de fuente a gris oscuro */
+  }
+
+  .navbar-nav .nav-link {
+    font-weight: bold; /* Cambia a 'bold' para hacer el texto más gordo */
+    /* Otros estilos opcionales, como tamaño de fuente, color de fuente, margen, etc. */
+  }
+
+  .style-image{
+    width: 150px;
+    height: auto;
+  }
