@@ -44,7 +44,7 @@ const Adopcion = () => {
           <div className="feature col">
             <div className="feature-card">
               <div className="feature-icon d-flex align-items-center justify-content-center text-bg bg-gradient fs-2 mb-3">
-                <img src={Dog} className="Person"></img>
+                <img src={Dog} className="Person" alt="imagen-perro"></img>
               </div>
               <h3 className="fs-2 text-body-emphasis text-center">
                 Reflexiona sobre tu Estilo de Vida
@@ -59,7 +59,7 @@ const Adopcion = () => {
           <div className="feature col">
             <div className="feature-card">
               <div className="feature-icon d-flex align-items-center justify-content-center text-bg bg-gradient fs-2 mb-3">
-                <img src={Cat} className="Person"></img>
+                <img src={Cat} className="Person" alt="imagen-gato"></img>
               </div>
               <h3 className="fs-2 text-body-emphasis text-center">
                 Elije la Mascota Adecuada
@@ -76,7 +76,7 @@ const Adopcion = () => {
           <div className="feature col">
             <div className="feature-card">
               <div className="feature-icon d-flex align-items-center justify-content-center text-bg bg-gradient fs-2 mb-3">
-                <img src={Dog} className="Person"></img>
+                <img src={Dog} className="Person" alt="Imagen-perro"></img>
               </div>
               <h3 className="fs-2 text-body-emphasis text-center">
                 Haz espacio en tu Hogar
@@ -91,7 +91,7 @@ const Adopcion = () => {
           <div className="feature col">
             <div className="feature-card">
               <div className="feature-icon d-flex align-items-center justify-content-center text-bg bg-gradient fs-2 mb-3">
-                <img src={Cat} className="Person"></img>
+                <img src={Cat} className="Person" alt="Imagen-gato"></img>
               </div>
               <h3 className="fs-2 text-body-emphasis text-center">
                 Educación y Entrenamiento
@@ -106,7 +106,7 @@ const Adopcion = () => {
           <div className="feature col">
             <div className="feature-card">
               <div className="feature-icon d-flex align-items-center justify-content-center text-bg bg-gradient fs-2 mb-3">
-                <img src={Dog} className="Person"></img>
+                <img src={Dog} className="Person" alt="Imagen-perro"></img>
               </div>
               <h3 className="fs-2 text-body-emphasis text-center">
                 Atención Médica
@@ -121,7 +121,7 @@ const Adopcion = () => {
           <div className="feature col">
             <div className="feature-card">
               <div className="feature-icon d-flex align-items-center justify-content-center text-bg bg-gradient fs-2 mb-3">
-                <img src={Cat} className="Person"></img>
+                <img src={Cat} className="Person" alt="imagen-gato"></img>
               </div>
               <h3 className="fs-2 text-body-emphasis text-center">
                 Alimentación Adecuada
@@ -135,7 +135,7 @@ const Adopcion = () => {
           <div className="feature col">
             <div className="feature-card">
               <div className="feature-icon d-flex align-items-center justify-content-center text-bg bg-gradient fs-2 mb-3">
-                <img src={Dog} className="Person"></img>
+                <img src={Dog} className="Person" alt="imagen-perro"></img>
               </div>
               <h3 className="fs-2 text-body-emphasis text-center">
                 Identificación
@@ -150,7 +150,7 @@ const Adopcion = () => {
           <div className="feature col">
             <div className="feature-card">
               <div className="feature-icon d-flex align-items-center justify-content-center text-bg bg-gradient fs-2 mb-3">
-                <img src={Cat} className="Person"></img>
+                <img src={Cat} className="Person" alt="Imagen-gato"></img>
               </div>
               <h3 className="fs-2 text-body-emphasis text-center">
                 Compañía y Amor
@@ -164,7 +164,7 @@ const Adopcion = () => {
           <div className="feature col">
             <div className="feature-card">
               <div className="feature-icon d-flex align-items-center justify-content-center text-bg bg-gradient fs-2 mb-3">
-                <img src={Dog} className="Person"></img>
+                <img src={Dog} className="Person" alt="Iamgent-perro"></img>
               </div>
               <h3 className="fs-2 text-body-emphasis text-center">
                 Planifica a Futuro
