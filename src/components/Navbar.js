@@ -1,9 +1,18 @@
-import React from 'react';
-import '../css/navbar.css'
-import { Link } from 'react-router-dom';
-import Logo from '../imagenes/Logo.png';
+import React from "react";
+import "../css/navbar.css";
+import { Link } from "react-router-dom";
+import Logo from "../imagenes/Logo.png";
+
+import { useUserContext } from "../context/contextUser/ContextUser";
 
 const Navbar = () => {
+  const [user, setUser] = useUserContext();
+
+  const logout = () => {
+    window.localStorage.removeItem('userPET');
+    setUser(null);
+  }
+
   return (
     <nav className="navbar navbar-expand-lg crema-bg">
       <div className="container-fluid">
@@ -23,24 +32,41 @@ const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li className="nav-item">
-              <Link to="/Reportar-Mascotas" className="nav-link">Reportar Mascotas</Link>
+            <li className="nav-item">
+              <Link to="/Reportar-Mascotas" className="nav-link">
+                Reportar Mascotas
+              </Link>
             </li>
             <li className="nav-item">
-              <Link to="/Mascotas-Perdidas" className="nav-link">Mascotas Perdidas</Link>
+              <Link to="/Mascotas-Perdidas" className="nav-link">
+                Mascotas Perdidas
+              </Link>
             </li>
             <li className="nav-item">
-              <Link to="/Como-Reporto" className="nav-link">¿Cómo Reporto?</Link>
+              <Link to="/Como-Reporto" className="nav-link">
+                ¿Cómo Reporto?
+              </Link>
             </li>
           </ul>
-          <div className="d-flex">
-            <a href="/Login" className="btn btn-secondary me-2">Inicia Sesión</a>
-            <a href="/Signup" className="btn btn-secondary">Regístrate</a>
-          </div>
+          {user ? (
+            <div className="d-flex">
+              <a onClick={logout} className="btn btn-danger">Salir</a>
+            </div>
+          ) : (
+            <div className="d-flex">
+              <a href="/Login" className="btn btn-secondary me-2">
+                Inicia Sesión
+              </a>
+              <a href="/Signup" className="btn btn-secondary">
+                Regístrate
+              </a>
+            </div>
+          )}
+          </ul>
         </div>
       </div>
     </nav>
   );
-}
+};
 
 export default Navbar;

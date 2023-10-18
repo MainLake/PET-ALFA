@@ -6,10 +6,19 @@ import Person from "../icons/person-fill.svg";
 import Lock from "../icons/lock-fill.svg";
 import Envelope from "../icons/envelope-fill.svg";
 
+import jwtDecode from "jwt-decode";
+import axios from "axios";
+
+import { useUserContext } from "../context/contextUser/ContextUser";
+import { BASE_PATH } from "../utilities/constAPI";
+import { useNavigate } from "react-router-dom";
+
 const Login = () => {
+  const Navigate = useNavigate();
+  const [user, setUser] = useUserContext();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [error, setError] = useState(false);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -21,11 +30,34 @@ const Login = () => {
   };
 
   const handleLogin = () => {
-    if (email === "usuario@example.com" && password === "contraseña") {
-      alert("Inicio de sesión exitoso");
-    } else {
-      setErrorMessage("Correo o Contraseña Incorrectos.");
-    }
+    const data = {
+      email: email,
+      password: password,
+    };
+
+    console.log(data);
+
+    axios
+      .post(`${BASE_PATH}/users/login/`, data)
+      .then((response) => {
+        const token = response.data;
+        const tokenDecoded = jwtDecode(token);
+        const userObject = {
+          id: tokenDecoded.id,
+          token: token,
+        }
+        console.log(userObject);
+        window.localStorage.setItem('userPET', JSON.stringify(userObject));
+        setUser(userObject);
+        Navigate('/Reportar-Mascotas');
+      })
+      .catch((error) => {
+        console.log(error);
+        setError(true);
+        setTimeout(() => {
+          setError(false);
+        }, 3000);
+      });
   };
 
   return (
@@ -52,6 +84,11 @@ const Login = () => {
               <img src={Person} className="Person" alt="Icon-person"></img>
             </div>
             <div className="text-center fs-1 fw-bold">Iniciar Sesión</div>
+            {error ? (
+              <div className="alert alert-danger" role="alert">
+                Usuario o contraseña incorrectos
+              </div>
+            ) : null}
             <div className="input-group mt-5">
               <div className="input-group-text bg-brown">
                 <img src={Envelope} className="Envelope" alt="Icon-Envelope"></img>
@@ -89,9 +126,6 @@ const Login = () => {
             >
               Iniciar Sesión
             </button>
-            {errorMessage && (
-              <div className="text-danger mt-3">{errorMessage}</div>
-            )}
           </div>
         </div>
       </div>
