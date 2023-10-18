@@ -39,6 +39,7 @@ const Asociaciones = () => {
                 className="bd-placeholder-img"
                 width="250"
                 height="250"
+                alt="Imagen-asociacion-petRoma"
               ></img>
             </div>
           </div>
