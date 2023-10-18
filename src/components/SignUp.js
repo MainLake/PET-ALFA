@@ -37,7 +37,7 @@ const Registro = () => {
           <div className="image-container">
             <img
               src={SignupImg}
-              alt="Descripción de la imagen"
+              alt="Imagen de nuevo usuario"
               style={{
                 maxHeight: "650px",
                 maxWidth: "100%",
