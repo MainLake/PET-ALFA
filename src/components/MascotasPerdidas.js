@@ -1,7 +1,65 @@
+import React, { useEffect, useState } from "react";
 import React from "react";
 import "../css/mascotasperdidas.css";
 import Footer from "./Footer";
 const MascotasPerdidas = () => {
+  const [lostPetsData, setLostPetsData] = useState([]);
+  const [sizeOptions, setSizeOptions] = useState([]);
+  const [genderOptions, setGenderOptions] = useState([]);
+  const [customBreedFilter, setCustomBreedFilter] = useState("");
+  const [selectedSize, setSelectedSize] = useState(null);
+  const [selectedGender, setSelectedGender] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get(
+        "https://api-v1-rest-pets-lost-1517776b3a69.herokuapp.com/api/pets/lost?owner=true"
+      )
+
+      .then(function (response) {
+        const data = response.data;
+        console.log(data[0]);
+        setLostPetsData(data);
+        console.log(data[0].image.url);
+        setSizeOptions(["Grande", "Mediano", "Chico"]);
+        setGenderOptions(["Macho", "Hembra"]);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  }, []);
+
+  const handleCustomBreedFilterChange = (event) => {
+    setCustomBreedFilter(event.target.value);
+  };
+
+  const clearFilters = () => {
+    setSelectedSize("");
+    setSelectedGender("");
+    setCustomBreedFilter("");
+  };
+
+  // Aplicando y actualizando el estado de los filtros
+  const applyFilters = () => {
+    const newFilteredPets = lostPetsData.filter((pet) => {
+      const sizeMatch = !selectedSize || pet.size === selectedSize;
+      const genderMatch = !selectedGender || pet.gender === selectedGender;
+      const breedMatch =
+        !customBreedFilter || pet.breed.includes(customBreedFilter);
+
+      return sizeMatch && genderMatch && breedMatch;
+    });
+  };
+
+  const filteredPets = lostPetsData.filter((pet) => {
+    const sizeMatch = !selectedSize || pet.size === selectedSize;
+    const genderMatch = !selectedGender || pet.gender === selectedGender;
+    const breedMatch =
+      !customBreedFilter || pet.breed.includes(customBreedFilter);
+
+    return sizeMatch && genderMatch && breedMatch;
+  });
+
   return (
     <div>
       <div className="album py-5 bg-body-tertiary">
