@@ -12,7 +12,6 @@ const MascotasPerdidas = () => {
   const [selectedSize, setSelectedSize] = useState(null);
   const [selectedGender, setSelectedGender] = useState(null);
 
-  //const [filteredPets, setFilteredPets] = useState([]);
 
 
   useEffect(() => {
@@ -54,7 +53,6 @@ const MascotasPerdidas = () => {
 
       return sizeMatch && genderMatch && breedMatch;
     });
-    setFilteredPets(newFilteredPets);
 
   };
 
