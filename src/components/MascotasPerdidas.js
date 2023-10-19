@@ -13,7 +13,6 @@ const MascotasPerdidas = () => {
   const [selectedGender, setSelectedGender] = useState(null);
 
 
-
   useEffect(() => {
     axios
       .get(
@@ -64,6 +63,7 @@ const MascotasPerdidas = () => {
 
     return sizeMatch && genderMatch && breedMatch;
   });
+
 
   return (
     <div>
