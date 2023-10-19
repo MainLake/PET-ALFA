@@ -1,16 +1,19 @@
-import React from 'react';
-import Navbar from './components/Navbar';
-import Main from './components/Main';
-import MascotasPerdidas from './components/MascotasPerdidas';
-import Adopcion from './components/Adopcion';
-import ComoReporto from './components/ComoReporto';
-import Cuidados from './components/CuidadosMascotas';
-import Importancia from './components/ImportanciaMascotas';
-import Login from './components/Login';
-import Signup from './components/SignUp';
-import ReportarMascotas from './components/ReportarMascotas';
-import { Route, Routes } from 'react-router-dom';
+import React from "react";
+import Navbar from "./components/Navbar";
+import Main from "./components/Main";
+import MascotasPerdidas from "./components/MascotasPerdidas";
+import Adopcion from "./components/Adopcion";
+import ComoReporto from "./components/ComoReporto";
+import Cuidados from "./components/CuidadosMascotas";
+import Importancia from "./components/ImportanciaMascotas";
+import Login from "./components/Login";
+import Signup from "./components/SignUp";
+import ReportarMascotas from "./components/ReportarMascotas";
+import { Route, Router, Routes } from "react-router-dom";
+import UserPost from "./components/UserPosts/UserPost";
 
+import { useEffect } from "react";
+import { useUserContext } from "./context/contextUser/ContextUser";
 
 function App() {
   return (
@@ -26,6 +29,7 @@ function App() {
         <Route path="/Como-Reporto" element={<ComoReporto />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Signup" element={<Signup />} />
+        <Route path="/Mis-Mascotas" element={<UserPost />} />
       </Routes>
     </div>
   );

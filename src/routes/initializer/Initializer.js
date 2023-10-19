@@ -1,23 +1,20 @@
 import { useEffect } from "react";
 import { useUserContext } from "../../context/contextUser/ContextUser";
 
+const Initializer = ({ children }) => {
+  const [user, setUser] = useUserContext();
 
-const Initializer = ({children}) => {
-    const [user, setUser] = useUserContext();
+  console.log("Dentro de inicializador");
 
-    console.log('Dentro de inicializador')
+  useEffect(() => {
+    const userObject = JSON.parse(window.localStorage.getItem("userPET"));
 
-    useEffect(() => {
+    if (userObject !== null || userObject !== undefined) {
+      setUser(userObject);
+    }
+  }, [setUser]);
 
-        const userObject = JSON.parse(window.localStorage.getItem('userPET'));
-
-        if(userObject !== null || userObject !== undefined) {
-            setUser(userObject);
-        }
-
-    }, [setUser])
-
-    return children;    
-}
+  return children;
+};
 
 export default Initializer;
