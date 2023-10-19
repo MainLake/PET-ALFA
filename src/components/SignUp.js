@@ -57,7 +57,7 @@ const Registro = () => {
           <div className="col-md-6 d-flex justify-content-center align-items-center cream-bg">
             <div className="bg-white p-5 rounded-5 text-secondary">
               <div className="d-flex justify-content-center">
-                <img src={Person} className="Person" alt="Icono de usuario" />
+                <img src={Person} className="Person" alt="Icono de nueusuario" />
               </div>
               <div className="text-center fs-1 fw-bold">Registro</div>
               {
