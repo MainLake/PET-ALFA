@@ -20,6 +20,11 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
 
+  if(user) {
+    Navigate('/Reportar-Mascotas');
+  }
+  
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     if (name === "email") {
@@ -61,7 +66,7 @@ const Login = () => {
   };
 
   return (
-    <div className="container login-container">
+    <div className="container login-container mt-md-5">
       <div className="row">
         <div className="col-md-6 d-flex justify-content-center align-items-center black-bg">
           <div className="image-container">
@@ -81,7 +86,7 @@ const Login = () => {
         <div className="col-md-6 d-flex justify-content-center align-items-center cream-bg">
           <div className="bg-white p-5 rounded-5 text-secondary">
             <div className="d-flex justify-content-center">
-              <img src={Person} className="Person" alt="Icon-person"></img>
+              <img src={Person} className="Person"></img>
             </div>
             <div className="text-center fs-1 fw-bold">Iniciar Sesión</div>
             {error ? (
@@ -91,7 +96,7 @@ const Login = () => {
             ) : null}
             <div className="input-group mt-5">
               <div className="input-group-text bg-brown">
-                <img src={Envelope} className="Envelope" alt="Icon-Envelope"></img>
+                <img src={Envelope} className="Envelope"></img>
               </div>
               <input
                 type="email"
@@ -104,9 +109,9 @@ const Login = () => {
                 onChange={handleInputChange}
               />
             </div>
-            <div className="input-group mt-5">
+            <div className="input-group mt-5 mb-3">
               <div className="input-group-text bg-brown">
-                <img src={Lock} className="Lock" alt="Icon-Lock"></img>
+                <img src={Lock} className="Lock"></img>
               </div>
               <input
                 type="password"
