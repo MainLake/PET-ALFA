@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 import "../css/mascotasperdidas.css";
 import Footer from "./Footer";
 import axios from "axios";
@@ -10,7 +11,7 @@ const MascotasPerdidas = () => {
   const [customBreedFilter, setCustomBreedFilter] = useState("");
   const [selectedSize, setSelectedSize] = useState(null);
   const [selectedGender, setSelectedGender] = useState(null);
-  //const [filteredPets, setFilteredPets] = useState([]);
+
 
   useEffect(() => {
     axios
@@ -52,7 +53,6 @@ const MascotasPerdidas = () => {
       return sizeMatch && genderMatch && breedMatch;
     });
 
-    setFilteredPets(newFilteredPets);
   };
 
   const filteredPets = lostPetsData.filter((pet) => {
