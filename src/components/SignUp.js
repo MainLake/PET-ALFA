@@ -25,6 +25,7 @@ const Registro = () => {
       .then(token => {
         console.log('token', token);
         setNewUser("Usuario creado exitosamente");
+        
       })
       .catch(error => {
         console.log('error', error);
