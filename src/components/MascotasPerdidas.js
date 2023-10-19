@@ -54,7 +54,6 @@ const MascotasPerdidas = () => {
 
       return sizeMatch && genderMatch && breedMatch;
     });
-
     setFilteredPets(newFilteredPets);
 
   };
