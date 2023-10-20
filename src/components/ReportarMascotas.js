@@ -71,9 +71,6 @@ const ReportarMascotas = () => {
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
-
-    await uploadImage();
-
     axios({
       method: "POST",
       url: `${BASE_PATH}/users/${user.id}/posts/new`,
