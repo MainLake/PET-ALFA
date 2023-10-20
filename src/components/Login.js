@@ -5,10 +5,8 @@ import Loginimg from "../imagenes/Loginimg.png";
 import Person from "../icons/person-fill.svg";
 import Lock from "../icons/lock-fill.svg";
 import Envelope from "../icons/envelope-fill.svg";
-
 import jwtDecode from "jwt-decode";
 import axios from "axios";
-
 import { useUserContext } from "../context/contextUser/ContextUser";
 import { BASE_PATH } from "../utilities/constAPI";
 import { useNavigate } from "react-router-dom";
@@ -67,7 +65,9 @@ const Login = () => {
   };
 
   return (
-    <div className="container login-container mt-md-5">
+    <div>
+    <div style={{ backgroundColor: "#715523" }} class="text-bg p-3"></div>
+    <div className="container login-container mt-md-1">
       <div className="row">
         <div className="col-md-6 d-flex justify-content-center align-items-center black-bg">
           <div className="image-container">
@@ -87,7 +87,7 @@ const Login = () => {
         <div className="col-md-6 d-flex justify-content-center align-items-center cream-bg">
           <div className="bg-white p-5 rounded-5 text-secondary">
             <div className="d-flex justify-content-center">
-              <img src={Person} className="Person"></img>
+              <img src={Person} className="Person" alt="imagen de persona"></img>
             </div>
             <div className="text-center fs-1 fw-bold">Iniciar Sesión</div>
             {error ? (
@@ -97,7 +97,7 @@ const Login = () => {
             ) : null}
             <div className="input-group mt-5">
               <div className="input-group-text bg-brown">
-                <img src={Envelope} className="Envelope"></img>
+                <img src={Envelope} className="Envelope" alt="Imagen Envolpe"></img>
               </div>
               <input
                 type="email"
@@ -112,7 +112,7 @@ const Login = () => {
             </div>
             <div className="input-group mt-5 mb-3">
               <div className="input-group-text bg-brown">
-                <img src={Lock} className="Lock"></img>
+                <img src={Lock} className="Lock" alt="Imagen Lock"></img>
               </div>
               <input
                 type="password"
@@ -136,6 +136,8 @@ const Login = () => {
         </div>
       </div>
     </div>
+    <div style={{ backgroundColor: "#715523" }} class="text-bg p-4"></div>
+</div>
   );
 };
 

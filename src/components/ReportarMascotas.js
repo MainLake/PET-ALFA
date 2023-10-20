@@ -2,6 +2,9 @@ import { useState } from "react";
 import "../css/imagen.css";
 import "../css/reportemascota.css";
 import Footer from "./Footer";
+import { BASE_PATH } from "../utilities/constAPI";
+import axios from 'axios';
+import { useUserContext } from "../context/contextUser/ContextUser";
 
 import axios from "axios";
 import { useUserContext } from "../context/contextUser/ContextUser";
@@ -13,10 +16,12 @@ import { useNavigate } from "react-router-dom";
 
 const extencionesImagenes = ["png", "jpg", "jpeg"];
 const ReportarMascotas = () => {
+
   const CLOUD_NAME = "dxw4mzxgd";
   const UPLOAD_PRESET = "pest_pet";
 
   const Navigate = useNavigate();
+
 
   const [user, setUser] = useUserContext();
 
@@ -70,6 +75,7 @@ const ReportarMascotas = () => {
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
+
     await uploadImage();
 
     axios({
@@ -91,6 +97,10 @@ const ReportarMascotas = () => {
         console.log(err);
         // alert("Hubo un error al reportar la mascota");
       });
+
+    axios.post(`${BASE_PATH}/api/users/${user.id}/posts/new`, {name: this.useState.name,specie: this.useState.specie,gender: this.useState.gender,age: this.useState.age, last_seen: this.useState.last_seen, description: this.useState.description,
+      image: this.useState.image, size: this.useState.size, breed: this.useState.breed, lost_date: this.useState.lost_date})
+
   };
 
   const handleChangeImg = (evt) => {
@@ -279,7 +289,7 @@ const ReportarMascotas = () => {
               <div className="row g-2">
                 <div className="">
                   <label className="form-label">
-                    Ubicación donde fue visto la última vez
+                    Última vez visto
                   </label>
                   <div className="input-group">
                     <span className="input-group-text">
@@ -400,7 +410,7 @@ const ReportarMascotas = () => {
                   alt="Vista previa de la imagen"
                 />
                 <div className="card-body text-center">
-                  <h5 className="card-title">Previsualización de imagen</h5>
+                  <h5 className="card-title">Previsualización de Imagen</h5>
                 </div>
               </div>
             ) : null}

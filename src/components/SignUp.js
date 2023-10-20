@@ -25,6 +25,14 @@ const Registro = () => {
       .then(token => {
         console.log('token', token);
         setNewUser("Usuario creado exitosamente");
+        setTimeout(() => {
+          setNewUser("");
+          setName("");
+          setlastname("");
+          setEmail("");
+          setPassword("");
+          setPhoneNumber("");
+        }, 2000);
       })
       .catch(error => {
         console.log('error', error);
