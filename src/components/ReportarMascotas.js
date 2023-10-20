@@ -2,9 +2,15 @@ import { useState } from "react";
 import "../css/imagen.css";
 import "../css/reportemascota.css";
 import Footer from "./Footer";
+import { BASE_PATH } from "../utilities/constAPI";
+import axios from 'axios';
+import { useUserContext } from "../context/contextUser/ContextUser";
 
 const extencionesImagenes = ["png", "jpg", "jpeg"];
 const ReportarMascotas = () => {
+
+  const [user, setUser] = useUserContext();
+
   const [error, setError] = useState(null);
 
   const [imagen, setImagen] = useState(null);
@@ -25,7 +31,8 @@ const ReportarMascotas = () => {
   });
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    console.log(post);
+    axios.post(`${BASE_PATH}/api/users/${user.id}/posts/new`, {name: this.useState.name,specie: this.useState.specie,gender: this.useState.gender,age: this.useState.age, last_seen: this.useState.last_seen, description: this.useState.description,
+      image: this.useState.image, size: this.useState.size, breed: this.useState.breed, lost_date: this.useState.lost_date})
   };
 
   const handleChangeImg = (evt) => {
