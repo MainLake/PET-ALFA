@@ -14,28 +14,11 @@ import UserPost from "./components/UserPosts/UserPost";
 
 import { useEffect } from "react";
 import { useUserContext } from "./context/contextUser/ContextUser";
-import React from 'react';
-import { useLocation } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Main from './components/Main';
-import MascotasPerdidas from './components/MascotasPerdidas';
-import Adopcion from './components/Adopcion';
-import ComoReporto from './components/ComoReporto';
-import Cuidados from './components/CuidadosMascotas';
-import Importancia from './components/ImportanciaMascotas';
-import Login from './components/Login';
-import Signup from './components/SignUp';
-import ReportarMascotas from './components/ReportarMascotas';
-import { Route, Routes } from 'react-router-dom';
 
 function App() {
-  const location = useLocation();
-
-  const hideNavbar = location.pathname === '/Login' || location.pathname === '/Signup';
-
   return (
     <div>
-      {!hideNavbar && <Navbar />}
+      <Navbar />
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/Mascotas-Perdidas" element={<MascotasPerdidas />} />
