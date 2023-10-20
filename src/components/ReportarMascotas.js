@@ -3,11 +3,21 @@ import "../css/imagen.css";
 import "../css/reportemascota.css";
 import Footer from "./Footer";
 import { BASE_PATH } from "../utilities/constAPI";
-import axios from 'axios';
+
+import axios from "axios";
 import { useUserContext } from "../context/contextUser/ContextUser";
+
+import { Cloudinary } from "@cloudinary/url-gen";
+import { useNavigate } from "react-router-dom";
 
 const extencionesImagenes = ["png", "jpg", "jpeg"];
 const ReportarMascotas = () => {
+
+  const CLOUD_NAME = "dxw4mzxgd";
+  const UPLOAD_PRESET = "pest_pet";
+
+  const Navigate = useNavigate();
+
 
   const [user, setUser] = useUserContext();
 
@@ -15,24 +25,78 @@ const ReportarMascotas = () => {
 
   const [imagen, setImagen] = useState(null);
 
+  const [info, setInfo] = useState(false);
+
   const [post, setPost] = useState({
     name: "",
-    specie: "Perro",
-    gender: "Hembra",
-    breed: "Chihuahua",
+    specie: "Gato",
+    gender: "Macho",
     age: "",
-    size: "",
-
-    // datos de perdida
     last_seen: "",
     description: "",
-    lost_date: "",
     image: "",
+    size: "Chico",
+    breed: "Mestizo",
+    lost_date: "",
+    owner: false,
   });
-  const handleSubmit = (evt) => {
+
+  const uploadImage = async () => {
+    const formData = new FormData();
+    console.log(post.image);
+    formData.append("file", post.image);
+    formData.append("upload_preset", UPLOAD_PRESET);
+    const options = {
+      method: "POST",
+      body: formData,
+    };
+    return fetch(
+      `https://api.Cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+      options
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        const newObjectPost = {
+          ...post,
+          image: res.secure_url,
+        };
+        setPost(newObjectPost);
+        setTimeout(() => {
+        }, 2000);
+        console.log(post);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const handleSubmit = async (evt) => {
     evt.preventDefault();
+
+    await uploadImage();
+
+    axios({
+      method: "POST",
+      url: `${BASE_PATH}/users/${user.id}/posts/new`,
+      data: post,
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
+    })
+      .then((res) => {
+        console.log(res);
+        setInfo(true);
+        setTimeout(() => {
+          setInfo(false);
+        }, 3000);
+      })
+      .catch((err) => {
+        console.log(err);
+        // alert("Hubo un error al reportar la mascota");
+      });
+
     axios.post(`${BASE_PATH}/api/users/${user.id}/posts/new`, {name: this.useState.name,specie: this.useState.specie,gender: this.useState.gender,age: this.useState.age, last_seen: this.useState.last_seen, description: this.useState.description,
       image: this.useState.image, size: this.useState.size, breed: this.useState.breed, lost_date: this.useState.lost_date})
+
   };
 
   const handleChangeImg = (evt) => {
@@ -70,8 +134,16 @@ const ReportarMascotas = () => {
       <div className="container d-flex justify-content-center align-items-center mt-3">
         <form className="row g-3" onSubmit={handleSubmit}>
           {error ? (
-            <div className="alert alert-danger text-center">{error}</div>
+            <div className="alert alert-info text-center">{error}</div>
           ) : null}
+
+          {
+            info ? (
+                <div className="alert alert-info text-center">
+                    <h2>¡Tu mascota se ha reportado con éxito!</h2>
+                </div>
+                ) : null
+          }
 
           <div className="col-md-6 col-sm-12">
             <div className="data-section text-center">
@@ -289,6 +361,25 @@ const ReportarMascotas = () => {
                       type="date"
                       className="form-control"
                     />
+                  </div>
+                </div>
+                <div className="col-12">
+                  <div className="form-check">
+                    <input
+                      type="checkbox"
+                      className="form-check-input"
+                      id="isOwnerCheckbox"
+                      checked={post.owner}
+                      onChange={(evt) =>
+                        setPost({ ...post, owner: evt.target.checked })
+                      }
+                    />
+                    <label
+                      className="form-check-label"
+                      htmlFor="isOwnerCheckbox"
+                    >
+                      ¿Eres el dueño de la mascota?
+                    </label>
                   </div>
                 </div>
                 <div className="">
