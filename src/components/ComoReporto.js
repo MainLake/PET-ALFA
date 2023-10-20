@@ -9,8 +9,6 @@ const ComoReporto = () => {
         <h1 className="display-2 fw-bold text-body-emphasis">¿Cómo Reporto?</h1>
         <div className="col-lg-6 mx-auto">
           <p className="lead mb-4">
-            En este apartado se proporcionará información acerca de los pasos a
-            seguir para poder reportar a una mascota.
           </p>
         </div>
       </div>

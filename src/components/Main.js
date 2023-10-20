@@ -53,14 +53,14 @@ const Main = () => {
           <div className="col-lg-7 p-3 p-lg-5 pt-lg-3 text-pet-main">
             <h1 className="display-4 fw-bold lh-1 text-white">
               ¿Por qué usar Perdidos en Tapachula?
-            </h1>
-            <p className="lead text-white">
-              Perdidos en Tapachula "PET" fue desarrollado con el propósito de
-              ayudar en la búsqueda de mascotas perdidas brindando a la
-              población facilidades para encontrar y reportar una mascota
-              perdida. Además, ofrecemos información acerca de las
-              organizaciones y rescatistas que se dedican al cuidado y rescate
-              de animales.
+            </h1> 
+            <p className="lead text-white p-4">
+              Perdidos en Tapachula "PET"' ha sido desarrollado con el propósito 
+              de brindar asistencia en la búsqueda de mascotas perdidas. 
+              Nuestra misión es proporcionar a la comunidad una plataforma que 
+              simplifique la tarea de encontrar y reportar mascotas extraviadas. 
+              Estamos comprometidos en unir a las mascotas con sus familias y 
+              ser un recurso confiable para quienes buscan a sus leales compañeros. 
             </p>
           </div>
           <div className="col-lg-5 p-0 overflow-hidden d-flex justify-content-center">
