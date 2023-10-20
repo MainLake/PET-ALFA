@@ -3,13 +3,9 @@ import "../css/imagen.css";
 import "../css/reportemascota.css";
 import Footer from "./Footer";
 import { BASE_PATH } from "../utilities/constAPI";
-import axios from 'axios';
-import { useUserContext } from "../context/contextUser/ContextUser";
 
 import axios from "axios";
 import { useUserContext } from "../context/contextUser/ContextUser";
-
-import { BASE_PATH } from "../utilities/constAPI";
 
 import { Cloudinary } from "@cloudinary/url-gen";
 import { useNavigate } from "react-router-dom";
