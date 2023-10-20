@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Main from './components/Main';
 import MascotasPerdidas from './components/MascotasPerdidas';
@@ -11,11 +12,14 @@ import Signup from './components/SignUp';
 import ReportarMascotas from './components/ReportarMascotas';
 import { Route, Routes } from 'react-router-dom';
 
-
 function App() {
+  const location = useLocation();
+
+  const hideNavbar = location.pathname === '/Login' || location.pathname === '/Signup';
+
   return (
     <div>
-      <Navbar />
+      {!hideNavbar && <Navbar />}
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/Mascotas-Perdidas" element={<MascotasPerdidas />} />

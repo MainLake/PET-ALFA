@@ -26,6 +26,8 @@ const Registro = () => {
   };
 
   return (
+    <div>
+    <div style={{ backgroundColor: "#715523" }} className="text-bg p-4"></div>
     <div className="container registro-container">
       <div className="row">
         <div className="col-md-6 d-flex justify-content-center align-items-center black-bg">
@@ -134,6 +136,8 @@ const Registro = () => {
           </div>
         </div>
       </div>
+    </div>
+    <div style={{ backgroundColor: "#715523" }} className="text-bg p-4"></div>
     </div>
   );
 };
