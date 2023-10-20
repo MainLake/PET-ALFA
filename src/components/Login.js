@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../css/login.css";
 import Loginimg from "../imagenes/Loginimg.png";
@@ -20,10 +20,11 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
 
-  if(user) {
-    Navigate('/Reportar-Mascotas');
-  }
-  
+  useEffect(() => {
+    if (!user) {
+      Navigate("/Login");
+    }
+  }, []);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -50,11 +51,11 @@ const Login = () => {
         const userObject = {
           id: tokenDecoded.id,
           token: token,
-        }
+        };
         console.log(userObject);
-        window.localStorage.setItem('userPET', JSON.stringify(userObject));
+        window.localStorage.setItem("userPET", JSON.stringify(userObject));
         setUser(userObject);
-        Navigate('/Reportar-Mascotas');
+        Navigate("/Reportar-Mascotas");
       })
       .catch((error) => {
         console.log(error);

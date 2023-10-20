@@ -14,6 +14,7 @@ import UserPost from "./components/UserPosts/UserPost";
 
 import { useEffect } from "react";
 import { useUserContext } from "./context/contextUser/ContextUser";
+import RouteProtect from "./routes/RouteProtect/RouteProtect";
 
 function App() {
   return (
@@ -25,11 +26,11 @@ function App() {
         <Route path="/Adopcion-Responsable" element={<Adopcion />} />
         <Route path="/Cuidados-Mascotas" element={<Cuidados />} />
         <Route path="/Importancia-Mascotas" element={<Importancia />} />
-        <Route path="/Reportar-Mascotas" element={<ReportarMascotas />} />
+        <Route path="/Reportar-Mascotas" element={<RouteProtect><ReportarMascotas/></RouteProtect>} />
         <Route path="/Como-Reporto" element={<ComoReporto />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Signup" element={<Signup />} />
-        <Route path="/Mis-Mascotas" element={<UserPost />} />
+        <Route path="/Mis-Mascotas" element={<RouteProtect><UserPost/></RouteProtect>} />
       </Routes>
     </div>
   );
