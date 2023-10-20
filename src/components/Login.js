@@ -5,10 +5,8 @@ import Loginimg from "../imagenes/Loginimg.png";
 import Person from "../icons/person-fill.svg";
 import Lock from "../icons/lock-fill.svg";
 import Envelope from "../icons/envelope-fill.svg";
-
 import jwtDecode from "jwt-decode";
 import axios from "axios";
-
 import { useUserContext } from "../context/contextUser/ContextUser";
 import { BASE_PATH } from "../utilities/constAPI";
 import { useNavigate } from "react-router-dom";
@@ -66,7 +64,9 @@ const Login = () => {
   };
 
   return (
-    <div className="container login-container mt-md-5">
+    <div>
+    <div style={{ backgroundColor: "#715523" }} class="text-bg p-3"></div>
+    <div className="container login-container mt-md-1">
       <div className="row">
         <div className="col-md-6 d-flex justify-content-center align-items-center black-bg">
           <div className="image-container">
@@ -135,6 +135,8 @@ const Login = () => {
         </div>
       </div>
     </div>
+    <div style={{ backgroundColor: "#715523" }} class="text-bg p-4"></div>
+</div>
   );
 };
 

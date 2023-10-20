@@ -213,7 +213,7 @@ const ReportarMascotas = () => {
               <div className="row g-2">
                 <div className="">
                   <label className="form-label">
-                    Ubicación donde fue visto la última vez
+                    Última vez visto
                   </label>
                   <div className="input-group">
                     <span className="input-group-text">
@@ -315,7 +315,7 @@ const ReportarMascotas = () => {
                   alt="Vista previa de la imagen"
                 />
                 <div className="card-body text-center">
-                  <h5 className="card-title">Previsualización de imagen</h5>
+                  <h5 className="card-title">Previsualización de Imagen</h5>
                 </div>
               </div>
             ) : null}

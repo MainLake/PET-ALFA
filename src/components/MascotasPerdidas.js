@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-
-import "../css/mascotasperdidas.css";
+import "../css/mascotasperdidas.css"; 
 import Footer from "./Footer";
 import axios from "axios";
 
@@ -11,19 +10,16 @@ const MascotasPerdidas = () => {
   const [customBreedFilter, setCustomBreedFilter] = useState("");
   const [selectedSize, setSelectedSize] = useState(null);
   const [selectedGender, setSelectedGender] = useState(null);
-
+  const [showFullInfo, setShowFullInfo] = useState(false);
 
   useEffect(() => {
     axios
       .get(
         "https://api-v1-rest-pets-lost-1517776b3a69.herokuapp.com/api/pets/lost?owner=true"
       )
-
       .then(function (response) {
         const data = response.data;
-        console.log(data[0]);
         setLostPetsData(data);
-        console.log(data[0].image.url);
         setSizeOptions(["Grande", "Mediano", "Chico"]);
         setGenderOptions(["Macho", "Hembra"]);
       })
@@ -42,32 +38,9 @@ const MascotasPerdidas = () => {
     setCustomBreedFilter("");
   };
 
-  // Aplicando y actualizando el estado de los filtros
-  const applyFilters = () => {
-    const newFilteredPets = lostPetsData.filter((pet) => {
-      const sizeMatch = !selectedSize || pet.size === selectedSize;
-      const genderMatch = !selectedGender || pet.gender === selectedGender;
-      const breedMatch =
-        !customBreedFilter || pet.breed.includes(customBreedFilter);
-
-      return sizeMatch && genderMatch && breedMatch;
-    });
-
-  };
-
-  const filteredPets = lostPetsData.filter((pet) => {
-    const sizeMatch = !selectedSize || pet.size === selectedSize;
-    const genderMatch = !selectedGender || pet.gender === selectedGender;
-    const breedMatch =
-      !customBreedFilter || pet.breed.includes(customBreedFilter);
-
-    return sizeMatch && genderMatch && breedMatch;
-  });
-
-
   return (
     <div>
-      <div className="p-3 mb-2 bg-transparent text-body">
+      <div className="p-2 mb-2 bg-transparent text-body">
         <div className="dropdown">
           <button
             className="btn btn-secondary dropdown-toggle"
@@ -133,35 +106,47 @@ const MascotasPerdidas = () => {
         </div>
       </div>
 
-      <div className="album py-5 bg-body-tertiary">
+      <div className="album py-2 bg-body-tertiary">
         <div className="container">
           <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            {filteredPets.map((post) => (
+            {lostPetsData.map((post) => (
               <div className="col" key={post}>
-                <div className="card shadow-sm">
-                  <img src={post.image.url} />
-                  <div className="card-body">
-                    <h5 className="card-text">Nombre: {post.name}</h5>
-                    <h5 className="card-text">Edad: {post.age}</h5>
-                    <h5 className="card-text">Genero: {post.gender} </h5>
-                    <h5 className="card-text">Raza: {post.breed}</h5>
+                <div className="card shadow-sm custom-card">
+                  <div className="img-container">
+                    <img
+                      src={post.image.url}
+                      alt={post.name}
+                      width="300"
+                      height="300"
+                    />
+                  </div>
+                  <div className="card-body custom-bg">
+                    <h5 className="card-text">Nombre: <span className="name-text">{post.name}</span></h5>
+                    <h5 className="card-text">Raza: <span className="name-text">{post.breed}</span></h5>
                     <h5 className="card-text">
-                      Ultima vez Visto: {post.last_seen}
+                      Última vez Visto: <span className="name-text">{post.last_seen}</span> 
                     </h5>
-                    <h5 className="card-text">
-                      Descripcion: {post.description}
-                    </h5>
-                    <h5 className="card-text">
-                      Se perdió el: {post.lost_date.substring(0, 10)}
-                    </h5>
-                    <h5 className="card-text">
-                      Ultima actualizacion:{" "}
-                      {post.update
-                        ? post.update.substring(0, 10)
-                        : "Sin actualizar"}
-                    </h5>
-                    <div className="d-flex justify-content-between align-items-center">
-                      <small className="text-body-secondary"></small>
+                    {showFullInfo && (
+                      <>
+                        <h5 className="card-text">Edad: <span className="name-text">{post.age}</span></h5>
+                        <h5 className="card-text">Género: <span className="name-text">{post.gender}</span></h5>
+                        <h5 className="card-text">Descripción: <span className="name-text">{post.description}</span></h5>
+                        <h5 className="card-text">
+                          Se perdió el: <span className="name-text">{post.lost_date.substring(0, 10)}</span>
+                        </h5>
+                        <h5 className="card-text">
+                          Última actualización:{" "}
+                          <span className="name-text">{post.update ? post.update.substring(0, 10) : "Sin actualizar"}</span>
+                        </h5>
+                      </>
+                    )}
+                    <div className=" m-2 d-flex justify-content-center align-items-center">
+                      <button
+                        className="btn btn-secondary align-center"
+                        onClick={() => setShowFullInfo(!showFullInfo)}
+                      >
+                        {showFullInfo ? "Mostrar menos" : "Mostrar más"}
+                      </button>
                     </div>
                   </div>
                 </div>

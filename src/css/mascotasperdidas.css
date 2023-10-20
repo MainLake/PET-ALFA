@@ -1,3 +1,32 @@
 show-pet{
     background-color: bisque;
 }
+
+.custom-card .img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #715523; 
+    padding: 20px; 
+  }
+  
+  .custom-card .card-body {
+    background-color: bisque; 
+    padding: 10px; 
+  }
+
+  .custom-card img {
+    width: 300px;
+    height: 300px; 
+  }
+  
+  .name-text {
+    font-size: 20px;
+    font-weight: lighter; 
+  }
+
+  .card-text{
+    font-size: 18px;
+  }
+  
+  
