@@ -47,6 +47,11 @@ const Navbar = () => {
                 ¿Cómo Reporto?
               </Link>
             </li>
+            <li className="nav-item">
+              <Link to="/Mis-Mascotas" className="nav-link">
+                Mis mascotas
+              </Link>
+            </li>
           </ul>
           {user ? (
             <div className="d-flex">

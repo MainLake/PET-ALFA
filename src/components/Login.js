@@ -86,7 +86,7 @@ const Login = () => {
         <div className="col-md-6 d-flex justify-content-center align-items-center cream-bg">
           <div className="bg-white p-5 rounded-5 text-secondary">
             <div className="d-flex justify-content-center">
-              <img src={Person} className="Person"></img>
+              <img src={Person} className="Person" alt="imagen de persona"></img>
             </div>
             <div className="text-center fs-1 fw-bold">Iniciar Sesión</div>
             {error ? (
@@ -96,7 +96,7 @@ const Login = () => {
             ) : null}
             <div className="input-group mt-5">
               <div className="input-group-text bg-brown">
-                <img src={Envelope} className="Envelope"></img>
+                <img src={Envelope} className="Envelope" alt="Imagen Envolpe"></img>
               </div>
               <input
                 type="email"
@@ -111,7 +111,7 @@ const Login = () => {
             </div>
             <div className="input-group mt-5 mb-3">
               <div className="input-group-text bg-brown">
-                <img src={Lock} className="Lock"></img>
+                <img src={Lock} className="Lock" alt="Imagen Lock"></img>
               </div>
               <input
                 type="password"
