@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
-import "../css/mascotasperdidas.css"; 
+import "../css/mascotasperdidas.css";
 import Footer from "./Footer";
 import axios from "axios";
+import { Navigate, useNavigate } from "react-router";
 
 const MascotasPerdidas = () => {
+
+  const navigate = useNavigate();
+
   const [lostPetsData, setLostPetsData] = useState([]);
   const [sizeOptions, setSizeOptions] = useState([]);
   const [genderOptions, setGenderOptions] = useState([]);
@@ -15,9 +19,12 @@ const MascotasPerdidas = () => {
   useEffect(() => {
     axios
       .get(
-        "https://api-v1-rest-pets-lost-1517776b3a69.herokuapp.com/api/pets/lost?owner=true"
+        "https://api-v1-rest-pets-lost-1517776b3a69.herokuapp.com/api/pets/all"
       )
       .then(function (response) {
+        console.log({
+          response,
+        })
         const data = response.data;
         setLostPetsData(data);
         setSizeOptions(["Grande", "Mediano", "Chico"]);
@@ -37,6 +44,12 @@ const MascotasPerdidas = () => {
     setSelectedGender("");
     setCustomBreedFilter("");
   };
+
+  const handleButtonInfo = (post) => {
+    const {_id, owner} = post;
+    console.log('Datos pre', _id, owner);
+    navigate(`/Mascota-Perdida/${owner}/${_id}`);
+  }
 
   return (
     <div>
@@ -121,32 +134,63 @@ const MascotasPerdidas = () => {
                     />
                   </div>
                   <div className="card-body custom-bg">
-                    <h5 className="card-text">Nombre: <span className="name-text">{post.name}</span></h5>
-                    <h5 className="card-text">Raza: <span className="name-text">{post.breed}</span></h5>
                     <h5 className="card-text">
-                      Última vez Visto: <span className="name-text">{post.last_seen}</span> 
+                      Nombre: <span className="name-text">{post.name}</span>
+                    </h5>
+                    <h5 className="card-text">
+                      Raza: <span className="name-text">{post.breed}</span>
+                    </h5>
+                    <h5 className="card-text">
+                      Última vez Visto:{" "}
+                      <span className="name-text">{post.last_seen}</span>
                     </h5>
                     {showFullInfo && (
                       <>
-                        <h5 className="card-text">Edad: <span className="name-text">{post.age}</span></h5>
-                        <h5 className="card-text">Género: <span className="name-text">{post.gender}</span></h5>
-                        <h5 className="card-text">Descripción: <span className="name-text">{post.description}</span></h5>
                         <h5 className="card-text">
-                          Se perdió el: <span className="name-text">{post.lost_date.substring(0, 10)}</span>
+                          Edad: <span className="name-text">{post.age}</span>
+                        </h5>
+                        <h5 className="card-text">
+                          Género:{" "}
+                          <span className="name-text">{post.gender}</span>
+                        </h5>
+                        <h5 className="card-text">
+                          Descripción:{" "}
+                          <span className="name-text">{post.description}</span>
+                        </h5>
+                        <h5 className="card-text">
+                          Se perdió el:{" "}
+                          <span className="name-text">
+                            {post.lost_date.substring(0, 10)}
+                          </span>
                         </h5>
                         <h5 className="card-text">
                           Última actualización:{" "}
-                          <span className="name-text">{post.update ? post.update.substring(0, 10) : "Sin actualizar"}</span>
+                          <span className="name-text">
+                            {post.update
+                              ? post.update.substring(0, 10)
+                              : "Sin actualizar"}
+                          </span>
                         </h5>
                       </>
                     )}
-                    <div className=" m-2 d-flex justify-content-center align-items-center">
-                      <button
-                        className="btn btn-secondary align-center"
-                        onClick={() => setShowFullInfo(!showFullInfo)}
-                      >
-                        {showFullInfo ? "Mostrar menos" : "Mostrar más"}
-                      </button>
+                    <div className="container">
+                      <div className="row">
+                        <div className="col-md-6">
+                          <button
+                            className={`btn ${
+                              showFullInfo ? "btn-danger" : "btn-primary"
+                            } align-center btn-block mb-3`}
+                            onClick={() => setShowFullInfo(!showFullInfo)}
+                          >
+                            {showFullInfo ? "Mostrar menos" : "Mostrar más"}
+                          </button>
+                        </div>
+                        <div className="col-md-6">
+                          <button onClick={evt => handleButtonInfo(post)} className="btn btn-info align-center btn-block">
+                            Informacion de contacto
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -63,7 +63,7 @@ const ReportarMascotas = () => {
         };
         setPost(newObjectPost);
         setTimeout(() => {
-        }, 2000);
+        }, 3000);
         console.log(post);
       })
       .catch((err) => console.log(err));
@@ -93,9 +93,6 @@ const ReportarMascotas = () => {
         console.log(err);
         // alert("Hubo un error al reportar la mascota");
       });
-
-    axios.post(`${BASE_PATH}/api/users/${user.id}/posts/new`, {name: this.useState.name,specie: this.useState.specie,gender: this.useState.gender,age: this.useState.age, last_seen: this.useState.last_seen, description: this.useState.description,
-      image: this.useState.image, size: this.useState.size, breed: this.useState.breed, lost_date: this.useState.lost_date})
 
   };
 
