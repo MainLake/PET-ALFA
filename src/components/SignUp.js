@@ -1,27 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../css/signup.css";
 import SignupImg from "../imagenes/Registroimg.png";
 import Person from "../icons/person-fill.svg";
 import axios from "axios";
+import {useNavigate} from 'react-router-dom'
 
 const Registro = () => {
+  //datos para los alumnos 
   const [name, setName] = useState("");
   const [lastname, setlastname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  //estado de error por, por si el usuarios ya existe
   const [dataError, setdataError] = useState(false);
   const [NewUser, setNewUser]= useState("");
+  //estado para la redireccion al login
+  const navigate = useNavigate()
 
   const handleInputChange = () => {
-
+    //no me sirve esta parte aun 
   };
 
   const handleSubmit = (evnt) => {
     evnt.preventDefault();
     console.log('Subiendo datos');
-    axios.post('https://api-v1-rest-pets-lost-1517776b3a69.herokuapp.com/api/users/new', { name: name, lastname: lastname, email: email, password: password, cellphone: phoneNumber })
+    axios.post('https://api-lost-pets-prod-f456370d7007.herokuapp.com/api/v1/users/new', { name: name, lastname: lastname, email: email, password: password, cellphone: phoneNumber })
       .then(token => {
         console.log('token', token);
         setNewUser("Usuario creado exitosamente");
@@ -32,7 +37,8 @@ const Registro = () => {
           setEmail("");
           setPassword("");
           setPhoneNumber("");
-        }, 2000);
+          navigate("/Login")
+        }, 5000);
       })
       .catch(error => {
         console.log('error', error);
