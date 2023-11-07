@@ -1,12 +1,20 @@
-import { useState, createContext, useContext } from "react";
+import { createContext, useContext, useReducer } from "react";
+import { reducerGlobalState } from "../../reducers/globalReducer";
 
 const UserContext = createContext();
 
+const globalStateInitial = {
+  usuario: {
+    token: null,
+    autenticado: false
+  }
+}
+
 export const UserContextProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [ globalContext, dispatch ] = useReducer( reducerGlobalState, globalStateInitial );
 
   return (
-    <UserContext.Provider value={[user, setUser]}>
+    <UserContext.Provider value={{globalContext, dispatch}}>
       {children}
     </UserContext.Provider>
   );
