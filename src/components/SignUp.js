@@ -20,6 +20,8 @@ const Registro = () => {
   const navigate = useNavigate()
   //el estado para ver contraseña
   const [ShowPSW, setShowPSW] = useState(false)
+  //para cargar el cargador de datos
+  const [loading, setLoading] = useState(false)
 
   const handleInputChange = () => {
     //no me sirve esta parte aun 
@@ -27,10 +29,12 @@ const Registro = () => {
 
   const handleSubmit = (evnt) => {
     evnt.preventDefault();
+    setLoading(true)
     console.log('Subiendo datos');
     axios.post('https://api-lost-pets-prod-f456370d7007.herokuapp.com/api/v1/users/new', { name: name, lastname: lastname, email: email, password: password, cellphone: phoneNumber })
       .then(token => {
         console.log('token', token);
+        setLoading(false)
         setNewUser("Usuario creado exitosamente");
         setTimeout(() => {
           setNewUser("");
@@ -44,6 +48,7 @@ const Registro = () => {
       })
       .catch(error => {
         console.log('error', error);
+        setLoading(false)
         setdataError(true)
         setTimeout(() => {
           setdataError(false)
@@ -184,8 +189,15 @@ const Registro = () => {
                     onChange={evnt => setPhoneNumber(evnt.target.value)}
                   />
                 </div>
+                
                 <button type="submit" className="btn btn-secondary w-100 mt-3">
-                  Registrarse
+                  {loading ? (
+                    <>
+                      <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true">
+                        {" "} Enviando...
+                      </span>
+                    </>
+                  ):"Registrate"}
                 </button>
               </form>
             </div>
