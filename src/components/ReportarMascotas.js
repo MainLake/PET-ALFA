@@ -3,6 +3,15 @@ import "../css/imagen.css";
 import "../css/reportemascota.css";
 import Footer from "./Footer";
 
+import { BASE_PATH } from "../utilities/constAPI";
+
+import axios from "axios";
+import { useUserContext } from "../context/contextUser/ContextUser";
+
+import { Cloudinary } from "@cloudinary/url-gen";
+import { useNavigate } from "react-router-dom";
+import MapComponent from "./MapComponent";
+
 const extencionesImagenes = ["png", "jpg", "jpeg"];
 const ReportarMascotas = () => {
 
@@ -218,8 +227,10 @@ const ReportarMascotas = () => {
             <div className="data-section text-center">
               <h2 className="display-4 fw-bold lh-1">Datos de Pérdida</h2>
               <div className="row g-2">
+              <MapComponent />
                 <div className="">
                   <label className="form-label">
+
                     Última vez visto
                   </label>
                   <div className="input-group">
