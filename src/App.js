@@ -1,4 +1,5 @@
-import React from "react";
+import { Route, Routes } from "react-router-dom";
+
 import Navbar from "./components/Navbar";
 import Main from "./components/Main";
 import MascotasPerdidas from "./components/MascotasPerdidas";
@@ -9,11 +10,7 @@ import Importancia from "./components/ImportanciaMascotas";
 import Login from "./components/Login";
 import Signup from "./components/SignUp";
 import ReportarMascotas from "./components/ReportarMascotas";
-import { Route, Router, Routes } from "react-router-dom";
 import UserPost from "./components/UserPosts/UserPost";
-
-import { useEffect } from "react";
-import { useUserContext } from "./context/contextUser/ContextUser";
 import RouteProtect from "./routes/RouteProtect/RouteProtect";
 import MascotaPerdida from "./components/MascotaPerdida.js/MascotaPerdida";
 
