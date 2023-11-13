@@ -1,0 +1,7 @@
+.alert--hidden {
+    visibility: hidden;
+}
+
+.alert--show {
+    visibility: visible;
+}

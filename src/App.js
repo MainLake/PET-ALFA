@@ -1,4 +1,5 @@
-import React from "react";
+import { Route, Routes } from "react-router-dom";
+
 import Navbar from "./components/Navbar";
 import Main from "./components/Main";
 import MascotasPerdidas from "./components/MascotasPerdidas";
@@ -9,11 +10,9 @@ import Importancia from "./components/ImportanciaMascotas";
 import Login from "./components/Login";
 import Signup from "./components/SignUp";
 import ReportarMascotas from "./components/ReportarMascotas";
-import { Route, Router, Routes } from "react-router-dom";
 import UserPost from "./components/UserPosts/UserPost";
-
-import { useEffect } from "react";
-import { useUserContext } from "./context/contextUser/ContextUser";
+import RouteProtect from "./routes/RouteProtect/RouteProtect";
+import MascotaPerdida from "./components/MascotaPerdida.js/MascotaPerdida";
 
 function App() {
   return (
@@ -25,11 +24,12 @@ function App() {
         <Route path="/Adopcion-Responsable" element={<Adopcion />} />
         <Route path="/Cuidados-Mascotas" element={<Cuidados />} />
         <Route path="/Importancia-Mascotas" element={<Importancia />} />
-        <Route path="/Reportar-Mascotas" element={<ReportarMascotas />} />
+        <Route path="/Reportar-Mascotas" element={<RouteProtect><ReportarMascotas/></RouteProtect>} />
         <Route path="/Como-Reporto" element={<ComoReporto />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Signup" element={<Signup />} />
-        <Route path="/Mis-Mascotas" element={<UserPost />} />
+        <Route path="/Mis-Mascotas" element={<RouteProtect><UserPost/></RouteProtect>} />
+        <Route path="/Mascota-Perdida/:id_user/:id_pet/" element={<MascotaPerdida/>}/>
       </Routes>
     </div>
   );

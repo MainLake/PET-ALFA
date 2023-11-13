@@ -6,11 +6,13 @@ import Logo from "../imagenes/Logo.png";
 import { useUserContext } from "../context/contextUser/ContextUser";
 
 const Navbar = () => {
-  const [user, setUser] = useUserContext();
+  const { globalContext, dispatch } = useUserContext();
+
+  console.log(globalContext);
 
   const logout = () => {
     window.localStorage.removeItem("userPET");
-    setUser(null);
+    dispatch({type:"LOGOUT"});
   };
 
   return (
@@ -53,7 +55,7 @@ const Navbar = () => {
               </Link>
             </li>
           </ul>
-          {user ? (
+          {globalContext.usuario.autenticado ? (
             <div className="d-flex">
               <a onClick={logout} className="btn btn-danger">
                 Salir
