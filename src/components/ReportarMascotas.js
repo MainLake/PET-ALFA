@@ -2,24 +2,11 @@ import { useState } from "react";
 import "../css/imagen.css";
 import "../css/reportemascota.css";
 import Footer from "./Footer";
-import { BASE_PATH } from "../utilities/constAPI";
-
-import axios from "axios";
-import { useUserContext } from "../context/contextUser/ContextUser";
-
-import { Cloudinary } from "@cloudinary/url-gen";
-import { useNavigate } from "react-router-dom";
 
 const extencionesImagenes = ["png", "jpg", "jpeg"];
 const ReportarMascotas = () => {
 
-  const CLOUD_NAME = "dxw4mzxgd";
-  const UPLOAD_PRESET = "pest_pet";
-
-  const Navigate = useNavigate();
-
-
-  const [user, setUser] = useUserContext();
+  
 
   const [error, setError] = useState(null);
 
@@ -41,58 +28,9 @@ const ReportarMascotas = () => {
     owner: false,
   });
 
-  const uploadImage = async () => {
-    const formData = new FormData();
-    console.log(post.image);
-    formData.append("file", post.image);
-    formData.append("upload_preset", UPLOAD_PRESET);
-    const options = {
-      method: "POST",
-      body: formData,
-    };
-    return fetch(
-      `https://api.Cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
-      options
-    )
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res);
-        const newObjectPost = {
-          ...post,
-          image: res.secure_url,
-        };
-        setPost(newObjectPost);
-        setTimeout(() => {
-        }, 3000);
-        console.log(post);
-      })
-      .catch((err) => console.log(err));
-  };
-
   const handleSubmit = async (evt) => {
     evt.preventDefault();
 
-    await uploadImage();
-
-    axios({
-      method: "POST",
-      url: `${BASE_PATH}/users/${user.id}/posts/new`,
-      data: post,
-      headers: {
-        Authorization: `Bearer ${user.token}`,
-      },
-    })
-      .then((res) => {
-        console.log(res);
-        setInfo(true);
-        setTimeout(() => {
-          setInfo(false);
-        }, 3000);
-      })
-      .catch((err) => {
-        console.log(err);
-        // alert("Hubo un error al reportar la mascota");
-      });
 
   };
 
