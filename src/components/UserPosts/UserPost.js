@@ -1,31 +1,11 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { useUserContext } from "../../context/contextUser/ContextUser";
-import { BASE_PATH } from "../../utilities/constAPI";
 
 const UserPost = () => {
-  const [user] = useUserContext();
   const [posts, setPosts] = useState([]);
-  const URL = `${BASE_PATH}/users/653055c23781278a0e92fd56/posts?owner=true`;
 
   useEffect(() => {
-    if (user && user.token) {
-      axios({
-        method: "GET",
-        url: URL,
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      })
-        .then((response) => {
-          console.log(response.data);
-          setPosts(response.data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-  }, [user, URL]);
+
+  }, []);
 
   return (
     <div className="container mt-4">
