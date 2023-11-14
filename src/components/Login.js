@@ -51,12 +51,10 @@ const Login = () => {
     } catch (error) {
       const errorCodeStatus = error.response.request.status;
       console.log(errorCodeStatus);
-      if (errorCodeStatus === 401) {
         setError(true);
         setTimeout(() => {
           setError(false);
         }, 2000);
-      }
     }
     setIsLoading(false);
 
