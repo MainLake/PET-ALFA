@@ -1,4 +1,4 @@
-export const reducerGlobalState = (state, action) => {
+    export const reducerGlobalState = (state, action) => {
     switch(action.type) {
         case "LOGIN":
             return {
