@@ -1,0 +1,13 @@
+.container{
+    width: 200px;
+}
+
+.ImgRes{
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+}
+
+.title {
+    text-align: center;
+}
