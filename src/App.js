@@ -31,7 +31,7 @@ function App() {
         <Route path="/Signup" element={<Signup />} />
         <Route path="/Mis-Mascotas" element={<RouteProtect><UserPost/></RouteProtect>} />
         <Route path="/Mascota-Perdida/:id_user/:id_pet/" element={<MascotaPerdida/>}/>
-        <Route path="/FormRes" element={<FormRes/>}></Route>
+        <Route path="/FormRes" element={<FormRes/>}/>
       </Routes>
     </div>
   );
