@@ -5,6 +5,7 @@ import SignupImg from "../imagenes/Registroimg.png";
 import Person from "../icons/person-fill.svg";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom'
+import Footer from "./Footer";
 
 const Registro = () => {
   //datos para los alumnos 
@@ -204,6 +205,7 @@ const Registro = () => {
           </div>
         </div >
       </div >
+      <Footer/>
     </>
   );
 };
