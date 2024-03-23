@@ -5,27 +5,33 @@ import Footer from "./Footer";
 
 const extencionesImagenes = ["png", "jpg", "jpeg"];
 const ReportarMascotas = () => {
+
+  
+
   const [error, setError] = useState(null);
 
   const [imagen, setImagen] = useState(null);
 
+  const [info, setInfo] = useState(false);
+
   const [post, setPost] = useState({
     name: "",
-    specie: "Perro",
-    gender: "Hembra",
-    breed: "Chihuahua",
+    specie: "Gato",
+    gender: "Macho",
     age: "",
-    size: "",
-
-    // datos de perdida
     last_seen: "",
     description: "",
-    lost_date: "",
     image: "",
+    size: "Chico",
+    breed: "Mestizo",
+    lost_date: "",
+    owner: false,
   });
-  const handleSubmit = (evt) => {
+
+  const handleSubmit = async (evt) => {
     evt.preventDefault();
-    console.log(post);
+
+
   };
 
   const handleChangeImg = (evt) => {
@@ -63,8 +69,16 @@ const ReportarMascotas = () => {
       <div className="container d-flex justify-content-center align-items-center mt-3">
         <form className="row g-3" onSubmit={handleSubmit}>
           {error ? (
-            <div className="alert alert-danger text-center">{error}</div>
+            <div className="alert alert-info text-center">{error}</div>
           ) : null}
+
+          {
+            info ? (
+                <div className="alert alert-info text-center">
+                    <h2>¡Tu mascota se ha reportado con éxito!</h2>
+                </div>
+                ) : null
+          }
 
           <div className="col-md-6 col-sm-12">
             <div className="data-section text-center">
@@ -206,7 +220,7 @@ const ReportarMascotas = () => {
               <div className="row g-2">
                 <div className="">
                   <label className="form-label">
-                    Ubicación donde fue visto la última vez
+                    Última vez visto
                   </label>
                   <div className="input-group">
                     <span className="input-group-text">
@@ -284,6 +298,25 @@ const ReportarMascotas = () => {
                     />
                   </div>
                 </div>
+                <div className="col-12">
+                  <div className="form-check">
+                    <input
+                      type="checkbox"
+                      className="form-check-input"
+                      id="isOwnerCheckbox"
+                      checked={post.owner}
+                      onChange={(evt) =>
+                        setPost({ ...post, owner: evt.target.checked })
+                      }
+                    />
+                    <label
+                      className="form-check-label"
+                      htmlFor="isOwnerCheckbox"
+                    >
+                      ¿Eres el dueño de la mascota?
+                    </label>
+                  </div>
+                </div>
                 <div className="">
                   <label className="form-label">
                     Fotografía de tu Mascota (Si Aplica)
@@ -308,7 +341,7 @@ const ReportarMascotas = () => {
                   alt="Vista previa de la imagen"
                 />
                 <div className="card-body text-center">
-                  <h5 className="card-title">Previsualización de imagen</h5>
+                  <h5 className="card-title">Previsualización de Imagen</h5>
                 </div>
               </div>
             ) : null}
@@ -319,6 +352,7 @@ const ReportarMascotas = () => {
           </div>
         </form>
       </div>
+      <div class="p-5 mb-2 bg-transparent text-body"></div>
       <Footer />
     </div>
   );

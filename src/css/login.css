@@ -7,7 +7,7 @@
 }
 
 .login-bg {
-  background-color: beige;
+  background-color: #F4F4F4;
 }
 
 .login-img {
@@ -30,8 +30,8 @@
   background-color: black; 
 }
 
-.cream-bg {
-  background-color: bisque; 
+.custom-bg {
+  background-color: #80aba4; 
 }
 
 .Person{
