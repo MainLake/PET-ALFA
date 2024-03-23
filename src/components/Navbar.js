@@ -45,6 +45,11 @@ const Navbar = () => {
               </Link>
             </li>
             <li className="nav-item">
+              <Link to="/Panel-Rescatistas" className="nav-link">
+                Asociaciones y Rescatistas
+              </Link>
+            </li>
+            <li className="nav-item">
               <Link to="/Como-Reporto" className="nav-link">
                 ¿Cómo Reporto?
               </Link>
@@ -63,10 +68,10 @@ const Navbar = () => {
             </div>
           ) : (
             <div className="d-flex">
-              <a href="/Login" className="btn btn-secondary me-2">
+              <a href="/Login" className="btn btn-dark me-2">
                 Inicia Sesión
               </a>
-              <a href="/Signup" className="btn btn-secondary">
+              <a href="/Signup" className="btn btn-dark">
                 Regístrate
               </a>
             </div>

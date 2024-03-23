@@ -352,7 +352,7 @@ const ReportarMascotas = () => {
           </div>
         </form>
       </div>
-      <div class="p-4 mb-2 bg-transparent text-body"></div>
+      <div class="p-5 mb-2 bg-transparent text-body"></div>
       <Footer />
     </div>
   );

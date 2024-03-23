@@ -4,6 +4,7 @@ import "../css/signup.css";
 import SignupImg from "../imagenes/Registroimg.png";
 import Person from "../icons/person-fill.svg";
 import axios from "axios";
+import Footer from "./Footer";
 
 const Registro = () => {
   const [name, setName] = useState("");
@@ -54,7 +55,7 @@ const Registro = () => {
                 src={SignupImg}
                 alt="Imagen de nuevo usuario"
                 style={{
-                  maxHeight: "650px",
+                  maxHeight: "700px",
                   maxWidth: "100%",
                   width: "600px",
                   height: "auto",
@@ -62,7 +63,7 @@ const Registro = () => {
               />
             </div>
           </div>
-          <div className="col-md-6 d-flex justify-content-center align-items-center cream-bg">
+          <div className="col-md-6 d-flex justify-content-center align-items-center custom-bg">
             <div className="bg-white p-5 rounded-5 text-secondary">
               <div className="d-flex justify-content-center">
                 <img src={Person} className="Person" alt="Icono de nueusuario" />
@@ -166,6 +167,7 @@ const Registro = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

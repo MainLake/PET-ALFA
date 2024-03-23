@@ -10,6 +10,7 @@ import { useUserContext } from "../context/contextUser/ContextUser";
 import { useNavigate } from "react-router-dom";
 import { login } from "../api/authUsuario";
 import { ScaleLoader } from "react-spinners";
+import Footer from "./Footer";
 
 const Login = () => {
   const Navigate = useNavigate();
@@ -62,8 +63,7 @@ const Login = () => {
 
   return (
     <div>
-      <div style={{ backgroundColor: "#715523" }} class="text-bg p-3"></div>
-      <div className="container login-container mt-md-1">
+      <div className="container login-container mt-md-0">
         <div className="row">
           <div className="col-md-6 d-flex justify-content-center align-items-center black-bg">
             <div className="image-container">
@@ -72,7 +72,7 @@ const Login = () => {
                 className="Login-img"
                 alt="Descripción de la imagen"
                 style={{
-                  maxHeight: "650px",
+                  maxHeight: "700px",
                   maxWidth: "100%",
                   width: "600px",
                   height: "auto",
@@ -80,7 +80,7 @@ const Login = () => {
               />
             </div>
           </div>
-          <div className="col-md-6 d-flex justify-content-center align-items-center cream-bg">
+          <div className="col-md-6 d-flex justify-content-center align-items-center custom-bg">
             <div className="bg-white p-5 rounded-5 text-secondary">
               <div className="d-flex justify-content-center">
                 <img src={Person} className="Person" alt="imagen de persona"></img>
@@ -92,7 +92,7 @@ const Login = () => {
               >
                 Usuario o contraseña incorrectos
               </div>
-              <div className="input-group mt-5">
+              <div className="input-group mt-2">
                 <div className="input-group-text bg-brown">
                   <img src={Envelope} className="Envelope" alt="Imagen Envolpe"></img>
                 </div>
@@ -136,7 +136,7 @@ const Login = () => {
                   ) :
                     (
                       <ScaleLoader
-                        color="#36D7B7"
+                        color="#E9E9E9"
                         height={14}
                       />
                     )
@@ -148,7 +148,7 @@ const Login = () => {
           </div>
         </div>
       </div>
-      <div style={{ backgroundColor: "#715523" }} class="text-bg p-4"></div>
+      <Footer />
     </div>
   );
 };

@@ -1,11 +1,11 @@
 
 .data-section {
     padding: 20px; 
-    background-color: bisque; 
+    background-color: #A2BAC0; 
 }
 
 .data-section + .data-section {
-    background-color: bisque;
+    background-color: #A2BAC0;
 }
 
 .fondo-imagen{
