@@ -46,6 +46,7 @@ const Registro = () => {
   };
 
   return (
+
     <>
       <div className="container registro-container">
         <div className="row">
@@ -61,6 +62,7 @@ const Registro = () => {
                   height: "auto",
                 }}
               />
+
             </div>
           </div>
           <div className="col-md-6 d-flex justify-content-center align-items-center custom-bg">
