@@ -2,20 +2,26 @@ import { Route, Routes } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Main from "./components/Main";
-import MascotasPerdidas from "./components/MascotasPerdidas";
-import Adopcion from "./components/Adopcion";
-import ComoReporto from "./components/ComoReporto";
-import Cuidados from "./components/CuidadosMascotas";
-import Importancia from "./components/ImportanciaMascotas";
-import Login from "./components/Login";
-import Signup from "./components/SignUp";
-import ReportarMascotas from "./components/ReportarMascotas";
-import UserPost from "./components/UserPosts/UserPost";
+
+
+import MascotasPerdidas from "./components/pets/MascotasPerdidas";
+import MascotaPerdida from "./components/pets/MascotaPerdida";
+import ReportarMascotas from "./components/pets/ReportarMascotas";
+
+import Adopcion from "./components/informative/Adopcion";
+import ComoReporto from "./components/informative/ComoReporto";
+import CuidadosMascotas from "./components/informative/CuidadosMascotas";
+import ImportanciaMascotas from "./components/informative/ImportanciaMascotas";
+
+import Login from "./components/users/Login";
+import Signup from "./components/users/SignUp";
+import UserPost from "./components/users/UserPost";
+
+import RescueForm from "./components/associationsRescuers/RescueForm";
+import RescueAccount from "./components/associationsRescuers/RescueAccount";
+import SociosPanel from "./components/associationsRescuers/SociosPanel";
+
 import RouteProtect from "./routes/RouteProtect/RouteProtect";
-import MascotaPerdida from "./components/MascotaPerdida.js/MascotaPerdida";
-import RescueForm from "./components/RescueForm";
-import RescueAccount from "./components/RescueAccount";
-import SociosPanel from "./components/SociosPanel";
 
 import { loaderData, authUserStore } from "./context/globalContext";
 
@@ -42,8 +48,8 @@ const App = () => {
               <Route path="/" element={<Main />} />
               <Route path="/Mascotas-Perdidas" element={<MascotasPerdidas />} />
               <Route path="/Adopcion-Responsable" element={<Adopcion />} />
-              <Route path="/Cuidados-Mascotas" element={<Cuidados />} />
-              <Route path="/Importancia-Mascotas" element={<Importancia />} />
+              <Route path="/Cuidados-Mascotas" element={<CuidadosMascotas />} />
+              <Route path="/Importancia-Mascotas" element={<ImportanciaMascotas />} />
               <Route path="/Rescatista-Form" element={<RescueForm />} />
               <Route path="/Reportar-Mascotas" element={<ReportarMascotas />} />
               <Route path="/Como-Reporto" element={<ComoReporto />} />

@@ -1,9 +1,7 @@
-import React from 'react';
-import Empresa from '../imagenes/PetRoma.jpeg';
-import RS1 from '../imagenes/RS1.png';
-import RS2 from '../imagenes/RS2.png';
-import RS3 from '../imagenes/RS3.png'
-import Footer from './Footer';
+import Empresa from '../../imagenes/PetRoma.jpeg';
+import RS1 from '../../imagenes/RS1.png';
+import RS2 from '../../imagenes/RS2.png';
+import RS3 from '../../imagenes/RS3.png'
 
 const RescueAccount = () => {
     return (

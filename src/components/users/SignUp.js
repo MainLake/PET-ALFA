@@ -1,15 +1,14 @@
-import React, { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../css/signup.css";
-import SignupImg from "../imagenes/Registroimg.png";
-import Person from "../icons/person-fill.svg";
-import Footer from "./Footer";
+import { useState } from "react";
+import "../../css/signup.css";
+import SignupImg from "../../imagenes/Registroimg.png";
+import Person from "../../icons/person-fill.svg";
 
-
-import { createAccount } from "../api/request/users";
+import { createAccount } from "../../api/users";
 import { CSpinner } from "@coreui/react";
 
-const Registro = () => {
+import Footer from "../Footer";
+
+const Signup = () => {
 
   const [newUser, setNewUser] = useState({
     name: "",
@@ -27,7 +26,6 @@ const Registro = () => {
 
     evt.preventDefault();
 
-    // Validar que sea un numero de telefono
     const phoneRegExp = /^[0-9]{10}$/;
     if (!phoneRegExp.test(newUser.phoneNumber)) {
       setError("El número de teléfono debe contener 10 dígitos");
@@ -39,7 +37,6 @@ const Registro = () => {
       return;
     }
 
-    // Validar que sea un nombre y apellidos validos
     const nameRegExp = /^[a-zA-Z\s]*$/;
     if (!nameRegExp.test(newUser.name) || !nameRegExp.test(newUser.lastname)) {
       setError("El nombre y apellidos solo pueden contener letras");
@@ -51,7 +48,6 @@ const Registro = () => {
       return;
     }
 
-    // Contrasena de al menos 6 caracteres, una letra mayuscula y un numero
     const passwordRegExp = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{6,}$/;
     if (!passwordRegExp.test(newUser.password)) {
       setError("La contraseña debe contener al menos 6 caracteres, una letra mayúscula y un número");
@@ -231,4 +227,4 @@ const Registro = () => {
   );
 };
 
-export default Registro;
+export default Signup;

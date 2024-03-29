@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import "../css/mascotasperdidas.css";
-import Footer from "./Footer";
+import { useEffect, useState } from "react";
+import "../../css/mascotasperdidas.css";
+import Footer from "../Footer";
 import { useNavigate } from "react-router";
 
 // Obtener mascotas
-import { obtenerMascotas } from "../api/request/pets";
+import { obtenerMascotas } from "../../api/pets";
 
 const MascotasPerdidas = () => {
   const navigate = useNavigate();

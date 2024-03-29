@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import Footer from './Footer';
+import { useState } from 'react';
+import Footer from '../Footer';
 
 const RescueForm = () => {
   

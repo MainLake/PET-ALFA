@@ -1,23 +1,20 @@
 import { useState, useEffect } from "react";
 
-// Importaciones de css
-import '../css/components/Login.css';
-import "../css/login.css";
+import '../../css/components/Login.css';
+import "../../css/login.css";
 
-// Importaciones de imagenes y svg
-import Loginimg from "../imagenes/Loginimg.png";
-import Person from "../icons/person-fill.svg";
-import Lock from "../icons/lock-fill.svg";
-import Envelope from "../icons/envelope-fill.svg";
+import Loginimg from "../../imagenes/Loginimg.png";
+import Person from "../../icons/person-fill.svg";
+import Lock from "../../icons/lock-fill.svg";
+import Envelope from "../../icons/envelope-fill.svg";
 
 import { useNavigate } from "react-router-dom";
 import { CSpinner } from "@coreui/react";
-import Footer from "./Footer";
+import { loginUser } from "../../api/users";
+import { authUserStore } from "../../context/globalContext";
+import { saveDataLocalStorage } from "../../localstorage/sesionLocalStorage";
 
-import { loginUser } from "../api/request/users";
-
-import { authUserStore } from "../context/globalContext";
-import { saveDataLocalStorage } from "../localstorage/sesionLocalStorage";
+import Footer from "../Footer";
 
 const Login = () => {
 
