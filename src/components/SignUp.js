@@ -3,58 +3,102 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../css/signup.css";
 import SignupImg from "../imagenes/Registroimg.png";
 import Person from "../icons/person-fill.svg";
-import axios from "axios";
 import Footer from "./Footer";
 
+
+import { createAccount } from "../api/request/users";
+import { CSpinner } from "@coreui/react";
+
 const Registro = () => {
-  const [name, setName] = useState("");
-  const [lastname, setlastname] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [dataError, setdataError] = useState(false);
-  const [NewUser, setNewUser]= useState("");
 
-  const handleInputChange = () => {
+  const [newUser, setNewUser] = useState({
+    name: "",
+    lastname: "",
+    email: "",
+    password: "",
+    phoneNumber: "",
+  })
 
-  };
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (evnt) => {
-    evnt.preventDefault();
-    console.log('Subiendo datos');
-    axios.post('https://api-v1-rest-pets-lost-1517776b3a69.herokuapp.com/api/users/new', { name: name, lastname: lastname, email: email, password: password, cellphone: phoneNumber })
-      .then(token => {
-        console.log('token', token);
-        setNewUser("Usuario creado exitosamente");
-        setTimeout(() => {
-          setNewUser("");
-          setName("");
-          setlastname("");
-          setEmail("");
-          setPassword("");
-          setPhoneNumber("");
-        }, 2000);
-      })
-      .catch(error => {
-        console.log('error', error);
-        setdataError(true)
-        setTimeout(() => {
-          setdataError(false)
-        }, 5000);
+  const handleSubmit = async (evt) => {
 
-      })
+    evt.preventDefault();
+
+    // Validar que sea un numero de telefono
+    const phoneRegExp = /^[0-9]{10}$/;
+    if (!phoneRegExp.test(newUser.phoneNumber)) {
+      setError("El número de teléfono debe contener 10 dígitos");
+      setTimeout(() => {
+
+        setError("");
+
+      }, 3000);
+      return;
+    }
+
+    // Validar que sea un nombre y apellidos validos
+    const nameRegExp = /^[a-zA-Z\s]*$/;
+    if (!nameRegExp.test(newUser.name) || !nameRegExp.test(newUser.lastname)) {
+      setError("El nombre y apellidos solo pueden contener letras");
+      setTimeout(() => {
+
+        setError("");
+
+      }, 3000);
+      return;
+    }
+
+    // Contrasena de al menos 6 caracteres, una letra mayuscula y un numero
+    const passwordRegExp = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{6,}$/;
+    if (!passwordRegExp.test(newUser.password)) {
+      setError("La contraseña debe contener al menos 6 caracteres, una letra mayúscula y un número");
+      setTimeout(() => {
+
+        setError("");
+
+      }, 3000);
+      return;
+    }
+
+    setLoading(true);
+
+    const response = await createAccount(newUser);
+
+    setLoading(false);
+    console.log(response)
+
+    if (response.error) {
+
+      console.log("seteando error")
+
+      setError(response.error);
+      setTimeout(() => {
+        setError("");
+      }, 3000);
+      return;
+    }
+
+    setSuccess("Usuario creado exitosamente");
+    setTimeout(() => {
+      setSuccess("");
+    }, 3000);
+
+
   };
 
   return (
 
     <>
-      <div className="container registro-container">
+      <div className="container registro-container mt-4">
         <div className="row">
           <div className="col-md-6 d-flex justify-content-center align-items-center black-bg">
             <div className="image-container">
               <img
                 src={SignupImg}
-                alt="Imagen de nuevo usuario"
+                alt="Imagen de que contiene el logo de la página y un perro"
                 style={{
                   maxHeight: "700px",
                   maxWidth: "100%",
@@ -72,18 +116,19 @@ const Registro = () => {
               </div>
               <div className="text-center fs-1 fw-bold">Registro</div>
               {
-                dataError == true? (
+                error !== "" ? (
                   <div className="alert alert-danger" role="alert">
-                    Correo electronico ya existente
+                    {error}
                   </div>
-                ):null
+                ) : null
               }
+
               {
-                NewUser && (
+                success !== "" ? (
                   <div className="alert alert-success" role="alert">
-                    {NewUser}
+                    {success}
                   </div>
-                )
+                ) : null
               }
               <form onSubmit={handleSubmit}>
                 <div>
@@ -95,10 +140,10 @@ const Registro = () => {
                     id="textName"
                     name="name"
                     className="form-control"
-                    placeholder="Introduce tu nombre"
+                    placeholder="Ej: Juan José"
                     required
-                    value={name}
-                    onChange={evnt => setName(evnt.target.value)}
+                    value={newUser.name}
+                    onChange={evt => setNewUser({ ...newUser, name: evt.target.value })}
                   />
                 </div>
                 <div>
@@ -110,10 +155,10 @@ const Registro = () => {
                     id="lastname"
                     name="lastname"
                     className="form-control"
-                    placeholder="Introduce tus apellidos"
+                    placeholder="Ej: Pérez López"
                     required
-                    value={lastname}
-                    onChange={evnt => setlastname(evnt.target.value)}
+                    value={newUser.lastname}
+                    onChange={evt => setNewUser({ ...newUser, lastname: evt.target.value })}
                   />
                 </div>
                 <div>
@@ -125,10 +170,10 @@ const Registro = () => {
                     id="email"
                     name="email"
                     className="form-control"
-                    placeholder="Introduce tu email"
+                    placeholder="Ej: example@example.com"
                     required
-                    value={email}
-                    onChange={evnt => setEmail(evnt.target.value)}
+                    value={newUser.email}
+                    onChange={evt => setNewUser({ ...newUser, email: evt.target.value })}
                   />
                 </div>
                 <div>
@@ -142,8 +187,8 @@ const Registro = () => {
                     className="form-control"
                     placeholder="Introduce tu contraseña"
                     required
-                    value={password}
-                    onChange={evnt => setPassword(evnt.target.value)}
+                    value={newUser.password}
+                    onChange={evt => setNewUser({ ...newUser, password: evt.target.value })}
                   />
                 </div>
                 <div>
@@ -155,15 +200,27 @@ const Registro = () => {
                     id="phoneNumber"
                     name="phoneNumber"
                     className="form-control"
-                    placeholder="Introduce tu número de teléfono"
+                    placeholder="Ej: 1234567890"
                     required
-                    value={phoneNumber}
-                    onChange={evnt => setPhoneNumber(evnt.target.value)}
+                    value={newUser.phoneNumber}
+                    onChange={evt => setNewUser({ ...newUser, phoneNumber: evt.target.value })}
                   />
                 </div>
-                <button type="submit" className="btn btn-secondary w-100 mt-3">
-                  Registrarse
-                </button>
+                <div>
+                  {
+                    loading ? (
+                      <div className="d-flex justify-content-center mt-3">
+                        <CSpinner color="primary" />
+                      </div>
+                    ) : (
+                      <button type="submit" className="btn btn-secondary w-100 mt-3">
+                        Registrarse
+                      </button>
+                    )
+                  }
+
+                </div>
+
               </form>
             </div>
           </div>

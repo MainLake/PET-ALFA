@@ -1,19 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import "../css/navbar.css";
 import { Link } from "react-router-dom";
 import Logo from "../imagenes/Logo.png";
 
-import { useUserContext } from "../context/contextUser/ContextUser";
+import { CSpinner } from "@coreui/react";
+
+import { authUserStore } from "../context/globalContext";
+
+import { deleteDataLocalStorage } from "../localstorage/sesionLocalStorage";
 
 const Navbar = () => {
-  const { globalContext, dispatch } = useUserContext();
 
-  console.log(globalContext);
+  const { isAuthenticated, logout } = authUserStore();
+  const [loading, setLoading] = useState(false);
 
-  const logout = () => {
-    window.localStorage.removeItem("userPET");
-    dispatch({type:"LOGOUT"});
-  };
+  const logoutSession = () => {
+    logout();
+    deleteDataLocalStorage();
+  }
 
   return (
     <nav className="navbar navbar-expand-lg crema-bg">
@@ -21,6 +25,9 @@ const Navbar = () => {
         <Link to="/">
           <img src={Logo} className="style-image" alt="Logo" />
         </Link>
+        
+        <p>autenticado {isAuthenticated}</p>
+        
         <button
           className="navbar-toggler"
           type="button"
@@ -60,20 +67,26 @@ const Navbar = () => {
               </Link>
             </li>
           </ul>
-          {globalContext.usuario.autenticado ? (
+          {isAuthenticated ? (
             <div className="d-flex">
-              <a onClick={logout} className="btn btn-danger">
-                Salir
+              <a onClick={logoutSession} className="btn btn-danger">
+                {
+                  loading === true ? (
+                    <CSpinner></CSpinner>
+                  ) : (
+                    <>Salir</>
+                  )
+                }
               </a>
             </div>
           ) : (
             <div className="d-flex">
-              <a href="/Login" className="btn btn-dark me-2">
+              <Link to="/Login" className="btn btn-dark me-2">
                 Inicia Sesión
-              </a>
-              <a href="/Signup" className="btn btn-dark">
+              </Link>
+              <Link to="/Signup" className="btn btn-dark">
                 Regístrate
-              </a>
+              </Link>
             </div>
           )}
         </div>

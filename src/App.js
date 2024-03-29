@@ -17,26 +17,48 @@ import RescueForm from "./components/RescueForm";
 import RescueAccount from "./components/RescueAccount";
 import SociosPanel from "./components/SociosPanel";
 
-function App() {
+import { loaderData, authUserStore } from "./context/globalContext";
+
+const App = () => {
+  const { loadingData } = loaderData();
   return (
     <div>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/Mascotas-Perdidas" element={<MascotasPerdidas />} />
-        <Route path="/Adopcion-Responsable" element={<Adopcion />} />
-        <Route path="/Cuidados-Mascotas" element={<Cuidados />} />
-        <Route path="/Importancia-Mascotas" element={<Importancia />} />
-        <Route path="/Rescatista-Form" element={<RescueForm />} />
-        <Route path="/Reportar-Mascotas" element={<ReportarMascotas/>} />
-        <Route path="/Como-Reporto" element={<ComoReporto />} />
-        <Route path="/Perfil-Asociado" element={<RescueAccount />} />
-        <Route path="/Panel-Rescatistas" element={<SociosPanel />} />
-        <Route path="/Login" element={<Login />} />
-        <Route path="/Signup" element={<Signup />} />
-        <Route path="/Mis-Mascotas" element={<RouteProtect><UserPost/></RouteProtect>} />
-        <Route path="/Mascota-Perdida/:id_user/:id_pet/" element={<MascotaPerdida/>}/>
-      </Routes>
+
+      {
+        loadingData ? (
+          <div className="loader position-fixed top-50 start-50 translate-middle text-center">
+            <div>
+              <div className="spinner-border" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </div>
+              <div className="mt-2">Cargando...</div>
+            </div>
+          </div>
+
+        ) : (
+          <>
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<Main />} />
+              <Route path="/Mascotas-Perdidas" element={<MascotasPerdidas />} />
+              <Route path="/Adopcion-Responsable" element={<Adopcion />} />
+              <Route path="/Cuidados-Mascotas" element={<Cuidados />} />
+              <Route path="/Importancia-Mascotas" element={<Importancia />} />
+              <Route path="/Rescatista-Form" element={<RescueForm />} />
+              <Route path="/Reportar-Mascotas" element={<ReportarMascotas />} />
+              <Route path="/Como-Reporto" element={<ComoReporto />} />
+              <Route path="/Perfil-Asociado" element={<RescueAccount />} />
+              <Route path="/Panel-Rescatistas" element={<SociosPanel />} />
+              <Route path="/Login" element={<Login />} />
+              <Route path="/Signup" element={<Signup />} />
+              <Route path="/Mis-Mascotas" element={<RouteProtect><UserPost /></RouteProtect>} />
+              <Route path="/Mascota-Perdida/:id_user/:id_pet/" element={<MascotaPerdida />} />
+            </Routes>
+          </>
+        )
+      }
+
+
     </div>
   );
 }
