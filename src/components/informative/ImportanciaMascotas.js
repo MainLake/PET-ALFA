@@ -1,7 +1,8 @@
-import React from "react";
-import "../css/importancia.css";
-import Footer from "./Footer";
-import Importancia from "../imagenes/mascota-importancia.jpg";
+import "../../css/importancia.css";
+import Importancia from "../../imagenes/mascota-importancia.jpg";
+
+import Footer from "../Footer";
+
 const ImportanciaMascotas = () => {
   return (
     <div>

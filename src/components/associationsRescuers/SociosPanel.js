@@ -1,7 +1,6 @@
-import React from 'react';
-import PetRoma from '../imagenes/PetRoma.jpeg';
 import '../css/panelsocios.css'
-import Footer from './Footer';
+import PetRoma from '../../imagenes/PetRoma.jpeg';
+import Footer from '../Footer';
 
 const SociosPanel = ({ name_company, description, ImgEmpresa, heroColor, cardColor }) => {
     const cardsData = [

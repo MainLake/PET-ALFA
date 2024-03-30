@@ -1,9 +1,10 @@
-import React from "react";
-import "../css/adopcion.css";
-import Footer from "./Footer";
-import AdopcionM from "../imagenes/adopcion-mascotas.jpg";
-import Dog from "../icons/dog-solid.svg";
-import Cat from "../icons/cat-solid.svg";
+import "../../css/adopcion.css";
+import AdopcionM from "../../imagenes/adopcion-mascotas.jpg";
+import Dog from "../../icons/dog-solid.svg";
+import Cat from "../../icons/cat-solid.svg";
+
+import Footer from "../Footer";
+
 const Adopcion = () => {
   return (
     <div>

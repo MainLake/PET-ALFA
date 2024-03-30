@@ -1,16 +1,29 @@
-import { useState, useRef } from "react";
-import "../css/reportemascota.css";
-import Footer from "./Footer";
+import { useEffect, useState, useRef } from "react";
+import "../../css/imagen.css";
+import "../../css/reportemascota.css";
+import Footer from "../Footer";
+
+import { CSpinner } from "@coreui/react";
+import { createPost } from "../../api/pets";
+import { authUserStore } from "../../context/globalContext";
+import { useNavigate } from "react-router-dom";
 
 const extencionesImagenes = ["png", "jpg", "jpeg"];
 
 const ReportarMascotas = () => {
-  const [error, setError] = useState(null);
   const [imagenes, setImagenes] = useState([]);
+
+  const navigate = useNavigate();
+
+  const { user, logout, isAuthenticated } = authUserStore();
+  const [error, setError] = useState("");
+  const [imagen, setImagen] = useState(null);
   const [info, setInfo] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const [post, setPost] = useState({
     name: "",
-    specie: "Gato",
+    specie: "Perro",
     gender: "Macho",
     age: "",
     last_seen: "",
@@ -19,19 +32,84 @@ const ReportarMascotas = () => {
     breed: "Mestizo",
     lost_date: "",
     owner: false,
+    coordinates: '{"x": 342342432354, "y": 1234123423424}'
   });
 
   const fileInputRef = useRef(null);
+  useEffect(() => {
+    if(!isAuthenticated) {
+      navigate('/Login');
+    }
+  }, [isAuthenticated]);
 
   const handleSubmit = async (evt) => {
+
+    setLoading(true);
     evt.preventDefault();
     // Aquí puedes agregar la lógica para enviar los datos al servidor
   };
 
-  const handleAddMoreImages = () => {
+  const handleAddMoreImages = async () => {
     if (fileInputRef.current) {
       fileInputRef.current.click();
     }
+    const formData = new FormData();
+
+    console.log(post.image)
+
+    formData.append("name", post.name);
+    formData.append("specie", post.specie);
+    formData.append("gender", post.gender);
+    formData.append("age", post.age);
+    formData.append("last_seen", post.last_seen);
+    formData.append("description", post.description);
+    formData.append("size", post.size);
+    formData.append("breed", post.breed);
+    formData.append("lost_date", post.lost_date);
+    formData.append("owner", post.owner);
+    formData.append("image", post.image);
+    formData.append("coordinates", post.coordinates);
+
+    const response = await createPost(formData, user.dataToken.token);
+    console.log(response);
+
+    if (response.error) {
+
+      if(response.error.response.status === 401) {
+        logout(); 
+        navigate('/Login');
+        return;
+      }
+
+      setError(response.error);
+      setTimeout(() => {
+        setError("");
+      }
+        , 3000);
+      return;
+    }
+
+    setPost({
+      name: "",
+      specie: "Perro",
+      gender: "Macho",
+      age: "",
+      last_seen: "",
+      description: "",
+      image: "",
+      size: "Chico",
+      breed: "Mestizo",
+      lost_date: "",
+      owner: false,
+      coordinates: '{"x": 342342432354, "y": 1234123423424}'
+    });
+
+    setImagen(null);
+
+    setTimeout(() => {
+      setInfo(false);
+    }, 5000);
+    setLoading(false);
   };
 
   const handleChangeImg = (evt) => {
@@ -40,8 +118,8 @@ const ReportarMascotas = () => {
     if (files.length + imagenes.length > 5) {
       setError("Solo se permiten hasta 5 imágenes");
       setTimeout(() => {
-        setError(null);
-      }, 4000);
+        setError("");
+      }, 3000);
       return;
     }
 
@@ -360,8 +438,14 @@ const ReportarMascotas = () => {
                 Agregar más imágenes
               </button>
             )}
-            <button className="btn btn-secondary" type="submit">
-              Publicar mascota
+            <button className="btn btn-secondary" disabled={loading}>
+              {
+                loading ? (
+                  <CSpinner color="secondary" />
+                ) : (
+                  "Publicar mascota"
+                )
+              }
             </button>
           </div>
         </form>

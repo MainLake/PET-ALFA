@@ -1,64 +1,84 @@
-import React, { useState, useEffect } from "react";
-import '../css/components/Login.css';
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../css/login.css";
-import Loginimg from "../imagenes/Loginimg.png";
-import Person from "../icons/person-fill.svg";
-import Lock from "../icons/lock-fill.svg";
-import Envelope from "../icons/envelope-fill.svg";
-import { useUserContext } from "../context/contextUser/ContextUser";
+import { useState, useEffect } from "react";
+
+import '../../css/components/Login.css';
+import "../../css/login.css";
+
+import Loginimg from "../../imagenes/Loginimg.png";
+import Person from "../../icons/person-fill.svg";
+import Lock from "../../icons/lock-fill.svg";
+import Envelope from "../../icons/envelope-fill.svg";
+
 import { useNavigate } from "react-router-dom";
-import { login } from "../api/authUsuario";
-import { ScaleLoader } from "react-spinners";
-import Footer from "./Footer";
+import { CSpinner } from "@coreui/react";
+import { loginUser } from "../../api/users";
+import { authUserStore } from "../../context/globalContext";
+import { saveDataLocalStorage } from "../../localstorage/sesionLocalStorage";
+
+import Footer from "../Footer";
 
 const Login = () => {
-  const Navigate = useNavigate();
-  const { globalContext, dispatch } = useUserContext();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState(false);
+
+  const { login, isAuthenticated } = authUserStore();
+
+  const navigate = useNavigate();
+
+  const [dataUserLogin, setDataUserLogin] = useState({
+    email: "",
+    password: ""
+  })
+
+  const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    console.log(globalContext.usuario)
-    if (!globalContext.usuario.autenticado) {
-      Navigate("/Login");
+    console.log(isAuthenticated)
+    if(isAuthenticated) {
+      navigate('/Reportar-Mascotas');
+      return;
     }
-  }, []);
+  }, [isAuthenticated]);
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    if (name === "email") {
-      setEmail(value);
-    } else if (name === "password") {
-      setPassword(value);
-    }
-  };
 
   const handleLogin = async () => {
-    setIsLoading(true);
-    const data = {
-      email: email,
-      password: password,
-    };
-    console.log(data);
 
-    try {
-      const dataUsuario = await login(email, password);
-      dispatch({ type: "LOGIN", payload: dataUsuario.token })
-      window.localStorage.setItem('userPET', JSON.stringify(dataUsuario))
-      Navigate('/Mascotas-Perdidas');
-    } catch (error) {
-      const errorCodeStatus = error.response.request.status;
-      console.log(errorCodeStatus);
-        setError(true);
-        setTimeout(() => {
-          setError(false);
-        }, 2000);
+    setIsLoading(true);
+
+
+    if (dataUserLogin.password.trim() === "" || dataUserLogin.password.trim() === "") {
+      setIsLoading(false);
+      setError("Correo y contrasena son necesarios!!");
+      setTimeout(() => {
+        setError("");
+      }, 3000);
+      return;
     }
+
+    const response = await loginUser(dataUserLogin);
     setIsLoading(false);
 
+    if (response.error) {
+      console.log(response.error);
+      setError(response.error);
+      setTimeout(() => {
+        setError("");
+      }, 3000);
+
+      return;
+    }
+
+    const dataSesion = {
+      email: dataUserLogin.email,
+      dataToken: response.data
+    }
+
+    // Guardar los datos en el estado global
+    login(dataSesion);
+
+    // Guardar los datos en local storage
+    saveDataLocalStorage(dataSesion);
+    setDataUserLogin({email:"", password:""});
+    navigate('/Reportar-Mascotas');
+    return;
   };
 
   return (
@@ -88,12 +108,18 @@ const Login = () => {
 
               </div>
               <div className="text-center fs-1 fw-bold">Iniciar Sesión</div>
-              <div
-                className={`alert alert-danger ${error ? "alert--show" : "alert--hidden"}`}
-                role="alert"
-              >
-                Usuario o contraseña incorrectos
-              </div>
+              {
+                // agregar contenedor vacio
+                error !== "" ? (
+                  <div className="alert alert-danger mt-3">
+                    {error}
+                  </div>
+
+                ) : (
+                  <div className="mt-3"></div>
+                )
+              }
+
               <div className="input-group mt-2">
                 <div className="input-group-text bg-brown">
                   <img src={Envelope} className="Envelope" alt="Imagen Envolpe"></img>
@@ -105,8 +131,8 @@ const Login = () => {
                   className="form-control"
                   placeholder="Introduce tu email"
                   required
-                  value={email}
-                  onChange={handleInputChange}
+                  value={dataUserLogin.email}
+                  onChange={evt => setDataUserLogin({ ...dataUserLogin, email: evt.target.value })}
                 />
               </div>
               <div className="input-group mt-5 mb-3">
@@ -120,27 +146,22 @@ const Login = () => {
                   className="form-control"
                   placeholder="Introduce tu contraseña"
                   required
-                  value={password}
-                  onChange={handleInputChange}
+                  value={dataUserLogin.password}
+                  onChange={evt => setDataUserLogin({ ...dataUserLogin, password: evt.target.value })}
                 />
               </div>
-
-
               <button
                 type="button"
                 className="btn btn-secondary w-100 mt-3"
                 onClick={handleLogin}
-                
+
               >
                 {
                   !isLoading ? (
                     "Iniciar Sesión"
                   ) :
                     (
-                      <ScaleLoader
-                        color="#E9E9E9"
-                        height={14}
-                      />
+                      <CSpinner color="primary" />
                     )
                 }
               </button>

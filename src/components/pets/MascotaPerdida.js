@@ -1,37 +1,18 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { BASE_PATH } from "../../utilities/constAPI";
-import { useUserContext } from "../../context/contextUser/ContextUser";
 import { useParams } from "react-router";
 import "../../css/mascotasperdidas.css";
 
+
 const MascotaPerdida = () => {
-  const [user, setUser] = useUserContext();
   const { id_user, id_pet } = useParams();
 
   const [dataUser, setDataUser] = useState({});
   const [dataPet, setDataPet] = useState({});
 
   useEffect(() => {
-    if (user && user.token) {
-      axios({
-        method: "GET",
-        url: `${BASE_PATH}/pets/lost/board?user=${id_user}&pet=${id_pet}&owner=true`,
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${user.token}`,
-        },
-      })
-        .then(function (response) {
-          const data = response.data;
-          setDataUser(data[0]);
-          setDataPet(data[1]);
-        })
-        .catch(function (error) {
-          console.error(error);
-        });
-    }
-  }, [user]);
+
+  }, []);
 
   return (
     <div className="container my-5">

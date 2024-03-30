@@ -1,17 +1,26 @@
 import { useEffect } from "react";
-import { useUserContext } from "../../context/contextUser/ContextUser";
+
+import { authUserStore, loaderData } from "../../context/globalContext";
+
+import { getDataLocalStorage } from "../../localstorage/sesionLocalStorage";
 
 const Initializer = ({ children }) => {
-  const { dispatch } = useUserContext();
-
-  console.log("Dentro de inicializador");
+  const { login } = authUserStore();
+  const { loadingData, loadingDataComplete } = loaderData();
 
   useEffect(() => {
-    const usuario = JSON.parse(window.localStorage.getItem("userPET"));
-    if(usuario !== null) {
-      dispatch({type: "LOGIN", payload: usuario.token});
+
+    const initializerData = async () => {
+      const dataSesion = await getDataLocalStorage();
+      loadingDataComplete();
+      if (dataSesion !== null) {
+        login(dataSesion);
+      }
     }
-  }, []);
+
+    initializerData();
+
+  }, [loadingData]);
 
 
 

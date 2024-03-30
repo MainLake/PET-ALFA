@@ -1,6 +1,5 @@
-import React from "react";
-import "../css/comoreporto.css";
-import Footer from "./Footer";
+import "../../css/comoreporto.css";
+import Footer from "../Footer";
 
 const ComoReporto = () => {
   return (
