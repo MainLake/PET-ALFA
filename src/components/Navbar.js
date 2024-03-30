@@ -25,9 +25,6 @@ const Navbar = () => {
         <Link to="/">
           <img src={Logo} className="style-image" alt="Logo" />
         </Link>
-        
-        <p>autenticado {isAuthenticated}</p>
-        
         <button
           className="navbar-toggler"
           type="button"

@@ -18,7 +18,7 @@ import Footer from "../Footer";
 
 const Login = () => {
 
-  const { login, isAuthenticated} = authUserStore();
+  const { login, isAuthenticated } = authUserStore();
 
   const navigate = useNavigate();
 

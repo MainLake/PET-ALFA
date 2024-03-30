@@ -57,7 +57,7 @@ const App = () => {
               <Route path="/Panel-Rescatistas" element={<SociosPanel />} />
               <Route path="/Login" element={<Login />} />
               <Route path="/Signup" element={<Signup />} />
-              <Route path="/Mis-Mascotas" element={<RouteProtect><UserPost /></RouteProtect>} />
+              <Route path="/Mis-Mascotas" element={<UserPost />} />
               <Route path="/Mascota-Perdida/:id_user/:id_pet/" element={<MascotaPerdida />} />
             </Routes>
           </>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../../css/imagen.css";
 import "../../css/reportemascota.css";
 import Footer from "../Footer";
@@ -14,7 +14,7 @@ const ReportarMascotas = () => {
 
   const navigate = useNavigate();
 
-  const { user, logout } = authUserStore();
+  const { user, logout, isAuthenticated } = authUserStore();
   const [error, setError] = useState("");
   const [imagen, setImagen] = useState(null);
   const [info, setInfo] = useState(false);
@@ -34,6 +34,12 @@ const ReportarMascotas = () => {
     owner: false,
     coordinates: '{"x": 342342432354, "y": 1234123423424}'
   });
+
+  useEffect(() => {
+    if(!isAuthenticated) {
+      navigate('/Login');
+    }
+  }, [isAuthenticated]);
 
   const handleSubmit = async (evt) => {
 

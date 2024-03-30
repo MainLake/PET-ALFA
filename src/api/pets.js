@@ -3,10 +3,8 @@ import { axiosInstance } from "../utilities/axiosInstance";
 
 export const obtenerMascotas = async () => {
     const data = await axiosInstance.get('/api/v2/guests/publications')
-
     console.log(data.data);
     return data.data;
-
 }
 
 

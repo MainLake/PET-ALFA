@@ -24,3 +24,18 @@ export const loginUser = async (data) => {
         }
     }
 }
+
+export const getPetsUser = async (token) => {
+    
+    const config = {
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+    }
+
+    try{
+        const response = await axiosInstance.get('/api/v2/posts/all/')
+    }catch(error) {
+
+    }
+}

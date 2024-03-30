@@ -14,14 +14,14 @@ const MascotasPerdidas = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Obtener mascotas
-    const getData = async () => {
-      const data = await obtenerMascotas();
-      setLostPetsData(data);
+
+    const getPets = async () => {
+      const dataPets = await obtenerMascotas();
+      console.log(dataPets);
+      setLostPetsData([...dataPets]) 
       setLoading(false);
     }
-
-    getData();
+    getPets();
 
   }, []);
 
@@ -38,11 +38,11 @@ const MascotasPerdidas = () => {
           <div className="container">
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
               {lostPetsData.map((pet) => (
-                <div className="col" key={pet.id}>
+                <div className="col" key={pet._id}>
                   <div className="card shadow-sm custom-card">
                     <div className="img-container">
                       <img
-                        src={pet.image}
+                        src={pet.identify.image.url}
                         alt={pet.name}
                         className="card-img-top img-fluid"
                       />
@@ -52,11 +52,11 @@ const MascotasPerdidas = () => {
                         Nombre: <span className="name-text">{pet.name}</span>
                       </h5>
                       <h5 className="card-text">
-                        Raza: <span className="name-text">{pet.breed}</span>
+                        Raza: <span className="name-text">{pet.details.breed}</span>
                       </h5>
                       <h5 className="card-text">
                         Última vez Visto:{" "}
-                        <span className="name-text">{pet.last_seen}</span>
+                        <span className="name-text">{pet.publication.lost_date.split("T")[0]}</span>
                       </h5>
                       {showAllDetails && (
                         <>

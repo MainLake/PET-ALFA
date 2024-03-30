@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router";
 import "../../css/mascotasperdidas.css";
 
+
 const MascotaPerdida = () => {
   const { id_user, id_pet } = useParams();
 
