@@ -206,5 +206,6 @@
       .product-section .product-item:hover:before {
         height: 70%; }
   
-
-
+.contenido {
+  margin-bottom: 50px; 
+}

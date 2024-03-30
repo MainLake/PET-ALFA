@@ -2,14 +2,18 @@ import React, { useEffect, useState } from "react";
 import "../css/mascotasperdidas.css";
 import Footer from "./Footer";
 import { useNavigate } from "react-router";
+import { Modal, Button } from "react-bootstrap";
 import PP1 from '../imagenes/PP1.jpg';
 import PP2 from '../imagenes/PP3.jpg';
 import PP3 from '../imagenes/PP2.jpg';
+
 const MascotasPerdidas = () => {
   const navigate = useNavigate();
 
   const [lostPetsData, setLostPetsData] = useState([]);
   const [showAllDetails, setShowAllDetails] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
     const data = [
@@ -24,7 +28,7 @@ const MascotasPerdidas = () => {
         age: "2 años",
         gender: "Macho",
         species: "Perro",
-        image: PP1,
+        images: [PP1, PP2, PP3],
       },
       {
         id: 2,
@@ -37,7 +41,7 @@ const MascotasPerdidas = () => {
         age: "4 años",
         gender: "Hembra",
         species: "Gato",
-        image: PP2,
+        images: [PP2, PP3, PP1],
       },
       {
         id: 3,
@@ -50,7 +54,7 @@ const MascotasPerdidas = () => {
         age: "3 años",
         gender: "Macho",
         species: "Perro",
-        image: PP3,
+        images: [PP3, PP1, PP2],
       },
     ];
 
@@ -62,7 +66,7 @@ const MascotasPerdidas = () => {
   };
 
   return (
-    <div>
+    <div className="contenido">
       <div className="album py-2 bg-body-tertiary">
         <div className="container">
           <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -70,43 +74,54 @@ const MascotasPerdidas = () => {
               <div className="col" key={pet.id}>
                 <div className="card shadow-sm custom-card">
                   <div className="img-container">
-                    <img
-                      src={pet.image}
-                      alt={pet.name}
-                      className="card-img-top img-fluid"
-                    />
+                    <div className="card-img-top img-fluid">
+                      <div id={`carousel-${pet.id}`} className="carousel slide" data-ride="carousel">
+                        <div className="carousel-inner">
+                          {pet.images.map((image, index) => (
+                            <div key={index} className={`carousel-item ${index === 0 ? 'active' : ''}`}>
+                              <img src={image} className="d-block w-100" alt={pet.name} onClick={() => {
+                                setSelectedImage(image);
+                                setShowModal(true);
+                              }} />
+                            </div>
+                          ))}
+                        </div>
+                        <button className="carousel-control-prev" type="button" data-bs-target={`#carousel-${pet.id}`} data-bs-slide="prev">
+                          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span className="visually-hidden">Previous</span>
+                        </button>
+                        <button className="carousel-control-next" type="button" data-bs-target={`#carousel-${pet.id}`} data-bs-slide="next">
+                          <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span className="visually-hidden">Next</span>
+                        </button>
+                      </div>
+                    </div>
                   </div>
                   <div className="card-body custom-bg">
-                    <h5 className="card-text">
-                      Nombre: <span className="name-text">{pet.name}</span>
+                    <h5 className="card-text card-lost">
+                      Nombre: <span className="name-text text-lost">{pet.name}</span>
                     </h5>
-                    <h5 className="card-text">
-                      Raza: <span className="name-text">{pet.breed}</span>
+                    <h5 className="card-text card-lost">
+                      Raza: <span className="name-text text-lost">{pet.breed}</span>
                     </h5>
-                    <h5 className="card-text">
+                    <h5 className="card-text card-lost">
                       Última vez Visto:{" "}
-                      <span className="name-text">{pet.last_seen}</span>
+                      <span className="name-text text-lost">{pet.last_seen}</span>
                     </h5>
                     {showAllDetails && (
                       <>
-                        <h5 className="card-text">
-                          Color: <span className="name-text">{pet.color}</span>
+                        <h5 className="card-text card-lost">
+                          Color: <span className="name-text text-lost">{pet.color}</span>
                         </h5>
-                        <h5 className="card-text">
-                          Tamaño: <span className="name-text">{pet.size}</span>
-                        </h5>
-                        <h5 className="card-text">
+                        <h5 className="card-text card-lost">
                           Lugar donde se Extravió:{" "}
-                          <span className="name-text">{pet.location}</span>
+                          <span className="name-text text-lost">{pet.location}</span>
                         </h5>
-                        <h5 className="card-text">
-                          Edad: <span className="name-text">{pet.age}</span>
+                        <h5 className="card-text card-lost">
+                          Edad: <span className="name-text text-lost">{pet.age}</span>
                         </h5>
-                        <h5 className="card-text">
-                          Género: <span className="name-text">{pet.gender}</span>
-                        </h5>
-                        <h5 className="card-text">
-                          Especie: <span className="name-text">{pet.species}</span>
+                        <h5 className="card-text card-lost">
+                          Género: <span className="name-text text-lost">{pet.gender}</span>
                         </h5>
                       </>
                     )}
@@ -135,6 +150,15 @@ const MascotasPerdidas = () => {
           </div>
         </div>
       </div>
+
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+        </Modal.Header>
+        <Modal.Body>
+          <img src={selectedImage} alt="Pet" className="img-fluid" />
+        </Modal.Body>
+      </Modal>
+
       <Footer />
     </div>
   );

@@ -8,7 +8,7 @@ import M3 from "../imagenes/mm6.png";
 
 const Main = () => {
   return (
-    <main>
+    <main className="contenido">
       <div className="position-relative overflow-hidden p-3 p-md-2 m-md-6 text-center bg-body-tertiary">
         <div className="col-md-12 p-lg-5 mx-auto my-1 fondo-con-imagen">
           <h1 className="display-1 fw-bold lh-1 text-white">

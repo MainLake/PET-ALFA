@@ -16,6 +16,7 @@ import MascotaPerdida from "./components/MascotaPerdida.js/MascotaPerdida";
 import RescueForm from "./components/RescueForm";
 import RescueAccount from "./components/RescueAccount";
 import SociosPanel from "./components/SociosPanel";
+import SociosAnuncios from "./components/SociosAnuncios";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Route path="/Login" element={<Login />} />
         <Route path="/Signup" element={<Signup />} />
         <Route path="/Mis-Mascotas" element={<RouteProtect><UserPost/></RouteProtect>} />
+        <Route path="/Mis-Anuncios" element={<SociosAnuncios/>} />
         <Route path="/Mascota-Perdida/:id_user/:id_pet/" element={<MascotaPerdida/>}/>
       </Routes>
     </div>

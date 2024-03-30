@@ -59,6 +59,11 @@ const Navbar = () => {
                 Mis mascotas
               </Link>
             </li>
+            <li className="nav-item">
+              <Link to="/Mis-Anuncios" className="nav-link">
+                Mis Anuncios
+              </Link>
+            </li>
           </ul>
           {globalContext.usuario.autenticado ? (
             <div className="d-flex">
