@@ -62,6 +62,7 @@ const Login = () => {
   };
 
   return (
+
     <div>
       <div className="container login-container mt-md-0">
         <div className="row">
@@ -84,6 +85,7 @@ const Login = () => {
             <div className="bg-white p-5 rounded-5 text-secondary">
               <div className="d-flex justify-content-center">
                 <img src={Person} className="Person" alt="imagen de persona"></img>
+
               </div>
               <div className="text-center fs-1 fw-bold">Iniciar Sesión</div>
               <div
