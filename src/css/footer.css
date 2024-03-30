@@ -1,10 +1,9 @@
-/* styles.css */
 .footer {
-    background-color: #858585;
-    color: white;
-    padding: 20px 0;
-    bottom: 0;
-    width: 100%;
-    height: 50px;
-  }
-  
+  background-color: #858585;
+  color: white;
+  padding: 20px 0;
+  width: 100%;
+  height: 50px;
+  position: fixed;
+  bottom: 0;
+}

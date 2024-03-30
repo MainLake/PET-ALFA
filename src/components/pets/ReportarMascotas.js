@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import "../../css/imagen.css";
 import "../../css/reportemascota.css";
 import Footer from "../Footer";
@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 const extencionesImagenes = ["png", "jpg", "jpeg"];
 
 const ReportarMascotas = () => {
+  const [imagenes, setImagenes] = useState([]);
 
   const navigate = useNavigate();
 
@@ -27,7 +28,6 @@ const ReportarMascotas = () => {
     age: "",
     last_seen: "",
     description: "",
-    image: "",
     size: "Chico",
     breed: "Mestizo",
     lost_date: "",
@@ -35,6 +35,7 @@ const ReportarMascotas = () => {
     coordinates: '{"x": 342342432354, "y": 1234123423424}'
   });
 
+  const fileInputRef = useRef(null);
   useEffect(() => {
     if(!isAuthenticated) {
       navigate('/Login');
@@ -45,7 +46,13 @@ const ReportarMascotas = () => {
 
     setLoading(true);
     evt.preventDefault();
+    // Aquí puedes agregar la lógica para enviar los datos al servidor
+  };
 
+  const handleAddMoreImages = async () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
     const formData = new FormData();
 
     console.log(post.image)
@@ -106,51 +113,56 @@ const ReportarMascotas = () => {
   };
 
   const handleChangeImg = (evt) => {
-    const file = evt.target.files[0];
+    const files = Array.from(evt.target.files);
 
-    if (file === undefined) {
-      return;
-    }
-
-    const nameFileArray = file.name.split(".");
-
-    if (
-      !extencionesImagenes.some(
-        (extencion) =>
-          nameFileArray[nameFileArray.length - 1].toLowerCase() === extencion
-      )
-    ) {
-      setError("Debes seleccionar un archivo de tipo imagen");
+    if (files.length + imagenes.length > 5) {
+      setError("Solo se permiten hasta 5 imágenes");
       setTimeout(() => {
         setError("");
       }, 3000);
       return;
     }
 
-    const newObjectPost = {
-      ...post,
-      image: file,
-    };
-    setPost(newObjectPost);
-    setImagen(URL.createObjectURL(file));
+    const newImagenes = [...imagenes];
+    files.forEach((file) => {
+      const nameFileArray = file.name.split(".");
+      if (
+        !extencionesImagenes.some(
+          (extencion) =>
+            nameFileArray[nameFileArray.length - 1].toLowerCase() === extencion
+        )
+      ) {
+        setError("Debes seleccionar archivos de tipo imagen");
+        setTimeout(() => {
+          setError(null);
+        }, 4000);
+        return;
+      }
+      newImagenes.push(URL.createObjectURL(file));
+    });
+
+    setImagenes(newImagenes);
+  };
+
+  const handleDeleteImg = (index) => {
+    const newImagenes = [...imagenes];
+    newImagenes.splice(index, 1);
+    setImagenes(newImagenes);
   };
 
   return (
-    <div>
+    <div className="contenido">
       <div className="container d-flex justify-content-center align-items-center mt-3">
         <form className="row g-3" onSubmit={handleSubmit}>
-          {
-            error !== "" ? (
-              <div className="alert alert-danger text-center">{error}</div>
-            ) : null
-          }
-          {
-            info ? (
-              <div className="alert alert-info text-center">
-                <h2>¡Tu mascota se ha reportado con éxito!</h2>
-              </div>
-            ) : null
-          }
+          {error && (
+            <div className="alert alert-info text-center">{error}</div>
+          )}
+
+          {info && (
+            <div className="alert alert-info text-center">
+              <h2>¡Tu mascota se ha reportado con éxito!</h2>
+            </div>
+          )}
 
           <div className="col-md-6 col-sm-12">
             <div className="data-section text-center">
@@ -196,7 +208,7 @@ const ReportarMascotas = () => {
                     <option value="Macho">Macho</option>
                   </select>
                 </div>
-                <div>
+                <div className="col-12">
                   <label className="form-label">Raza</label>
                   <select
                     value={post.breed}
@@ -265,35 +277,16 @@ const ReportarMascotas = () => {
                     />
                   </div>
                 </div>
-
-                <div className="col-6">
-                  <label className="form-label">Tamaño</label>
-                  <select
-                    value={post.size}
-                    onChange={(evt) =>
-                      setPost({ ...post, size: evt.target.value })
-                    }
-                    required
-                    className="form-select"
-                  >
-                    <option value="Chico">Chico</option>
-                    <option value="Mediano">Mediano</option>
-                    <option value="Grande">Grande</option>
-                    <option value="No aplica">No aplica</option>
-                  </select>
-                </div>
               </div>
             </div>
           </div>
 
-          <div className="col-md-6 col-sm-12 ">
+          <div className="col-md-6 col-sm-12">
             <div className="data-section text-center">
               <h2 className="display-4 fw-bold lh-1">Datos de Pérdida</h2>
               <div className="row g-2">
-                <div className="">
-                  <label className="form-label">
-                    Última vez visto
-                  </label>
+                <div className="col-12">
+                  <label className="form-label">Última vez visto</label>
                   <div className="input-group">
                     <span className="input-group-text">
                       <svg
@@ -317,7 +310,7 @@ const ReportarMascotas = () => {
                     ></textarea>
                   </div>
                 </div>
-                <div>
+                <div className="col-12">
                   <label>Descripción</label>
                   <div className="input-group">
                     <span className="input-group-text">
@@ -331,7 +324,7 @@ const ReportarMascotas = () => {
                       >
                         <path
                           fillRule="evenodd"
-                          d="M0 .5A.5.5 0 0 1 .5 0h4a.5.5 0 0 1 0 1h-4A.5.5 0 0 1 0 .5Zm0 2A.5.5 0 0 1 .5 2h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5Zm9 0a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5Zm-9 2A.5.5 0 0 1 .5 4h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5Zm5 0a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5Zm7 0a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5Zm-12 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5Zm8 0a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5Zm-8 2a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 0 1h-8a.5.5 0 0 1-.5-.5Zm0 2a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5Zm0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Z"
+                          d="M0 .5A.5.5 0 0 1 .5 0h4a.5.5 0 0 1 0 1h-4A.5.5 0 0 1 0 .5Zm0 2A.5.5 0 0 1 .5 2h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5Zm9 0a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5Zm-9 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5Zm8 0a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5Zm-8 2a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 0 1h-8a.5.5 0 0 1-.5-.5Zm0 2a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5Zzm0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Z"
                         />
                       </svg>
                     </span>
@@ -345,7 +338,7 @@ const ReportarMascotas = () => {
                     ></textarea>
                   </div>
                 </div>
-                <div>
+                <div className="col-12">
                   <label className="form-label">Fecha de Pérdida</label>
                   <div className="input-group">
                     <span className="input-group-text">
@@ -389,37 +382,62 @@ const ReportarMascotas = () => {
                     </label>
                   </div>
                 </div>
-                <div className="">
-                  <label className="form-label">
-                    Fotografía de tu Mascota (Si Aplica)
-                  </label>
-                  <input
-                    required
-                    className={`form-control ${error ? "border-danger" : null}`}
-                    type="file"
-                    onChange={handleChangeImg}
-                  />
-                </div>
+                {imagenes.length < 5 && (
+                  <div className="col-12">
+                    <label className="form-label">
+                      Fotografía de tu Mascota (Si Aplica)
+                    </label>
+                    <input
+                      ref={fileInputRef}
+                      required
+                      className={`form-control ${
+                        error ? "border-danger" : null
+                      }`}
+                      type="file"
+                      onChange={handleChangeImg}
+                      multiple
+                      accept="image/png, image/jpeg, image/jpg"
+                      style={{ display: "none" }}
+                    />
+                  </div>
+                )}
               </div>
             </div>
           </div>
 
-          <div className="col-12">
-            {imagen !== null ? (
-              <div className="card row justify-content-center align-items-center fondo-imagen">
-                <img
-                  className="imagen card-img-top pt-2"
-                  src={imagen}
-                  alt="Vista previa de la imagen"
-                />
-                <div className="card-body text-center">
-                  <h5 className="card-title">Previsualización de Imagen</h5>
+          <div className="col-md-10 offset-md-1 mt-4 mb-3">
+            <div className="row justify-content-center">
+              {imagenes.map((imagen, index) => (
+                <div key={index} className="col-2 mb-3">
+                  <div className="position-relative">
+                    <img
+                      className="imagen-preview img-thumbnail"
+                      src={imagen}
+                      alt={`Imagen ${index + 1}`}
+                      width="300"
+                      height="300"
+                    />
+                    <button
+                      type="button"
+                      className="btn-close position-absolute top-0 end-0"
+                      aria-label="Close"
+                      onClick={() => handleDeleteImg(index)}
+                    ></button>
+                  </div>
                 </div>
-              </div>
-            ) : null}
+              ))}
+            </div>
           </div>
-
           <div className="col-12 mt-4 mb-3 d-flex justify-content-center">
+            {imagenes.length < 5 && (
+              <button
+                className="btn btn-secondary me-3"
+                type="button"
+                onClick={handleAddMoreImages}
+              >
+                Agregar más imágenes
+              </button>
+            )}
             <button className="btn btn-secondary" disabled={loading}>
               {
                 loading ? (

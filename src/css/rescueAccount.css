@@ -1,0 +1,15 @@
+.bg-card {
+    background-color: #f8f9fa; /* Color de fondo para las tarjetas */
+}
+
+.equal-card-height {
+    height: 200px; /* Altura fija para el carrusel de las imágenes */
+}
+
+.social-image {
+    max-width: 30px; /* Tamaño máximo para las imágenes de las redes sociales */
+}
+
+.card-title-RA{
+    font-weight: bold;
+}

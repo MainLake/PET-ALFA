@@ -20,13 +20,40 @@ show-pet{
     height: 350px; 
   }
   
-  .name-text {
-    font-size: 20px;
-    font-weight: lighter; 
+  .text-lost {
+    font-size: 18px;
+    font-weight: lighter;
+    font-family: 'MedievalSharp', cursive;
   }
 
-  .card-text{
-    font-size: 18px;
+  .card-lost{
+    font-size: 19px;
+    font-family: 'MedievalSharp', cursive;
+    font-weight: bold;
   }
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: invert(1); 
+}
+
+
+.carousel-control-prev,
+.carousel-control-next {
+  width: 10%;
+}
+
+.contenido {
+  margin-bottom: 50px; 
+}
+
+.modal-header {
+  background-color: #80aba4; 
+  color: white;
+}
+
+
+
+
   
   
