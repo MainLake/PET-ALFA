@@ -11,7 +11,7 @@ import { deleteDataLocalStorage } from "../localstorage/sesionLocalStorage";
 
 const Navbar = () => {
 
-  const { isAuthenticated, logout } = authUserStore();
+  const { isAuthenticated, logout, user } = authUserStore();
   const [loading, setLoading] = useState(false);
 
   const logoutSession = () => {
@@ -38,11 +38,18 @@ const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <Link to="/Reportar-Mascotas" className="nav-link">
-                Reportar Mascotas
-              </Link>
-            </li>
+
+            {
+              isAuthenticated && (
+                <li className="nav-item">
+                  <Link to="/Reportar-Mascotas" className="nav-link">
+                    Reportar Mascotas
+                  </Link>
+                </li>
+              )
+            }
+
+
             <li className="nav-item">
               <Link to="/Mascotas-Perdidas" className="nav-link">
                 Mascotas Perdidas
@@ -58,16 +65,30 @@ const Navbar = () => {
                 ¿Cómo Reporto?
               </Link>
             </li>
-            <li className="nav-item">
-              <Link to="/Mis-Mascotas" className="nav-link">
-                Mis mascotas
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/Mis-Anuncios" className="nav-link">
-                Mis Anuncios
-              </Link>
-            </li>
+
+            {
+              isAuthenticated && (
+                <li className="nav-item">
+                  <Link to="/Mis-Mascotas" className="nav-link">
+                    Mis mascotas
+                  </Link>
+                </li>
+              )
+            }
+
+
+
+            {
+              isAuthenticated && user.role !== "USER" ? (
+                <li className="nav-item">
+                  <Link to="/Mis-Anuncios" className="nav-link">
+                    Mis Anuncios
+                  </Link>
+                </li>
+              ): (null)
+            }
+
+
           </ul>
           {isAuthenticated ? (
             <div className="d-flex">

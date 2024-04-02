@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import '../css/sociosAnuncios.css';
-import Footer from './Footer';
+import { useState } from 'react';
+import '../../css/sociosAnuncios.css';
+import Footer from '../Footer';
 
 const extencionesImagenes = ['png', 'jpg', 'jpeg'];
 
