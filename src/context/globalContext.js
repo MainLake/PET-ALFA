@@ -4,7 +4,8 @@ export const authUserStore = create((setState) => ({
     isAuthenticated: false,
     user: null,
     login: (user) => {
-        setState({isAuthenticated: true, user: user});
+        return Promise.resolve(setState({isAuthenticated: true, user: user}));
+        
     },
     logout: () => {
         setState({isAuthenticated: false, user: null});

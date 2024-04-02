@@ -12,10 +12,11 @@ const Initializer = ({ children }) => {
 
     const initializerData = async () => {
       const dataSesion = await getDataLocalStorage();
-      loadingDataComplete();
+      console.log(dataSesion);
       if (dataSesion !== null) {
-        login(dataSesion);
+        await login(dataSesion);
       }
+      loadingDataComplete();
     }
 
     initializerData();

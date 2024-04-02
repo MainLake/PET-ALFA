@@ -3,6 +3,9 @@ import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Main from "./components/Main";
 
+import AdminDashboard from "./components/admin/AdminDashboard";
+import CollaboratorsRequest from "./components/admin/collaboratorsRequest";
+
 import SociosAnuncios from "./components/SociosAnuncios";
 
 import MascotasPerdidas from "./components/pets/MascotasPerdidas";
@@ -46,6 +49,8 @@ const App = () => {
             <Navbar />
             <Routes>
               <Route path="/" element={<Main />} />
+              <Route path="/Admin-Dashboard" element={<AdminDashboard />} />
+              <Route path="/Collaborator-Request" element= {<CollaboratorsRequest/>} />
               <Route path="/Mascotas-Perdidas" element={<MascotasPerdidas />} />
               <Route path="/Adopcion-Responsable" element={<Adopcion />} />
               <Route path="/Cuidados-Mascotas" element={<CuidadosMascotas />} />
