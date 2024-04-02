@@ -14,6 +14,8 @@ import { loginUser } from "../../api/users";
 import { authUserStore } from "../../context/globalContext";
 import { saveDataLocalStorage } from "../../localstorage/sesionLocalStorage";
 
+import jwtDecode from "jwt-decode";
+
 import Footer from "../Footer";
 
 const Login = () => {
@@ -54,6 +56,9 @@ const Login = () => {
     }
 
     const response = await loginUser(dataUserLogin);
+
+    console.log(response);
+
     setIsLoading(false);
 
     if (response.error) {
@@ -66,9 +71,14 @@ const Login = () => {
       return;
     }
 
+    // Decodificar el token
+    const dataToken = await jwtDecode(response.data.token);
+    console.log(dataToken);
+
     const dataSesion = {
       email: dataUserLogin.email,
-      dataToken: response.data
+      dataToken: response.data,
+      role: dataToken.role
     }
 
     // Guardar los datos en el estado global

@@ -8,18 +8,20 @@ import { createPost } from "../../api/pets";
 import { authUserStore } from "../../context/globalContext";
 import { useNavigate } from "react-router-dom";
 
+import ImagenesMascotas from "./ImagenesMascotas";
+
 const extencionesImagenes = ["png", "jpg", "jpeg"];
 
 const ReportarMascotas = () => {
-  const [imagenes, setImagenes] = useState([]);
 
   const navigate = useNavigate();
 
   const { user, logout, isAuthenticated } = authUserStore();
   const [error, setError] = useState("");
-  const [imagen, setImagen] = useState(null);
   const [info, setInfo] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const [gallery, setGallery] = useState([]);
 
   const [post, setPost] = useState({
     name: "",
@@ -32,30 +34,20 @@ const ReportarMascotas = () => {
     breed: "Mestizo",
     lost_date: "",
     owner: false,
+    image: "",
     coordinates: '{"x": 342342432354, "y": 1234123423424}'
   });
 
-  const fileInputRef = useRef(null);
   useEffect(() => {
-    if(!isAuthenticated) {
+    if (!isAuthenticated) {
       navigate('/Login');
     }
   }, [isAuthenticated]);
 
   const handleSubmit = async (evt) => {
-
     setLoading(true);
     evt.preventDefault();
-    // Aquí puedes agregar la lógica para enviar los datos al servidor
-  };
-
-  const handleAddMoreImages = async () => {
-    if (fileInputRef.current) {
-      fileInputRef.current.click();
-    }
     const formData = new FormData();
-
-    console.log(post.image)
 
     formData.append("name", post.name);
     formData.append("specie", post.specie);
@@ -67,16 +59,24 @@ const ReportarMascotas = () => {
     formData.append("breed", post.breed);
     formData.append("lost_date", post.lost_date);
     formData.append("owner", post.owner);
-    formData.append("image", post.image);
+    formData.append("image", gallery[0].file);
+    gallery.forEach((file) => {
+      formData.append("gallery", file.file);
+    });
     formData.append("coordinates", post.coordinates);
+
+    setTimeout(() => {
+      console.log('Enviando formulario');
+    }, 3000);
+
 
     const response = await createPost(formData, user.dataToken.token);
     console.log(response);
 
     if (response.error) {
 
-      if(response.error.response.status === 401) {
-        logout(); 
+      if (response.error.response.status === 401) {
+        logout();
         navigate('/Login');
         return;
       }
@@ -97,6 +97,7 @@ const ReportarMascotas = () => {
       last_seen: "",
       description: "",
       image: "",
+      gallery: [],
       size: "Chico",
       breed: "Mestizo",
       lost_date: "",
@@ -104,50 +105,12 @@ const ReportarMascotas = () => {
       coordinates: '{"x": 342342432354, "y": 1234123423424}'
     });
 
-    setImagen(null);
-
+    setGallery([]);
+    setInfo(true);
     setTimeout(() => {
       setInfo(false);
     }, 5000);
     setLoading(false);
-  };
-
-  const handleChangeImg = (evt) => {
-    const files = Array.from(evt.target.files);
-
-    if (files.length + imagenes.length > 5) {
-      setError("Solo se permiten hasta 5 imágenes");
-      setTimeout(() => {
-        setError("");
-      }, 3000);
-      return;
-    }
-
-    const newImagenes = [...imagenes];
-    files.forEach((file) => {
-      const nameFileArray = file.name.split(".");
-      if (
-        !extencionesImagenes.some(
-          (extencion) =>
-            nameFileArray[nameFileArray.length - 1].toLowerCase() === extencion
-        )
-      ) {
-        setError("Debes seleccionar archivos de tipo imagen");
-        setTimeout(() => {
-          setError(null);
-        }, 4000);
-        return;
-      }
-      newImagenes.push(URL.createObjectURL(file));
-    });
-
-    setImagenes(newImagenes);
-  };
-
-  const handleDeleteImg = (index) => {
-    const newImagenes = [...imagenes];
-    newImagenes.splice(index, 1);
-    setImagenes(newImagenes);
   };
 
   return (
@@ -382,62 +345,11 @@ const ReportarMascotas = () => {
                     </label>
                   </div>
                 </div>
-                {imagenes.length < 5 && (
-                  <div className="col-12">
-                    <label className="form-label">
-                      Fotografía de tu Mascota (Si Aplica)
-                    </label>
-                    <input
-                      ref={fileInputRef}
-                      required
-                      className={`form-control ${
-                        error ? "border-danger" : null
-                      }`}
-                      type="file"
-                      onChange={handleChangeImg}
-                      multiple
-                      accept="image/png, image/jpeg, image/jpg"
-                      style={{ display: "none" }}
-                    />
-                  </div>
-                )}
               </div>
             </div>
           </div>
-
-          <div className="col-md-10 offset-md-1 mt-4 mb-3">
-            <div className="row justify-content-center">
-              {imagenes.map((imagen, index) => (
-                <div key={index} className="col-2 mb-3">
-                  <div className="position-relative">
-                    <img
-                      className="imagen-preview img-thumbnail"
-                      src={imagen}
-                      alt={`Imagen ${index + 1}`}
-                      width="300"
-                      height="300"
-                    />
-                    <button
-                      type="button"
-                      className="btn-close position-absolute top-0 end-0"
-                      aria-label="Close"
-                      onClick={() => handleDeleteImg(index)}
-                    ></button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          <ImagenesMascotas setGallery={setGallery}  gallery={gallery}/>
           <div className="col-12 mt-4 mb-3 d-flex justify-content-center">
-            {imagenes.length < 5 && (
-              <button
-                className="btn btn-secondary me-3"
-                type="button"
-                onClick={handleAddMoreImages}
-              >
-                Agregar más imágenes
-              </button>
-            )}
             <button className="btn btn-secondary" disabled={loading}>
               {
                 loading ? (

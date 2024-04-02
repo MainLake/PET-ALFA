@@ -6,7 +6,8 @@ import Main from "./components/Main";
 import AdminDashboard from "./components/admin/AdminDashboard";
 import CollaboratorsRequest from "./components/admin/collaboratorsRequest";
 
-import SociosAnuncios from "./components/SociosAnuncios";
+import SociosAnuncios from "./components/associationsRescuers/SociosAnuncios";
+
 
 import MascotasPerdidas from "./components/pets/MascotasPerdidas";
 import MascotaPerdida from "./components/pets/MascotaPerdida";

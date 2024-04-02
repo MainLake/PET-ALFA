@@ -34,8 +34,11 @@ export const getPetsUser = async (token) => {
     }
 
     try{
-        const response = await axiosInstance.get('/api/v2/posts/all/')
-    }catch(error) {
+        const response = await axiosInstance.get('/api/v2/posts/all/', config);
+        return response;
 
+    }catch(error) {
+        console.log(error);
+        return {error: error}
     }
 }
