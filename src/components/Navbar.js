@@ -60,16 +60,28 @@ const Navbar = () => {
                 Asociaciones y Rescatistas
               </Link>
             </li>
-            <li className="nav-item">
-              <Link to="/Admin-Dashboard" className="nav-link">
-                Panel de administracion
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/Collaborator-Request" className="nav-link">
-                Bandeja de peticiones
-              </Link>
-            </li>
+
+            {
+              isAuthenticated && user.role === "ADMINISTRATOR" ? (
+                <li className="nav-item">
+                  <Link to="/Admin-Dashboard" className="nav-link">
+                    Panel de administracion
+                  </Link>
+                </li>
+              ) : (null)
+            }
+
+            {
+              isAuthenticated && user.role === "ADMINISTRATOR" ? (
+                <li className="nav-item">
+                  <Link to="/Collaborator-Request" className="nav-link">
+                    Bandeja de peticiones
+                  </Link>
+                </li>
+              ) : (null)
+            }
+
+
             <li className="nav-item">
               <Link to="/Como-Reporto" className="nav-link">
                 ¿Cómo Reporto?
@@ -89,13 +101,13 @@ const Navbar = () => {
 
 
             {
-              isAuthenticated && user.role !== "USER" ? (
+              isAuthenticated && user.role === "COLLABORATOR" ? (
                 <li className="nav-item">
                   <Link to="/Mis-Anuncios" className="nav-link">
                     Mis Anuncios
                   </Link>
                 </li>
-              ): (null)
+              ) : (null)
             }
 
 

@@ -1,186 +1,187 @@
 import { useState } from 'react';
 import '../../css/sociosAnuncios.css';
 import Footer from '../Footer';
+import ImagenesMascotas from '../pets/ImagenesMascotas';
+
+import { authUserStore } from '../../context/globalContext';
+import { createBulletin } from '../../api/asociacionesRescatistas';
+
+import { CSpinner } from '@coreui/react';
+import { set } from 'lodash';
 
 const extencionesImagenes = ['png', 'jpg', 'jpeg'];
 
+
+
 const SociosAnuncios = () => {
-  const [error, setError] = useState(null);
-  const [imagePreviews, setImagePreviews] = useState([]);
+
+  const { user } = authUserStore();
+
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [mensaje, setMensaje] = useState("");
   const [post, setPost] = useState({
     title: '',
     text: '',
-    nameCompany: '',
+    name_company: '',
     address: '',
-    teNumber: '',
-    images: [],
+    te_number: '',
   });
 
+  const [gallery, setGallery] = useState([]);
+
   const handleSubmit = async (evt) => {
+
+    setLoading(true);
+
     evt.preventDefault();
-    if (!post.title || !post.text || !post.nameCompany || !post.address || !post.teNumber || post.images.length === 0) {
-      setError('Por favor complete todos los campos y agregue al menos una imagen.');
+
+    const token = user.dataToken.token;
+    console.log(token)
+
+    if (!post.title || !post.text || !post.name_company || !post.address || !post.te_number) {
+      setError('Todos los campos son obligatorios');
+      setLoading(false);
+      setTimeout(() => {
+        setError('');
+      }, 3000);
       return;
     }
-    setError(null);
-    console.log(post);
 
-  };
+    const formData = new FormData();
+    formData.append('title', post.title);
+    formData.append('text', post.text);
+    formData.append('name_company', post.name_company);
+    formData.append('address', post.address);
+    formData.append('te_number', post.te_number);
+    formData.append('image', gallery[0].file);
+    gallery.forEach((file) => {
+      formData.append('gallery', file.file);
+    });
 
-  const handleImageChange = (event) => {
-    const files = event.target.files;
+    const response = await createBulletin(formData, token);
+    console.log(response);
 
-    for (let i = 0; i < files.length; i++) {
-      const file = files[i];
-      const reader = new FileReader();
-
-      reader.onload = (e) => {
-        setImagePreviews(prevPreviews => [...prevPreviews, e.target.result]);
-      };
-
-      reader.readAsDataURL(file);
-      setPost(prevPost => ({ ...prevPost, images: [...prevPost.images, file] }));
+    if (response.error) {
+      setError(response.error);
+      setTimeout(() => {
+        setError('');
+      }, 3000);
+      setLoading(false);
+      return;
     }
-  };
 
-  const handleDeleteImage = (index) => {
-    setImagePreviews(prevPreviews => {
-      const updatedPreviews = [...prevPreviews];
-      updatedPreviews.splice(index, 1);
-      return updatedPreviews;
+    setMensaje('Anuncio creado con éxito');
+    setTimeout(() => {
+      setMensaje('');
+    }, 3000);
+
+    setPost({
+      title: '',
+      text: '',
+      name_company: '',
+      address: '',
+      te_number: '',
     });
+    setGallery([]);
 
-    setPost(prevPost => {
-      const updatedImages = [...prevPost.images];
-      updatedImages.splice(index, 1);
-      return { ...prevPost, images: updatedImages };
-    });
+    setLoading(false);
+
   };
 
-  const handleAddImage = () => {
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.accept = 'image/*';
-    input.multiple = false;
-    input.click();
 
-    input.addEventListener('change', (event) => {
-      handleImageChange(event);
-    });
-  };
-
-  const handlePhoneNumberChange = (e) => {
-    const value = e.target.value.replace(/\D/g, '');
-    setPost(prevPost => ({ ...prevPost, teNumber: value }));
-  };
 
   return (
-    <div>
-      <div className="container mt-3">
-        <div className="row">
-          <div className="col-md-6">
-            <form onSubmit={handleSubmit} className="form-section">
-              <h1 className="text-center display-4 fw-bold lh-1">Detalles del Anuncio</h1>
-              <div className="p-2 mb-2 bg-transparent text-body"></div>
-              <div className="mb-3">
-                <label htmlFor="title" className="form-label">Título:</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="title"
-                  value={post.title}
-                  onChange={(e) => setPost({ ...post, title: e.target.value })}
-                  required
-                />
-              </div>
+    <div className="container  my-5">
+      <div className="row">
+        <div className="col-md-6">
+          <form onSubmit={handleSubmit} className="form-section">
+            <h1 className="text-center display-4 fw-bold lh-1 mb-4">Detalles del Anuncio</h1>
+            {mensaje != "" ? (
+              <div className="alert alert-success text-center">{mensaje}</div>
+            ) : null}
 
-              <div className="mb-3">
-                <label htmlFor="text" className="form-label">Descripción:</label>
-                <textarea
-                  className="form-control"
-                  id="description"
-                  value={post.text}
-                  onChange={(e) => setPost({ ...post, text: e.target.value })}
-                  required
-                ></textarea>
-              </div>
-
-              <div className="mb-3">
-                <label htmlFor="nameCompany" className="form-label">Nombre de la Compañía:</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="nameCompany"
-                  value={post.nameCompany}
-                  onChange={(e) => setPost({ ...post, nameCompany: e.target.value })}
-                  required
-                />
-              </div>
-
-              <div className="mb-3">
-                <label htmlFor="address" className="form-label">Dirección:</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="address"
-                  value={post.address}
-                  onChange={(e) => setPost({ ...post, address: e.target.value })}
-                  required
-                />
-              </div>
-
-              <div className="mb-3">
-                <label htmlFor="teNumber" className="form-label">Número de Teléfono:</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="teNumber"
-                  value={post.teNumber}
-                  onChange={handlePhoneNumberChange}
-                  required
-                />
-              </div>
-
-              <div className="mb-3 d-flex justify-content-center">
-                <button type="submit" className="btn btn-secondary">Crear Anuncio</button>
-              </div>
-              {error ? (
+            {
+              error != "" ? (
                 <div className="alert alert-danger text-center">{error}</div>
-              ) : null}
-            </form>
-          </div>
-
-          <div className="col-md-6">
-            <div className="data-section text-center">
-              <h2 className="display-4 fw-bold lh-1">Galería</h2>
-              <div className="p-2 mb-2 bg-transparent text-body"></div>
-              <div className="row">
-                {imagePreviews.map((preview, index) => (
-                  <div className="col-md-4 col-sm-6 mb-3" key={index}>
-                    <div className="image-preview-container">
-                      <button
-                        type="button"
-                        className="btn-close"
-                        aria-label="Close"
-                        onClick={() => handleDeleteImage(index)}
-                      ></button>
-                      <img src={preview} alt={`Image ${index}`} className="image-preview img-fluid img-thumbnail" />
-                    </div>
-                  </div>
-                ))}
-                {imagePreviews.length < 5 && (
-                  <div className="col-md-4 col-sm-6 mb-3 d-flex justify-content-center align-items-center">
-                    <button type="button" className="btn btn-secondary" onClick={handleAddImage}>
-                      Agregar imagen
-                    </button>
-                  </div>
-                )}
-              </div>
+              ) : null
+            }
+            <div className="mb-3">
+              <label htmlFor="title" className="form-label">Título:</label>
+              <input
+                type="text"
+                className="form-control"
+                id="title"
+                value={post.title}
+                onChange={evt => setPost({ ...post, title: evt.target.value })}
+                required
+              />
             </div>
+
+            <div className="mb-3">
+              <label htmlFor="description" className="form-label">Descripción:</label>
+              <textarea
+                className="form-control"
+                id="description"
+                value={post.text}
+                onChange={evt => setPost({ ...post, text: evt.target.value })}
+                required
+              ></textarea>
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="nameCompany" className="form-label">Nombre de la Compañía:</label>
+              <input
+                type="text"
+                className="form-control"
+                id="nameCompany"
+                value={post.name_company}
+                onChange={evt => setPost({ ...post, name_company: evt.target.value })}
+                required
+              />
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="address" className="form-label">Dirección:</label>
+              <input
+                type="text"
+                className="form-control"
+                id="address"
+                value={post.address}
+                onChange={evt => setPost({ ...post, address: evt.target.value })}
+                required
+              />
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="teNumber" className="form-label">Número de Teléfono:</label>
+              <input
+                type="text"
+                className="form-control"
+                id="teNumber"
+                value={post.te_number}
+                onChange={evt => setPost({ ...post, te_number: evt.target.value })}
+                required
+              />
+            </div>
+
+            <div className="mb-3 d-grid">
+              <button type="submit" className="btn btn-primary btn-lg">
+                {loading ? <CSpinner color="primary" /> : "Crear Anuncio"}
+              </button>
+            </div>
+            {error ? (
+              <div className="alert alert-danger text-center">{error}</div>
+            ) : null}
+          </form>
+        </div>
+        <div className="col-md-6">
+          <div className="">
+            {/* Inserta aquí el componente ImagenesMascotas */}
+            <ImagenesMascotas gallery={gallery} setGallery={setGallery} />
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

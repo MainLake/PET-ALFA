@@ -74,7 +74,7 @@ const Login = () => {
     // Decodificar el token
     const dataToken = await jwtDecode(response.data.token);
     console.log(dataToken);
-
+    
     const dataSesion = {
       email: dataUserLogin.email,
       dataToken: response.data,

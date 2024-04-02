@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router";
 import { authUserStore } from "../../context/globalContext";
 import UserList from "./userList";
@@ -6,6 +6,8 @@ import UserList from "./userList";
 import { obtenerUsuarios } from "../../api/administradores";
 import { obtenerUsuariosColaboradores } from "../../api/administradores";
 import UserCollaboratorList from "./userCollaboratorList";
+
+import UserDetails from "./UserDetails";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();

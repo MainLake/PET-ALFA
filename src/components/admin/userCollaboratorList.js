@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import UserDetails from "./userDetails";
+import UserDetails from "./UserDetails";
 import AdminDashboard from "./AdminDashboard";
 import { authUserStore } from "../../context/globalContext";
 
@@ -64,7 +64,7 @@ const UserCollaboratorList = () => {
                     <ul className="list-group">
                         {userData.map((user) => (
                             <li key={user._id} className="list-group-item d-flex justify-content-between align-items-center">
-                                <div onClick={() => onSelect(user)}>
+                                <div>
                                     {user.name}
                                 </div>
                                 <div>

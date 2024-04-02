@@ -19,7 +19,7 @@ export const loginUser = async (data) => {
         return response;
     }catch(error) {
         console.log(error);
-        if(error.response.status === 400 || error.response.status === 401) {
+        if(error.response.status === 400 || error.response.status === 401 || error.response.status === 404) {
             return { error: "El correo electronico o la contrasena no son validos" }
         }
     }

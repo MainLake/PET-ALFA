@@ -11,3 +11,24 @@ export const createAssociationRescuers = async (data) => {
         }
     }
 }
+
+export const createBulletin = async (data, token) => {
+    try {
+
+        const config = {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        }
+
+        const response = await axiosInstance.post('/api/v2/bulletins/', data, config);
+
+        return response.data;
+
+    }catch(error) {
+        console.log(error)
+        if(error.response.status === 500) {
+            return { error: "Error al crear el boletin" }
+        }
+    }
+} 
