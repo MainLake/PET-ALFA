@@ -61,6 +61,16 @@ const Navbar = () => {
               </Link>
             </li>
             <li className="nav-item">
+              <Link to="/Admin-Dashboard" className="nav-link">
+                Panel de administracion
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/Collaborator-Request" className="nav-link">
+                Bandeja de peticiones
+              </Link>
+            </li>
+            <li className="nav-item">
               <Link to="/Como-Reporto" className="nav-link">
                 ¿Cómo Reporto?
               </Link>

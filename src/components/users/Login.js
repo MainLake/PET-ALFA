@@ -35,7 +35,7 @@ const Login = () => {
   useEffect(() => {
     console.log(isAuthenticated)
     if(isAuthenticated) {
-      navigate('/Reportar-Mascotas');
+      navigate('/');
       return;
     }
   }, [isAuthenticated]);
@@ -87,7 +87,7 @@ const Login = () => {
     // Guardar los datos en local storage
     saveDataLocalStorage(dataSesion);
     setDataUserLogin({email:"", password:""});
-    navigate('/Reportar-Mascotas');
+    navigate('/');
     return;
   };
 

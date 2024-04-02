@@ -32,7 +32,6 @@ const Initializer = ({ children }) => {
             return;
           }
         }
-
       }
       loadingDataComplete();
     }
