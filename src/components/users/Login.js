@@ -18,6 +18,12 @@ import jwtDecode from "jwt-decode";
 
 import Footer from "../Footer";
 
+let nombre = "Juan"
+
+String nombre = " Juan"
+
+nombre = "Juan"
+
 const Login = () => {
 
   const { login, isAuthenticated } = authUserStore();

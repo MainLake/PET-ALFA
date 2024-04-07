@@ -29,6 +29,7 @@ import SociosPanel from "./components/associationsRescuers/SociosPanel";
 import RouteProtect from "./routes/RouteProtect/RouteProtect";
 
 import { loaderData, authUserStore } from "./context/globalContext";
+import Footer from "./components/Footer";
 
 const App = () => {
   const { loadingData } = loaderData();
@@ -67,6 +68,7 @@ const App = () => {
               <Route path="/Mis-Anuncios" element={<SociosAnuncios />} />
               <Route path="/Mascota-Perdida/:id_user/:id_pet/" element={<MascotaPerdida />} />
             </Routes>
+            <Footer/>
           </>
         )
       }

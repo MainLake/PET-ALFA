@@ -41,7 +41,7 @@ const MascotaPerdida = () => {
   }, []);
 
   return (
-    <div className="container my-5">
+    <div className="container my-5 contenido">
       {loading ? (
         <div className="d-flex justify-content-center align-items-center">
           <div className="spinner-border text-primary" role="status">

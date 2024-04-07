@@ -33,7 +33,7 @@ const MascotasPerdidas = () => {
 
   return (
     <>
-      <div className="container mt-4">
+      <div className="container mt-4 contenido">
         {loading ? (
           <h1 className="text-center mt-5">Cargando...</h1>
         ) : lostPetsData.length === 0 ? (

@@ -3,7 +3,7 @@ import Footer from "../Footer";
 
 const ComoReporto = () => {
   return (
-    <div className="section">
+    <div className="section contenido">
       <div className="px-2 py-1 my-1 text-center header-reporto">
         <h1 className="display-2 fw-bold text-body-emphasis">¿Cómo Reporto?</h1>
         <div className="col-lg-6 mx-auto">
