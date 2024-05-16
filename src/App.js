@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Main from "./components/Main";
 import AdminDashboard from "./components/admin/AdminDashboard";
-import CollaboratorsRequest from "./components/admin/collaboratorsRequest";
+import CollaboratorsRequest from "./components/admin/CollaboratorsRequest";
 import SociosAnuncios from "./components/associationsRescuers/SociosAnuncios";
 import MascotasPerdidas from "./components/pets/MascotasPerdidas";
 import MascotaPerdida from "./components/pets/MascotaPerdida";

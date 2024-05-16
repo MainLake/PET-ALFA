@@ -1,11 +1,11 @@
 import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router";
 import { authUserStore } from "../../context/globalContext";
-import UserList from "./userList";
+import UserList from "./UserList";
 // Obtener usuarios y colaboradores
 import { obtenerUsuarios } from "../../api/administradores";
 import { obtenerUsuariosColaboradores } from "../../api/administradores";
-import UserCollaboratorList from "./userCollaboratorList";
+import UserCollaboratorList from "./UserCollaboratorList";
 
 import UserDetails from "./UserDetails";
 
