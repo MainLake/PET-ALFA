@@ -1,4 +1,3 @@
-import "../../css/adopcion.css";
 import AdopcionM from "../../imagenes/adopcion-mascotas.jpg";
 import Dog from "../../icons/dog-solid.svg";
 import Cat from "../../icons/cat-solid.svg";

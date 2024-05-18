@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import "../../css/mascotasperdidas.css";
 import Footer from "../Footer";
 import { useNavigate } from "react-router";
 

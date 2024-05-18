@@ -6,8 +6,6 @@ import CarreteImagenes from "./CarreteImagenes";
 
 import getCroppedImg from "../../utilities/cropimage"
 
-import './styles.css';
-
 const ImagenesMascotas = ({setGallery, gallery}) => {
     const [files, setFiles] = useState([]);
     const [image, setImage] = useState(null)

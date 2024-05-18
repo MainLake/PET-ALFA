@@ -1,10 +1,8 @@
-import Button from "./Button";
 const IndexComponentsCommon = () => {
     return (
         <div>
             Hola
-            <h1>IndexComponentsCommon</h1>
-            <Button text="Click me"/> 
+            <h1 className="text-red-700">IndexComponentsCommon</h1>
         </div>
     );
 }

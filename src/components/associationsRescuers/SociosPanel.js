@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import '../../css/panelsocios.css'
 import PetRoma from '../../imagenes/PetRoma.jpeg';
 import Footer from '../Footer';
 

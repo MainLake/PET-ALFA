@@ -1,4 +1,3 @@
-import "../../css/comoreporto.css";
 import Footer from "../Footer";
 
 const ComoReporto = () => {

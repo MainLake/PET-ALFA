@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { getPet } from "../../api/pets";
-import "../../css/mascotasperdidas.css";
 import CommentsPet from "./CommentsPet";
 
 

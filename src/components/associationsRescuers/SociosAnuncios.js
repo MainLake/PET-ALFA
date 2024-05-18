@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import '../../css/sociosAnuncios.css';
-import Footer from '../Footer';
 import ImagenesMascotas from '../pets/ImagenesMascotas';
 
 import { authUserStore } from '../../context/globalContext';

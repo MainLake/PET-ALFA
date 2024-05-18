@@ -1,6 +1,4 @@
 import { useEffect, useState, useRef } from "react";
-import "../../css/imagen.css";
-import "../../css/reportemascota.css";
 
 import { createPost } from "../../api/pets";
 import { authUserStore } from "../../context/globalContext";

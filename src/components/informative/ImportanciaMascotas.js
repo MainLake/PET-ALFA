@@ -1,4 +1,3 @@
-import "../../css/importancia.css";
 import Importancia from "../../imagenes/mascota-importancia.jpg";
 
 import Footer from "../Footer";
