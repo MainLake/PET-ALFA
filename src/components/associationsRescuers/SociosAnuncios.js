@@ -6,8 +6,6 @@ import ImagenesMascotas from '../pets/ImagenesMascotas';
 import { authUserStore } from '../../context/globalContext';
 import { createBulletin } from '../../api/asociacionesRescatistas';
 
-import { CSpinner } from '@coreui/react';
-import { set } from 'lodash';
 
 const extencionesImagenes = ['png', 'jpg', 'jpeg'];
 
@@ -167,7 +165,7 @@ const SociosAnuncios = () => {
 
             <div className="mb-3 d-grid">
               <button type="submit" className="btn btn-primary btn-lg">
-                {loading ? <CSpinner color="primary" /> : "Crear Anuncio"}
+                {"Crear Anuncio"}
               </button>
             </div>
             {error ? (

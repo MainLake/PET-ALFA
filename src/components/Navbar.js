@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-import { CSpinner } from "@coreui/react";
-
 import { authUserStore } from "../context/globalContext";
 import { deleteDataLocalStorage } from "../localstorage/sesionLocalStorage";
 
@@ -81,7 +79,7 @@ const Navbar = () => {
       
           {isAuthenticated ? (
             <button onClick={logoutSession}>
-              {loading ? <CSpinner /> : "Salir"}
+              {"Salir"}
             </button>
           ) : (
             <div>

@@ -1,16 +1,13 @@
 import { useEffect, useState, useRef } from "react";
 import "../../css/imagen.css";
 import "../../css/reportemascota.css";
-import Footer from "../Footer";
 
-import { CSpinner } from "@coreui/react";
 import { createPost } from "../../api/pets";
 import { authUserStore } from "../../context/globalContext";
 import { useNavigate } from "react-router-dom";
 
 import ImagenesMascotas from "./ImagenesMascotas";
 
-const extencionesImagenes = ["png", "jpg", "jpeg"];
 
 const ReportarMascotas = () => {
 
@@ -353,7 +350,7 @@ const ReportarMascotas = () => {
             <button className="btn btn-secondary" disabled={loading}>
               {
                 loading ? (
-                  <CSpinner color="secondary" />
+                  null
                 ) : (
                   "Publicar mascota"
                 )

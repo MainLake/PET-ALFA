@@ -5,7 +5,6 @@ import { useNavigate } from "react-router";
 
 // Obtener mascotas
 import { obtenerMascotas } from "../../api/pets";
-import { defaultImage } from "@cloudinary/url-gen/actions/delivery";
 import CardPet from "./CardPet";
 
 const MascotasPerdidas = () => {

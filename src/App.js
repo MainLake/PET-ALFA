@@ -18,6 +18,9 @@ import RescueForm from "./components/associationsRescuers/RescueForm";
 import RescueAccount from "./components/associationsRescuers/RescueAccount";
 import SociosPanel from "./components/associationsRescuers/SociosPanel";
 import { loaderData, authUserStore } from "./context/globalContext";
+
+import IndexComponentsCommon from "./components/componentsCommon/IndexComponentsCommon";
+
 import Footer from "./components/Footer";
 
 const App = () => {
@@ -31,6 +34,7 @@ const App = () => {
           <Navbar />
           <Routes>
             <Route path="/" element={<Main />} />
+            <Route path="/dev" element={<IndexComponentsCommon/>}/>
             <Route path="/Admin-Dashboard" element={<AdminDashboard />} />
             <Route path="/Collaborator-Request" element={<CollaboratorsRequest />} />
             <Route path="/Mascotas-Perdidas" element={<MascotasPerdidas />} />

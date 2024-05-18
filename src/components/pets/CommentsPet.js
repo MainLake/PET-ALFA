@@ -1,9 +1,6 @@
 import { useState } from "react";
-
 import { authUserStore } from "../../context/globalContext";
 import { addComment } from "../../api/pets";
-
-import { CSpinner } from "@coreui/react";
 
 const CommentsPet = ({ comments, idPet, setComments }) => {
 
@@ -74,7 +71,7 @@ const CommentsPet = ({ comments, idPet, setComments }) => {
                                         "Agregar comentario"
                                     ) :
                                     (
-                                        <CSpinner color="primary" />
+                                        null
                                     )
                                 }
                             </button>

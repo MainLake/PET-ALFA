@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { createAssociationRescuers } from '../../api/asociacionesRescatistas';
-import { CSpinner } from '@coreui/react';
 
 const RescueForm = () => {
 
@@ -114,7 +113,7 @@ const RescueForm = () => {
               {formError && <div className="alert alert-danger" role="alert">{formError}</div>}
               <div className="text-center">
                 <button type="submit" className="btn btn-secondary">
-                  {loading ? <CSpinner color="primary"/> : "Enviar solicitud"}
+                {"Enviar solicitud"}
                 </button>
               </div>
             </form>

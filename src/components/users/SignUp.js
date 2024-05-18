@@ -5,7 +5,6 @@ import SignupImg from "../../imagenes/Registroimg.png";
 import Person from "../../icons/person-fill.svg";
 
 import { createAccount } from "../../api/users";
-import { CSpinner } from "@coreui/react";
 
 // Expresiones regulares
 const nameRegExp = /^[a-zA-Z\s]*$/;
@@ -198,9 +197,7 @@ const Signup = () => {
           <div>
             {
               loading ? (
-                <div>
-                  <CSpinner color="primary" />
-                </div>
+                null
               ) : (
                 <button type="submit">
                   Registrarse

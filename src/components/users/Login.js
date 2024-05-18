@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { CSpinner } from "@coreui/react";
 import { loginUser } from "../../api/users";
 import { authUserStore } from "../../context/globalContext";
 import { saveDataLocalStorage } from "../../localstorage/sesionLocalStorage";
@@ -159,9 +158,9 @@ const Login = () => {
             !isLoading ? (
               "Iniciar Sesión"
             ) :
-              (
-                <CSpinner color="primary" />
-              )
+            (
+              null
+            )
           }
 
         </button>
