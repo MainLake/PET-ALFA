@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { authUserStore } from "../context/globalContext";
 import { deleteDataLocalStorage } from "../localstorage/sesionLocalStorage";
 
+import Button from "./componentsCommon/Button"
+
 // Importaciones de imagenes
 import Logo from "../imagenes/Logo.png";
 
@@ -21,77 +23,64 @@ const Navbar = () => {
   };
 
   return (
-    <nav>
+    <nav className="flex py-4 justify-between px-2">
+      {/* Logo */}
+      <div className="h-10 w-10 flex items-center">
+        <Link to="/">
+          {/* <img src={Logo} alt="Logo" /> */}
+          LOGO
+        </Link>
+      </div>
 
-      <Link to="/">
-        <img src={Logo} alt="Logo" />
-      </Link>
-      
+      {/* Secciones de enlaces */}
       <div>
-      
-        <ul>
-      
-          {isAuthenticated && (
-            <li>
-              <Link to="/Reportar-Mascotas">Reportar Mascotas</Link>
-            </li>
-          )}
-      
-          <li>
-            <Link to="/Mascotas-Perdidas">Mascotas Perdidas</Link>
-          </li>
-      
-          <li>
-            <Link to="/Panel-Rescatistas">Asociaciones y Rescatistas</Link>
-          </li>
-      
-          {isAuthenticated && user.role === "ADMINISTRATOR" && (
-            <li>
-              <Link to="/Admin-Dashboard">Panel de administracion</Link>
-            </li>
-          )}
-      
-          {isAuthenticated && user.role === "ADMINISTRATOR" && (
-            <li>
-              <Link to="/Collaborator-Request">Bandeja de peticiones</Link>
-            </li>
-          )}
-      
-          <li>
-            <Link to="/Como-Reporto">¿Cómo Reporto?</Link>
-          </li>
-      
-          {isAuthenticated && (
-            <li>
-              <Link to="/Mis-Mascotas">Mis mascotas</Link>
-            </li>
-          )}
-      
-          {isAuthenticated && user.role === "COLLABORATOR" && (
-            <li>
-              <Link to="/Mis-Anuncios">Mis Anuncios</Link>
-            </li>
-          )}
-      
-        </ul>
-      
-        <div>
-      
+        {
+          isAuthenticated && (
+            <ul>
+              <li>
+                <Link to="/Reportar-Mascotas">Reportar Mascotas</Link>
+              </li>
+              <li>
+                <Link to="/Mis-Mascotas">Mis mascotas</Link>
+              </li>
+              {
+                isAuthenticated && user.role === "ADMINISTRATOR" && (
+                  <>
+                    <li>
+                      <Link to="/Admin-Dashboard">Panel de administracion</Link>
+                    </li>
+                    <li>
+                      <Link to="/Collaborator-Request">Bandeja de peticiones</Link>
+                    </li>
+                  </>
+                )
+              }
+              {
+                isAuthenticated && user.role === "COLLABORATOR" && (
+                  <li>
+                    <Link to="/Mis-Anuncios">Mis Anuncios</Link>
+                  </li>
+                )
+              }
+            </ul>
+          )
+        }
+
+      </div>
+
+      <div>
           {isAuthenticated ? (
             <button onClick={logoutSession}>
               {"Salir"}
             </button>
           ) : (
-            <div>
-              <Link to="/Login">Inicia Sesión</Link>
-              <Link to="/Signup">Regístrate</Link>
+            <div className="flex gap-4">
+              <Link to="/Login"><Button text={"Inicia sesion"} ></Button></Link>
+              <Link to="/Signup"><Button text={"Regístrate"}></Button></Link>
             </div>
           )}
-      
-        </div>
-
       </div>
-    
+
     </nav>
   );
 };

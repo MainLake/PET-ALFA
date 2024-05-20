@@ -1,16 +1,17 @@
 import { useState } from "react";
 
+// Importaciones de API
+import { createAccount } from "../../api/users";
+
 // Importaciones de imagenes
 import SignupImg from "../../imagenes/Registroimg.png";
-import Person from "../../icons/person-fill.svg";
-
-import { createAccount } from "../../api/users";
+import Person from "../../icons/users/signUp/usuario.png";
+import Button from "../componentsCommon/Button";
 
 // Expresiones regulares
 const nameRegExp = /^[a-zA-Z\s]*$/;
 const phoneRegExp = /^[0-9]{10}$/;
 const passwordRegExp = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{6,}$/;
-
 
 const Signup = () => {
 
@@ -83,33 +84,34 @@ const Signup = () => {
   };
 
   return (
-    <div>
-      <div>
-          <img
-            src={SignupImg}
-            alt="Imagen de que contiene el logo de la página y un perro"
-            style={{
-              maxHeight: "700px",
-              maxWidth: "100%",
-              width: "600px",
-              height: "auto",
-            }}
-          />
+    <div className="flex-col justify-center m-auto lg:flex-row">
+
+      <div className="flex justify-center">
+        <img
+          className="w-3/5"
+          src={SignupImg}
+          alt="Imagen de que contiene el logo de la página y un perro"
+        />
       </div>
 
-      <div>
-        <div>
+      <div className="flex flex-col gap-10 border-2 border-gray-300 rounded-md p-5 shadow-sm shadow-black lg:w-full">
+        {/* <div>
           <img src={Person} alt="Icono de nuevo usuarios" />
+        </div> */}
+
+        <div>
+          <h1 className="font-bold text-3xl text-center">Crea tu cuenta</h1>
         </div>
-      
-        <div>Registro</div>
-        {
-          error !== "" ? (
-            <div role="alert">
-              {error}
-            </div>
-          ) : null
-        }
+
+        <div role="alert" className="">
+          {
+            error === "" ? (
+              null
+            ) : (
+              error
+            )
+          }
+        </div>
 
         {
           success !== "" ? (
@@ -118,12 +120,13 @@ const Signup = () => {
             </div>
           ) : null
         }
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="textName">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-7">
+          <div className="flex flex-col gap-2">
+            <label htmlFor="textName" className="text-lg text">
               Nombre:
             </label>
             <input
+              className="w-full h-8 text-lg pl-2 border-2 border-gray-300 rounded-md"
               type="text"
               id="textName"
               name="name"
@@ -134,8 +137,8 @@ const Signup = () => {
             />
           </div>
 
-          <div>
-            <label htmlFor="lastname">
+          <div className="flex flex-col gap-2">
+            <label htmlFor="lastname" className="text-lg">
               Apellido:
             </label>
             <input
@@ -149,8 +152,8 @@ const Signup = () => {
             />
           </div>
 
-          <div>
-            <label htmlFor="email">
+          <div className="flex flex-col gap-2">
+            <label htmlFor="email" className="text-lg">
               Correo Electrónico:
             </label>
             <input
@@ -164,8 +167,8 @@ const Signup = () => {
             />
           </div>
 
-          <div>
-            <label htmlFor="password">
+          <div className="flex flex-col gap-2">
+            <label htmlFor="password" className="text-lg">
               Contraseña:
             </label>
             <input
@@ -179,37 +182,14 @@ const Signup = () => {
             />
           </div>
 
-          <div>
-            <label htmlFor="phoneNumber">
-              Número de Teléfono:
-            </label>
-            <input
-              type="tel"
-              id="phoneNumber"
-              name="phoneNumber"
-              placeholder="Ej: 1234567890"
-              required
-              value={newUser.phoneNumber}
-              onChange={evt => setNewUser({ ...newUser, phoneNumber: evt.target.value })}
-            />
-          </div>
-
-          <div>
-            {
-              loading ? (
-                null
-              ) : (
-                <button type="submit">
-                  Registrarse
-                </button>
-              )
-            }
+          <div className="flex items-center justify-center mt-7">
+            <Button text="Registrarse" loading={loading} type={"submit"} />
           </div>
 
         </form>
-      
+
       </div>
-    
+
     </div>
   );
 };
