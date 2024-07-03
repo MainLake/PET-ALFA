@@ -6,10 +6,11 @@ import { authUserStore } from "../../context/globalContext";
 import { saveDataLocalStorage } from "../../localstorage/sesionLocalStorage";
 
 // Importaciones de imagenes
-import Loginimg from "../../imagenes/Loginimg.png";
-import Person from "../../icons/person-fill.svg";
-import Lock from "../../icons/lock-fill.svg";
-import Envelope from "../../icons/envelope-fill.svg";
+import Loginimg from "../../imagenes/LoginDesingPet1 1.png";
+import logoPet from "../../imagenes/LogoPet.png"
+
+//importaciones de estilos CSS
+import '../../css/login.css'
 
 import jwtDecode from "jwt-decode";
 
@@ -87,26 +88,18 @@ const Login = () => {
   };
 
   return (
-    <div>
-
-
-      <div>
-        <img
-          src={Loginimg}
-          alt="Descripción de la imagen"
-        />
+    <div className="login-container">
+      <div className="imgFromLog">
+        <img src={Loginimg} alt="imagen del formulario" className="imgFromLog" />
       </div>
 
-
-
-      <div>
-
-        <div>
-          <img src={Person} alt="imagen de persona"></img>
+      <div className="form-section"> 
+        <div className="logo-section">
+          <img src={logoPet} alt="logo pet" className="logoPet"></img>
+          <h4>PET</h4>
+          <h2>Iniciar sesión</h2>
+          <h6 className="welcome-title">Bienvenido!</h6>
         </div>
-
-        <h2>Iniciar Sesión</h2>
-
         {
           // agregar contenedor vacio
           error !== "" ? (
@@ -118,33 +111,28 @@ const Login = () => {
             <div></div>
           )
         }
-        
-        <div>
-          <div>
-            <img src={Envelope} alt="Imagen Envolpe"></img>
-          </div>
 
+        <div className="form-group">
+          <label htmlFor="email">Ingrese su email:</label>
           <input
             type="email"
             id="email"
             name="email"
-            placeholder="Introduce tu email"
+            placeholder="@Ingresa el email"
+            className="form-control"
             required
             value={dataUserLogin.email}
             onChange={evt => setDataUserLogin({ ...dataUserLogin, email: evt.target.value })}
           />
         </div>
-
-        <div>
-          <div>
-            <img src={Lock} alt="Imagen Lock"></img>
-          </div>
-
+        <div className="form-group">
+          <label htmlFor="password">Ingrese su contraseña:</label>
           <input
             type="password"
             id="password"
             name="password"
-            placeholder="Introduce tu contraseña"
+            placeholder="*Introduce tu contraseña"
+            className="form-control"
             required
             value={dataUserLogin.password}
             onChange={evt => setDataUserLogin({ ...dataUserLogin, password: evt.target.value })}
@@ -152,8 +140,9 @@ const Login = () => {
         </div>
 
         <button
-          type="button"
+          type="submit"
           onClick={handleLogin}
+          className="buttonLog"
         >
           {
             !isLoading ? (

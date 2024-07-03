@@ -1,59 +1,99 @@
-.container-bg-dark {
-    background-color: #343a40;
-    color: #fff;
-  }
-  
-  .form-container {
-    background-color: #fff;
-    padding: 2rem;
-    border-radius: 0.5rem;
-    color: #6c757d;
-  }
-  
-  .btn-success {
-    background-color: #28a745;
-    color: #fff;
-  }
-  
-  .image-container {
-    text-align: center; 
-  }
-  
-  .Login-img {
-    max-height: 300px; 
-    max-width: 100%;
-    width: auto;
-    height: auto;
-  }
-  
-  .black-bg {
-    background-color: black; 
-  }
-  
-  .cream-bg {
-    background-color: bisque;
-  }
-  
-.container-bg-dark {
-  background-color: #212529;
-  min-height: 100vh;
+.register-container{
+  display: flex;
+  width: 100%;
+  max-width: 1350px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.img-container{
+  width: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.form-container {
+.register-img{
+  max-width: 550px;
+  height: auto;
+}
+
+.form-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background-color: #fff;
-  padding: 30px; 
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  padding: 20px;
+  width: 900px;
 }
 
-.fs-1 {
-  font-size: 2rem; 
+.input-group {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
-.div {
-  width: 25rem; 
+.input-group .form-group-register{
+  flex: 1;
+  margin-right: 10px;
+}
+
+.input-group .form-group-register:last-child {
+  margin-right: 0;
+}
+
+.button-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.buttonSing{
+  width: 250px;
+  background: #D2E3C8;
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.buttonSing:hover{
+  background-color: #154744;
+  color: white;
+}
+
+@media(max-width:768px){
+  .register-container{
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .img-container{
+    width: 150px;
+    height: auto;
+    padding: 20px;
+  }
+
+  .form-container{
+    width: 200px;
+  }
+
+  .form-group{
+    text-align: center;
+  }
+
+  .input-group .form-group{
+    flex:1 1 100%;
+    text-align: center;
+  }
+
+  .buttonSing{
+    width: 200px;
+  }
 }

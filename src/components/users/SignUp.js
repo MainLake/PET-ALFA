@@ -1,11 +1,14 @@
 import { useState } from "react";
-
-// Importaciones de imagenes
-import SignupImg from "../../imagenes/Registroimg.png";
-import Person from "../../icons/person-fill.svg";
-
 import { createAccount } from "../../api/users";
 import { CSpinner } from "@coreui/react";
+
+
+// Importaciones de imagenes
+import SignupImg from "../../imagenes/SingUpDesingPet1.png";
+import SingUpLogo from "../../imagenes/SingUpImg.png";
+
+//exportacion de estilos
+import "../../css/signup.css"
 
 // Expresiones regulares
 const nameRegExp = /^[a-zA-Z\s]*$/;
@@ -84,26 +87,8 @@ const Signup = () => {
   };
 
   return (
-    <div>
-      <div>
-          <img
-            src={SignupImg}
-            alt="Imagen de que contiene el logo de la página y un perro"
-            style={{
-              maxHeight: "700px",
-              maxWidth: "100%",
-              width: "600px",
-              height: "auto",
-            }}
-          />
-      </div>
-
-      <div>
-        <div>
-          <img src={Person} alt="Icono de nuevo usuarios" />
-        </div>
-      
-        <div>Registro</div>
+    <div className="register-container">
+      <div className="form-container">
         {
           error !== "" ? (
             <div role="alert">
@@ -120,67 +105,74 @@ const Signup = () => {
           ) : null
         }
         <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="textName">
-              Nombre:
-            </label>
-            <input
-              type="text"
-              id="textName"
-              name="name"
-              placeholder="Ej: Juan José"
-              required
-              value={newUser.name}
-              onChange={evt => setNewUser({ ...newUser, name: evt.target.value })}
-            />
+          <div className="logo-section">
+            <img src={SingUpLogo} alt="Icono de nuevo usuarios" />
+            <h4>Registrate</h4>
+            <h6 className="welcome-title">Bienvenido!</h6>
           </div>
+          <div className="input-group">
+            <div className="form-group">
+              <label htmlFor="textName">
+                Nombre:
+              </label>
+              <input
+                type="text"
+                id="textName"
+                name="name"
+                placeholder="Introduce tu nombre"
+                required
+                value={newUser.name}
+                onChange={evt => setNewUser({ ...newUser, name: evt.target.value })}
+              />
+            </div>
 
-          <div>
-            <label htmlFor="lastname">
-              Apellido:
-            </label>
-            <input
-              type="text"
-              id="lastname"
-              name="lastname"
-              placeholder="Ej: Pérez López"
-              required
-              value={newUser.lastname}
-              onChange={evt => setNewUser({ ...newUser, lastname: evt.target.value })}
-            />
+            <div className="form-group">
+              <label htmlFor="lastname">
+                Apellido:
+              </label>
+              <input
+                type="text"
+                id="lastname"
+                name="lastname"
+                placeholder="Introduce tus apellidos"
+                required
+                value={newUser.lastname}
+                onChange={evt => setNewUser({ ...newUser, lastname: evt.target.value })}
+              />
+            </div>
           </div>
+          <div className="input-group">
+            <div className="form-group">
+              <label htmlFor="email">
+                Correo Electrónico:
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Introduce tu correo electronico"
+                required
+                value={newUser.email}
+                onChange={evt => setNewUser({ ...newUser, email: evt.target.value })}
+              />
+            </div>
 
-          <div>
-            <label htmlFor="email">
-              Correo Electrónico:
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Ej: example@example.com"
-              required
-              value={newUser.email}
-              onChange={evt => setNewUser({ ...newUser, email: evt.target.value })}
-            />
+            <div className="form-group">
+              <label htmlFor="password">
+                Contraseña:
+              </label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="*Cree una contraseña"
+                required
+                value={newUser.password}
+                onChange={evt => setNewUser({ ...newUser, password: evt.target.value })}
+              />
+            </div>
           </div>
-
-          <div>
-            <label htmlFor="password">
-              Contraseña:
-            </label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Introduce tu contraseña"
-              required
-              value={newUser.password}
-              onChange={evt => setNewUser({ ...newUser, password: evt.target.value })}
-            />
-          </div>
-
-          <div>
+          <div className="form-group">
             <label htmlFor="phoneNumber">
               Número de Teléfono:
             </label>
@@ -188,31 +180,36 @@ const Signup = () => {
               type="tel"
               id="phoneNumber"
               name="phoneNumber"
-              placeholder="Ej: 1234567890"
+              placeholder="Introduce tu telefono"
               required
               value={newUser.phoneNumber}
               onChange={evt => setNewUser({ ...newUser, phoneNumber: evt.target.value })}
             />
           </div>
 
-          <div>
+          <div className="button-container">
             {
               loading ? (
                 <div>
                   <CSpinner color="primary" />
                 </div>
               ) : (
-                <button type="submit">
+                
+                <button type="submit" className="buttonSing">
                   Registrarse
                 </button>
               )
             }
           </div>
-
         </form>
-      
       </div>
-    
+      <div className="img-container">
+        <img
+          src={SignupImg}
+          alt="Imagen de que contiene el logo de la página y un perro"
+          className="register-img"
+        />
+      </div>
     </div>
   );
 };

@@ -1,7 +1,7 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import "../../css/imagen.css";
 import "../../css/reportemascota.css";
-import Footer from "../Footer";
+//import Footer from "../Footer";
 
 import { CSpinner } from "@coreui/react";
 import { createPost } from "../../api/pets";
@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 import ImagenesMascotas from "./ImagenesMascotas";
 
-const extencionesImagenes = ["png", "jpg", "jpeg"];
+//const extencionesImagenes = ["png", "jpg", "jpeg"];
 
 const ReportarMascotas = () => {
 
@@ -114,9 +114,9 @@ const ReportarMascotas = () => {
   };
 
   return (
-    <div className="contenido">
-      <div className="container d-flex justify-content-center align-items-center mt-3">
-        <form className="row g-3" onSubmit={handleSubmit}>
+    <div className="">
+      <div className="">
+        <form className="" onSubmit={handleSubmit}>
           {error && (
             <div className="alert alert-info text-center">{error}</div>
           )}

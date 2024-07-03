@@ -3,11 +3,11 @@ import { axiosInstance } from "../utilities/axiosInstance";
 export const createAccount = async (data) => {
 
     try {
-        const response = await axiosInstance.post('/api/v2/users/', data);
+        const response = await axiosInstance.post('/api/v3/users/', data);
         return response;
     } catch (error) {
-        console.log("error");
-        if (error.response.status === 500 || error.response.status === 409) {
+        console.log("error", error.response);
+        if (error.response.status === 500 || error.response.status === 400) {
             return { error: "El correo electronico que se desea registrar ya se encuentra vinculado a una cuenta" }
         }
     }
@@ -15,7 +15,7 @@ export const createAccount = async (data) => {
 
 export const loginUser = async (data) => {
     try {
-        const response = await axiosInstance.post('/api/v2/auth/login/', data);
+        const response = await axiosInstance.post('/api/v3/auth/login/', data);
         return response;
     }catch(error) {
         console.log(error);
@@ -34,7 +34,7 @@ export const getPetsUser = async (token) => {
     }
 
     try{
-        const response = await axiosInstance.get('/api/v2/posts/all/', config);
+        const response = await axiosInstance.get('/api/v3/users/posts/', config);
         return response;
 
     }catch(error) {
