@@ -1,6 +1,6 @@
 .importancia-mascotas{
     background-image: url('../imagenes/importancia.png');
-    background-color: #335a3b;
+    background-color: #8CA47E;
     background-repeat: no-repeat;
     background-position: center bottom;
     color: white;
@@ -28,5 +28,5 @@
   }
 
   .pet-importancia{
-    background-color: #ba881d;
+    background-color: #A8B8B5;
   }

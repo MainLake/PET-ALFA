@@ -1,5 +1,4 @@
 import "../../css/comoreporto.css";
-import Footer from "../Footer";
 
 const ComoReporto = () => {
   return (
@@ -11,7 +10,7 @@ const ComoReporto = () => {
           </p>
         </div>
       </div>
-      <div className="container col-xl-10 col-xxl-8 px-4 py-1">
+      <div className="container-cr col-xl-10 col-xxl-8 px-4 py-1">
         <div className="row align-items-center g-lg-5 py-1">
           <div className="col-lg-7 text-center text-lg-start">
             <h1 className="display-4 fw-bold lh-1 text-body-emphasis mb-3">
@@ -206,7 +205,6 @@ const ComoReporto = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

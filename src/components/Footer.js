@@ -1,9 +1,11 @@
+import '../css/footer.css';
+
 const Footer = () => {
   return (
-    <div>
-      <div>
+    <div className="footer-container">
+      <footer className="footer">
         <p>Desarrollado por PABED 2024.</p>
-      </div>
+      </footer>
     </div>
   );
 };

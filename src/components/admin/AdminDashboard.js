@@ -5,9 +5,9 @@ import UserList from "./userList";
 // Obtener usuarios y colaboradores
 import { obtenerUsuarios } from "../../api/administradores";
 import { obtenerUsuariosColaboradores } from "../../api/administradores";
-import UserCollaboratorList from "./userCollaboratorList";
+import UserCollaboratorList from "../admin/userCollaboratorList";
 
-import UserDetails from "./UserDetails";
+import UserDetails from "../admin/userDetails"
 
 const AdminDashboard = () => {
   const navigate = useNavigate();

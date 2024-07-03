@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 // Importaciones de imagenes
-import SignupImg from "../../imagenes/Registroimg.png";
+import SignupImg from "../../imagenes/signup.jpg";
 import Person from "../../icons/person-fill.svg";
 
 import { createAccount } from "../../api/users";

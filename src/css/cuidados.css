@@ -1,6 +1,6 @@
 .cuidados{
     background-image: url('../imagenes/cuidados.png');
-    background-color: #817566;
+    background-color: #5985A0;
     background-repeat: no-repeat;
     background-position: center bottom;
     color: white;
@@ -28,7 +28,7 @@
   }
 
   .pet-cuidados{
-    background-color: #00ab99;
+    background-color: #D2D2D2;
   }
 
   .custom-content {

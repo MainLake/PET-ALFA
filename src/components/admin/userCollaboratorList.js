@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import UserDetails from "./UserDetails";
+import UserDetails from "./userDetails";
 import AdminDashboard from "./AdminDashboard";
 import { authUserStore } from "../../context/globalContext";
 

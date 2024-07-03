@@ -14,7 +14,7 @@ const ImportanciaMascotas = () => {
           <div className="d-flex gap-3 justify-content-center lead fw-normal"></div>
         </div>
       </div>
-      <div className="container my-1 pet-importancia">
+      <div className="container-pm my-1 pet-importancia">
         <div className="row p-1 pb-0 pe-lg-0 pt-lg-0 align-items-center rounded-3 border shadow-lg">
           <div className="col-lg-7 p-3 p-lg-5 pt-lg-3 text-cuidados">
             <h1 className="display-4 fw-bold lh-1 text-white">
@@ -38,7 +38,7 @@ const ImportanciaMascotas = () => {
           </div>
         </div>
       </div>
-      <div className="container px-4 py-2" id="custom-cards">
+      <div className="container-pminfo px-4 py-2" id="custom-cards">
         <div className="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-3">
           <div className="col">
             <div className="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg custom-card">
@@ -130,7 +130,6 @@ const ImportanciaMascotas = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

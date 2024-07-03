@@ -1,9 +1,19 @@
-.footer {
-  background-color: #858585;
-  color: white;
-  padding: 20px 0;
+
+.footer-container {
   width: 100%;
-  height: 50px;
-  position: fixed;
-  bottom: 0;
+  background-color: white;
+  color: black ;
+  padding: 10px 0; /* Espaciado interno del footer */
+  position: fixed; 
+  bottom: 0; 
+  left: 0;
+}
+
+.footer {
+  width: 100%;
+  text-align: center;
+}
+
+.footer p {
+  margin: 0; 
 }

@@ -1,0 +1,133 @@
+.hero-section {
+  background-color: #154744;
+  background-size: cover;
+  background-position: center;
+  padding-top: 40px;
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.hero-content {
+  padding: 1rem;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.btn-sp {
+  padding: 20px; 
+  font-size: 1rem;
+  background-color: #a7c1c0;
+  color: #000000; 
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 10px; 
+  width: 150px; 
+  height: 50px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-sp:hover {
+  background-color: #85a09e; 
+}
+
+.form-section {
+  background-color: #f8f9fa;
+  padding: 2rem 0;
+}
+
+.form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.form input,
+.form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+
+.form textarea {
+  min-height: 150px;
+}
+
+.form button {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  background-color: #6c757d;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form button:hover {
+  background-color: #5a6268;
+}
+
+.alert {
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.25rem;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+  color: #155724;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  color: #721c24;
+}
+
+.text-center {
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+      font-size: 2.5rem;
+  }
+
+  .hero-subtitle {
+      font-size: 1.25rem;
+  }
+
+  .btn {
+      padding: 0.75rem 1.5rem;
+      font-size: 0.9rem;
+  }
+
+  .form {
+      padding: 0 1rem;
+  }
+}

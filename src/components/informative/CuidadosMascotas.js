@@ -15,7 +15,7 @@ const CuidadosMascotas = () => {
           <div className="d-flex gap-3 justify-content-center lead fw-normal"></div>
         </div>
       </div>
-      <div className="container my-1 pet-cuidados">
+      <div className="container-cuidados my-1 pet-cuidados">
         <div className="row p-3 pb-0 pe-lg-0 pt-lg-0 align-items-center rounded-3 border shadow-lg">
           <div className="col-lg-7 p-3 p-lg-5 pt-lg-3 text-cuidados">
             <h1 className="display-4 fw-bold lh-1 text-white">
@@ -38,7 +38,7 @@ const CuidadosMascotas = () => {
           </div>
         </div>
       </div>
-      <div className="container px-4 py-2" id="icon-grid">
+      <div className="container-cuidarinfo px-4 py-2" id="icon-grid">
         <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
           <div className="col d-flex align-items-start">
             <img src={ShieldDog} className="Person"></img>
@@ -148,7 +148,6 @@ const CuidadosMascotas = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };
