@@ -58,15 +58,15 @@ const ImagenesMascotas = ({setGallery, gallery}) => {
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
     return (
-        <div className="container my-5">
-            <div className="row">
-                <div className="col-md-6">
+        <div className="">
+            <div className="">
+                <div className="">
                     {
                         gallery.length <= 4 ? (
-                            <div {...getRootProps()} className={`dropzone border rounded-lg p-5 text-center ${isDragActive ? 'bg-primary text-white' : 'bg-light'}`}>
+                            <div {...getRootProps()} className={isDragActive}>
                                 <input {...getInputProps()} />
                                 <div className="">
-                                        <p className="m-0">Arrastra y suelta archivos aquí, o haz clic para seleccionar archivos</p>
+                                        <p className="input-reporter">Arrastra y suelta archivos aquí, o haz clic para seleccionar archivos</p>
                                 </div>
                             </div>
                         ) : (
@@ -77,7 +77,7 @@ const ImagenesMascotas = ({setGallery, gallery}) => {
                     }
                     <CarreteImagenes imagenes={gallery} handleDeleteImage={handleDeleteImage} />
                 </div>
-                <div className="col-md-6">
+                <div className="col-md-6 p-4">
                     {image && (
                         <div className="container border border-2 rounded">
                             <h3 className="mb-4">Recortar Imagen</h3>

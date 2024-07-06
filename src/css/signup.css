@@ -75,9 +75,13 @@
   }
 
   .img-container{
-    width: 150px;
-    height: auto;
-    padding: 20px;
+    width: 450px;
+    height: 250px;
+  }
+
+  .register-img{
+    width: 450px;
+    height: 250px;
   }
 
   .form-container{
