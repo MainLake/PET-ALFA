@@ -18,7 +18,7 @@ export const createPost = async (formData, token) => {
     };
 
     try { 
-        const data = await axiosInstance.postForm('/api/v2/posts/', formData, config);
+        const data = await axiosInstance.postForm('/api/v3/users/posts', formData, config);
         console.log(data);
         return data.data;
     }catch (error) {
