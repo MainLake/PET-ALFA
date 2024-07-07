@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { createAssociationRescuers } from '../../api/asociacionesRescatistas';
 import { CSpinner } from '@coreui/react';
-import '../../css/rescueform.css'
+import '../../css/rescueform.css';
 
 const RescueForm = () => {
   const [formData, setFormData] = useState({
@@ -59,41 +59,43 @@ const RescueForm = () => {
   };
 
   return (
-    <div className="form-section">
-    {formSuccess && <div className="alert alert-success">{formSuccess}</div>}
-    <form onSubmit={handleSubmit} className="form">
-        <div className="form-group">
+    <div className="form-section-rf">
+      <div className={`form-container-rf open`}>
+        {formSuccess && <div className="alert-rf alert-success-rf">{formSuccess}</div>}
+        <form onSubmit={handleSubmit} className="form-rf">
+          <div className="form-group-rf">
             <label htmlFor="nombre">Nombre</label>
             <input type="text" id="nombre" name="nombre" value={formData.name} onChange={evt => setFormData({ ...formData, name: evt.target.value })} placeholder="Ingrese su nombre" />
-        </div>
-        <div className="form-group">
+          </div>
+          <div className="form-group-rf">
             <label htmlFor="email">Email</label>
             <input type="email" id="email" name="email" value={formData.email} onChange={evt => setFormData({ ...formData, email: evt.target.value })} placeholder="Ingrese su correo electrónico" />
-        </div>
-        <div className="form-group">
+          </div>
+          <div className="form-group-rf">
             <label htmlFor="direccion">Dirección</label>
             <input type="text" id="direccion" name="direccion" value={formData.address} onChange={evt => setFormData({ ...formData, address: evt.target.value })} placeholder="Ingrese su dirección" />
-        </div>
-        <div className="form-group">
+          </div>
+          <div className="form-group-rf">
             <label htmlFor="redSocial">Red Social</label>
             <input type="text" id="redSocial" name="redSocial" value={formData.identifier} onChange={evt => setFormData({ ...formData, identifier: evt.target.value })} placeholder="Ingrese el link de su red social" />
-        </div>
-        <div className="form-group">
+          </div>
+          <div className="form-group-rf">
             <label htmlFor="descripcion">Descripción</label>
             <textarea id="descripcion" name="descripcion" value={formData.description} onChange={evt => setFormData({ ...formData, description: evt.target.value })} placeholder="Ingrese una descripción de su asociación o rescatista"></textarea>
-        </div>
-        <div className="form-group">
+          </div>
+          <div className="form-group-rf">
             <label htmlFor="password">Contraseña</label>
             <input type="password" id="password" name="password" value={formData.password} onChange={evt => setFormData({ ...formData, password: evt.target.value })} placeholder="Ingrese su contraseña" />
-        </div>
-        {formError && <div className="alert alert-danger">{formError}</div>}
-        <div className="text-center">
+          </div>
+          {formError && <div className="alert-rf alert-danger-rf">{formError}</div>}
+          <div className="text-center-rf">
             <button type="submit" className="btn btn-secondary">
-                {loading ? <CSpinner color="primary" /> : "Enviar solicitud"}
+              {loading ? <CSpinner color="primary" /> : "Enviar solicitud"}
             </button>
-        </div>
-    </form>
-</div>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 };
 

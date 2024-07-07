@@ -13,12 +13,12 @@ export const createPost = async (formData, token) => {
     const config = {
         headers: {
             "Content-Type": "multipart/form-data",
-            "Authorization": `Bearer ${token}`,
+            "Authorization": `Bearer ${token}`
         },
     };
 
     try { 
-        const data = await axiosInstance.postForm('/api/v2/posts/', formData, config);
+        const data = await axiosInstance.postForm('/api/v3/users/posts', formData, config);
         console.log(data);
         return data.data;
     }catch (error) {
@@ -50,7 +50,7 @@ export const addComment = async (idPet, data, token) => {
         headers: {
             // tipo de dato text
             "Content-Type": "text/plain",
-            "Authorization": `Bearer ${token}`,
+            "Authorization": `Bearer ${token}`
         }
     }
 

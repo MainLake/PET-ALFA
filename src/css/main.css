@@ -1,17 +1,15 @@
 body, html {
-  margin: 0;
-  padding: 0;
   width: 100%;
   height: 100%;
 }
 
-.container {
+.container-main {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0px;
   box-sizing: border-box;
   height: 85vh;
+  width: 100%;
 }
 
 .main-content {
@@ -46,8 +44,11 @@ body, html {
   margin-bottom: 20px;
 }
 
+.main-content button:hover{
+  background-color: rgb(64, 64, 64);
+}
 .main-content img.main-image {
-  width: 75%;
+  width: 69%;
   height: auto;
   border-radius: 10px;
   align-self: flex-start;
@@ -64,9 +65,8 @@ body, html {
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   text-align: center;
+  padding: 0px;
 }
 
 .info-section {
@@ -75,8 +75,6 @@ body, html {
   justify-content: center;
   align-items: center;
   flex: 1;
-  padding: 20px;
-  box-sizing: border-box;
 }
 
 .section1 {
@@ -92,45 +90,45 @@ body, html {
 }
 
 .info-section img {
-  max-width: 20%;
+  max-width: 30%;
   height: auto;
 }
 
-/* Media Query para dispositivos móviles */
 @media (max-width: 768px) {
-  .container {
+  .container-main {
     flex-direction: column;
-    height: auto; /* Ajuste para permitir que el contenido crezca según el contenido */
+    height: auto; 
+
   }
 
   .main-content,
   .info-sections {
     width: 100%;
-    padding: 0px; /* Añadir padding en dispositivos móviles */
-    text-align: center; /* Centrar texto e imágenes en dispositivos móviles */
+    padding: 0px; 
+    text-align: center; 
   }
 
   .main-content h1 {
-    font-size: 2em; /* Reducir tamaño de título en dispositivos móviles */
-    margin-bottom: 10px; /* Espacio inferior reducido */
+    font-size: 2em; 
+    margin-bottom: 10px;
   }
 
   .main-content p {
-    font-size: 1em; /* Reducir tamaño de texto en dispositivos móviles */
+    font-size: 1em; 
     margin-bottom: 10px; /* Espacio inferior reducido */
   }
 
   .main-content button {
-    font-size: 0.9em; /* Reducir tamaño de botón en dispositivos móviles */
+    font-size: 0.9em;
   }
 
   .main-content img.main-image {
-    width: 100%; /* Ocupar todo el ancho disponible */
-    max-width: none; /* Remover ancho máximo */
-    align-self: center; /* Centrar imagen en dispositivos móviles */
+    width: 100%; 
+    max-width: none; 
+    align-self: center;
   }
 
   .info-section img {
-    max-width: 30%; /* Ajustar tamaño de las imágenes en dispositivos móviles */
+    max-width: 30%; 
   }
 }

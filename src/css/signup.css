@@ -1,11 +1,21 @@
 .register-container{
   display: flex;
   width: 100%;
-  max-width: 1350px;
+  height: auto;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   overflow: hidden;
+}
+
+.logo-section{
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.logoPet{
+  width: 100px;
+  height: auto;
 }
 
 .img-container{
@@ -15,19 +25,34 @@
   align-items: center;
 }
 
-.register-img{
-  max-width: 550px;
+.form-group{
+  margin-bottom: 20px;
+}
+
+.imgFromSign{
+  width: 550px;
   height: auto;
 }
 
-.form-container{
+.register-img{
+  max-width: 600px;
+  height: auto;
+}
+
+.signup-container{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: #fff;
   padding: 20px;
-  width: 900px;
+  width: 100%;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
 }
 
 .input-group {
@@ -64,8 +89,8 @@
 }
 
 .buttonSing:hover{
-  background-color: #154744;
-  color: white;
+  background-color: #a7bb95;
+  color: black;
 }
 
 @media(max-width:768px){
@@ -95,5 +120,9 @@
 
   .buttonSing{
     width: 200px;
+  }
+  .register-img{
+    max-width: 0px;
+    height: 0;
   }
 }

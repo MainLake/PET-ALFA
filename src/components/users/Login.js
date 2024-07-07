@@ -86,27 +86,17 @@ const Login = () => {
   return (
     <div className="login-container">
       <div className="imgFromLog">
-        <img src={Loginimg} alt="imagen del formulario" className="imgFromLog" />
-    <div className="login-container">
-      <div className="imgFromLog">
-        <img src={Loginimg} alt="imagen del formulario" className="imgFromLog" />
+        <img src={Loginimg} alt="Imagen del formulario" className="imgFromLog" />
       </div>
 
-      <div className="form-section"> 
+      <div className="form-section-log"> 
         <div className="logo-section">
           <img src={logoPet} alt="logo pet" className="logoPet"></img>
-          <h4>PET</h4>
-          <h2>Iniciar sesión</h2>
-          <h6 className="welcome-title">Bienvenido!</h6>
-      <div className="form-section"> 
-        <div className="logo-section">
-          <img src={logoPet} alt="logo pet" className="logoPet"></img>
-          <h4>PET</h4>
           <h2>Iniciar sesión</h2>
           <h6 className="welcome-title">Bienvenido!</h6>
         </div>
         {
-          // agregar contenedor vacio
+
           error !== "" ? (
             <div>
               {error}
@@ -119,15 +109,10 @@ const Login = () => {
 
         <div className="form-group">
           <label htmlFor="email">Ingrese su email:</label>
-
-        <div className="form-group">
-          <label htmlFor="email">Ingrese su email:</label>
           <input
             type="email"
             id="email"
             name="email"
-            placeholder="@Ingresa el email"
-            className="form-control"
             placeholder="@Ingresa el email"
             className="form-control"
             required
@@ -137,14 +122,10 @@ const Login = () => {
         </div>
         <div className="form-group">
           <label htmlFor="password">Ingrese su contraseña:</label>
-        <div className="form-group">
-          <label htmlFor="password">Ingrese su contraseña:</label>
           <input
             type="password"
             id="password"
             name="password"
-            placeholder="*Introduce tu contraseña"
-            className="form-control"
             placeholder="*Introduce tu contraseña"
             className="form-control"
             required
@@ -155,9 +136,7 @@ const Login = () => {
 
         <button
           type="submit"
-          type="submit"
           onClick={handleLogin}
-          className="buttonLog"
           className="buttonLog"
         >
           {

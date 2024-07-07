@@ -3,17 +3,13 @@ import "../../css/comoreporto.css";
 const ComoReporto = () => {
   return (
     <div className="section contenido">
-      <div className="px-2 py-1 my-1 text-center header-reporto">
-        <h1 className="display-2 fw-bold text-body-emphasis">¿Cómo Reporto?</h1>
-        <div className="col-lg-6 mx-auto">
-          <p className="lead mb-4">
-          </p>
+      <div className="hero-content">
+          <h1 className="hero-title">¿Cómo Reporto?</h1>
         </div>
-      </div>
-      <div className="container-cr col-xl-10 col-xxl-8 px-4 py-1">
-        <div className="row align-items-center g-lg-5 py-1">
+      <div className="container col-xl-10 col-xxl-8 px-4 py-0">
+        <div className="row align-items-center g-lg-5 py-0">
           <div className="col-lg-7 text-center text-lg-start">
-            <h1 className="display-4 fw-bold lh-1 text-body-emphasis mb-3">
+            <h1 className="display-5 fw-bold lh-1 text-body-emphasis mb-3">
               Paso 1: Iniciar Sesión
             </h1>
             <p className="col-lg-10 fs-5">
@@ -26,7 +22,7 @@ const ComoReporto = () => {
             </p>
           </div>
           <div className="col-md-10 mx-auto col-lg-5">
-            <form className="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+            <form className="p- p-md-5 border rounded-3 bg-body-tertiary">
               <div className="form-floating mb-3">
                 <input
                   type="email"
@@ -57,7 +53,7 @@ const ComoReporto = () => {
       <div className="container col-xl-10 col-xxl-8 px-4 py-2">
         <div className="row align-items-center g-lg-5 py-3">
           <div className="col-lg-7 text-center text-lg-start">
-            <h1 className="display-4 fw-bold lh-1 text-body-emphasis mb-3">
+            <h1 className="display-5 fw-bold lh-1 text-body-emphasis mb-3">
               Paso 2: Reportar Mascota (Datos de la mascota)
             </h1>
             <p className="col-lg-10 fs-5">
@@ -138,7 +134,7 @@ const ComoReporto = () => {
       <div className="container col-xl-10 col-xxl-8 px-4 py-2">
         <div className="row align-items-center g-lg-5 py-3">
           <div className="col-lg-7 text-center text-lg-start">
-            <h1 className="display-4 fw-bold lh-1 text-body-emphasis mb-3">
+            <h1 className="display-5 fw-bold lh-1 text-body-emphasis mb-3">
               Paso 3: Reportar Mascota (Datos de Pérdida)
             </h1>
             <p className="col-lg-10 fs-5">

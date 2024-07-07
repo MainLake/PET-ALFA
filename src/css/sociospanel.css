@@ -1,3 +1,4 @@
+/* sociospanel.css */
 .hero-section {
   background-color: #154744;
   background-size: cover;
@@ -46,26 +47,43 @@
 .form-section {
   background-color: #f8f9fa;
   padding: 2rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
 }
 
-.form {
-  max-width: 600px;
+.form-container-rf {
+  background: #fff;
+  padding: 2rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  width: 100%;
+  max-width: 1200px; /* or any other max width you prefer */
   margin: 0 auto;
-  padding: 0 1rem;
+  transition: opacity 0.5s ease;
 }
 
-.form-group {
+.form-rf {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-group-rf {
+  display: flex;
+  flex-direction: column;
   margin-bottom: 1rem;
+  width: 100%;
 }
 
-.form label {
-  display: block;
+.form-group-rf label {
   margin-bottom: 0.5rem;
-  font-weight: bold;
 }
 
-.form input,
-.form textarea {
+.form-rf input,
+.form-rf textarea {
   width: 100%;
   padding: 0.75rem;
   font-size: 1rem;
@@ -73,43 +91,37 @@
   border-radius: 0.25rem;
 }
 
-.form textarea {
+.form-rf textarea {
   min-height: 150px;
 }
 
-.form button {
-  padding: 0.75rem 1rem;
-  font-size: 1rem;
-  background-color: #6c757d;
-  color: #ffffff;
-  border: none;
+.form-rf button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1.25rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
-.form button:hover {
-  background-color: #5a6268;
-}
-
-.alert {
+.alert-rf {
   margin-bottom: 1rem;
-  padding: 0.75rem 1rem;
+  padding: 0.75rem 1.5rem;
   border-radius: 0.25rem;
+  width: 100%;
+  text-align: center;
 }
 
-.alert-success {
+.alert-success-rf {
   background-color: #d4edda;
   border-color: #c3e6cb;
   color: #155724;
 }
 
-.alert-danger {
+.alert-danger-rf {
   background-color: #f8d7da;
   border-color: #f5c6cb;
   color: #721c24;
 }
 
-.text-center {
+.text-center-rf {
   text-align: center;
 }
 

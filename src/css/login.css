@@ -1,8 +1,7 @@
 .login-container{
   display: flex;
   width: 100%;
-  max-width: 1350px;
-  background-color: #fff;
+  background-color: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   overflow: hidden;
@@ -47,14 +46,14 @@
   margin-bottom: 20px;
 }
 
-.form-section{
+.form-section-log{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #fff;
+  background-color: white;
   padding: 20px;
-  width: 900px;
+  width: 1030px;
 }
 
 .form-group{
@@ -71,7 +70,7 @@
   width: 250px;
   padding: 10px;
   margin-top: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid white;
   border-radius: 4px;
 }
 
@@ -87,13 +86,18 @@
 }
 
 .buttonLog:hover{
-  background: #154744;
-  color: #fff;
+  background: #9cb6c7;
+  color: black;
 }
 
 @media (max-width: 768px){
   .login-container{
     flex-direction: column;
     align-items: center;
+    height: auto;
+  }
+  .imgFromLog{
+    width: 400px;
+    height: 130px;
   }
 }

@@ -8,7 +8,7 @@ import M3 from "../imagenes/mm6.png";
 
 const Main = () => {
   return (
-    <div className="container">
+    <div className="container-main">
       <div className="main-content">
         <h1 className="main-title-font">Perdidos En Tapachula</h1>
         <p>
@@ -22,9 +22,11 @@ const Main = () => {
       <div className="info-sections">
         <div className="info-section section1">
           <Link to="/Adopcion-Responsable">
-            <img src={M1} alt="Icon 1" />
+            <img src={M1} alt="Icon 1" />  
           </Link>
+          
         </div>
+         
         <div className="info-section section2">
           <Link to="/Importancia-Mascotas">
             <img src={M2} alt="Icon 2" />
@@ -35,6 +37,9 @@ const Main = () => {
             <img src={M3} alt="Icon 3" />
           </Link>
         </div>
+      </div>
+      <div>
+      <div class="p-3 mb-2 bg-transparent text-body"></div>
       </div>
     </div>
   );

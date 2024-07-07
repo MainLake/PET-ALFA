@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import '../../css/sociospanel.css';
-import PetRoma from '../../imagenes/PetRoma.jpeg';
 import RescueForm from './RescueForm';
 
 const SociosPanel = () => {
@@ -9,7 +8,7 @@ const SociosPanel = () => {
     return (
         <>
             <div className="hero-section">
-                <div className="hero-content">
+                <div className="hero-content py-0">
                     <h1 className="hero-title">¡Únete a Nosotros!</h1>
                     <p className="hero-subtitle my-0">Sé parte de nuestro proyecto como rescatista o asociación dedicada al cuidado de mascotas. Completa el siguiente formulario y forma parte de nuestra comunidad.</p>
                 </div>
@@ -24,7 +23,9 @@ const SociosPanel = () => {
                     <div className="container">
                         <RescueForm />
                     </div>
+                    <div class="p-3 mb-2 bg-transparent text-body"></div>
                 </div>
+                
             )}
         </>
     );

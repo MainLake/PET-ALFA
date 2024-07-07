@@ -1,13 +1,8 @@
 import { useState } from "react";
 import { createAccount } from "../../api/users";
 import { CSpinner } from "@coreui/react";
-
-
-// Importaciones de imagenes
-import SignupImg from "../../imagenes/SingUpDesingPet1.png";
-import SingUpLogo from "../../imagenes/SingUpImg.png";
-
-//exportacion de estilos
+import SignupImg from "../../imagenes/signup.jpg";
+import SingUpLogo from "../../imagenes/Logo.png";
 import "../../css/signup.css"
 
 // Expresiones regulares
@@ -23,7 +18,7 @@ const Signup = () => {
     lastname: "",
     email: "",
     password: "",
-    phoneNumber: "",
+    phone_number: "",
   })
 
   const [error, setError] = useState("");
@@ -34,7 +29,7 @@ const Signup = () => {
     setLoading(true);
     evt.preventDefault();
 
-    if (!phoneRegExp.test(newUser.phoneNumber)) {
+    if (!phoneRegExp.test(newUser.phone_number)) {
       setError("El número de teléfono debe contener 10 dígitos");
       setTimeout(() => {
         setLoading(false);
@@ -88,7 +83,7 @@ const Signup = () => {
 
   return (
     <div className="register-container">
-      <div className="form-container">
+      <div className="signup-container">
         {
           error !== "" ? (
             <div role="alert">
@@ -106,8 +101,8 @@ const Signup = () => {
         }
         <form onSubmit={handleSubmit}>
           <div className="logo-section">
-            <img src={SingUpLogo} alt="Icono de nuevo usuarios" />
-            <h4>Registrate</h4>
+            <img src={SingUpLogo} alt="Icono de nuevo usuarios" className="logoPet"/>
+            <h2>Regístrate</h2>
             <h6 className="welcome-title">Bienvenido!</h6>
           </div>
           <div className="input-group">
@@ -173,17 +168,17 @@ const Signup = () => {
             </div>
           </div>
           <div className="form-group">
-            <label htmlFor="phoneNumber">
+            <label htmlFor="phone_number">
               Número de Teléfono:
             </label>
             <input
               type="tel"
-              id="phoneNumber"
-              name="phoneNumber"
+              id="phone_number"
+              name="phone_number"
               placeholder="Introduce tu telefono"
               required
-              value={newUser.phoneNumber}
-              onChange={evt => setNewUser({ ...newUser, phoneNumber: evt.target.value })}
+              value={newUser.phone_number}
+              onChange={evt => setNewUser({ ...newUser, phone_number: evt.target.value })}
             />
           </div>
 

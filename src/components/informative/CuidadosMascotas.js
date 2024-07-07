@@ -2,8 +2,6 @@ import "../../css/cuidados.css";
 import Cuidados from "../../imagenes/recomendaciones.png";
 import ShieldDog from "../../icons/shield-dog.svg";
 
-import Footer from "../Footer";
-
 const CuidadosMascotas = () => {
   return (
     <div>

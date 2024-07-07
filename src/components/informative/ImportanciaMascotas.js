@@ -130,6 +130,7 @@ const ImportanciaMascotas = () => {
           </div>
         </div>
       </div>
+      <div class="p-3 mb-2 bg-transparent text-body"></div>
     </div>
   );
 };
