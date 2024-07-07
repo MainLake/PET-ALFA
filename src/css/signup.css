@@ -1,7 +1,7 @@
 .register-container{
   display: flex;
   width: 100%;
-  max-width: 1350px;
+  height: auto;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;

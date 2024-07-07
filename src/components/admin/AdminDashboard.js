@@ -5,7 +5,7 @@ import UserList from "./userList";
 // Obtener usuarios y colaboradores
 import { obtenerUsuarios } from "../../api/administradores";
 import { obtenerUsuariosColaboradores } from "../../api/administradores";
-import UserCollaboratorList from "./userCollaboratorList";
+import UserCollaboratorList from "./UserCollaboratorList";
 
 import UserDetails from "./UserDetails";
 
